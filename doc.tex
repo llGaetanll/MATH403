@@ -1,0 +1,786 @@
+\documentclass[12pt]{article}
+\usepackage[
+    top=10mm,
+    bottom=10mm,
+    left=10mm,
+    right=10mm,
+    marginparwidth=0mm,
+    marginparsep=0mm,
+    % headheight=15pt,
+    centering,
+    % showframe,
+    includefoot,
+    % includehead
+]{geometry}
+\usepackage{tikz-cd}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=false,
+    linktoc=all,
+}
+
+\renewcommand{\date}[1]{\underline{\bf #1}}
+
+\def\eps{\varepsilon}
+\def\range{\text{Range}}
+\def\proj{\text{proj}}
+
+\newcommand{\GCD}{\text{GCD}}
+\def\RowSpace{\text{RowSpace}}
+\def\ColSpace{\text{ColSpace}}
+\def\trace{\text{trace}}
+\def\Ann{\text{Ann}}
+\def\sgn{\text{sgn}}
+\def\B{\mathcal B}
+\def\P{\mathcal P}
+
+\def\Tinv{$T$-invariant}
+
+
+% create a command for TODOs
+\newcommand{\TODO}{\color{red}\textbf{TODO}\color{black}}
+
+\newcommand*{\xdash}[1][3em]{\color{darkgray}\rule[0.5ex]{#1}{0.55pt}\color{black}}
+
+\newcommand{\ip}[2]{\left( #1 \mid #2 \right)}
+
+% preamble
+\input{preamble}
+
+
+
+% colors used in proof boxes
+\definecolor{proof_fg}{HTML}{ABABAB}
+\definecolor{proof_bg}{HTML}{EDEDED}
+
+
+
+% box solutions
+\newenvironment{solution}{
+  \begin{leftbar}
+
+  \noin
+  {\large \sc solution} \\
+}
+{
+
+  \medskip
+  \noin
+  \textcolor{proof_fg}{$\blacksquare$}
+
+  \end{leftbar}
+}
+
+
+
+% style a problem and solution
+\newcommand{\prob}[3]{
+  \bigskip \bigskip \noin
+  {\Large\sc Problem #1}
+
+  \medskip\noin
+  #2
+
+  \begin{solution}
+    \noin
+    #3
+  \end{solution}
+}
+
+\renewcommand{\mod}[1]{
+  \text{ (mod $#1$) }
+}
+
+\def\mat{\text{Mat}}
+\def\gl{\text{GL}}
+\def\sl{\text{SL}}
+
+
+
+\begin{document}
+
+\tableofcontents
+
+\date{Wed. 24 Jan 2024}
+
+\note {
+All info for the class is available on the canvas page.
+Notes from the prof are written on the iPad, and PDFs will be provided after
+each class. Despite this taking notes is helpful.
+
+Offices are hours are Tuesdays in person, and Thursdays on Zoom. Hours may
+vary.
+
+A text for this class is not {\it required}. Technically, we are using
+Fraleigh's {\it A first course in Abstract Algebra}
+
+No quizzes in this class, weekly Homeworks except on Exam weeks, two
+midterms, and one final.
+
+Readings on the class schedule are not additional, it's for people that need
+extra material, or people that missed that day.
+}
+
+\section{Introduction - Sets and Relations}
+
+\subsection{Sets}
+
+\definition{
+	A {\bf Set}. is a well-defined collection of objects called {\it elements}.
+
+	$a \in A$ means ``$A$ is a set, $a$ is an element of a set, and $a$ is in
+	$A$.
+}
+
+Examples of sets are
+
+\begin{itemize}
+	\item $\Z$ - The set of all integers, positive, negative, and zero
+	\item $\N$ - The set of natural numbers, $0, 1, 2, \dots$. {\bf In this
+			      class, $\N$ starts with $1$.}
+	\item $\Q$ - The set of rational numbers.
+	\item $\R$ - The set of real numbers.
+	\item $\C$ - The set of complex numbers.
+	\item $\{1, 2, 3, 4\}$
+	\item $\{a \in \Z | a > 2 \}$. This is a set of integers {\it such that} $a
+		      > 2$.
+	\item $\varnothing$ - The empty set.
+	\item $\text{GLn}(\R)$ - The set of $n \times n$ invertible matrices with real
+	      entries. (GL stands for ``General Linear".)
+	\item $C(\R)$ - The set of continuous functions $f: \R \to \R$.
+\end{itemize}
+
+\definition{
+	A set $A$ is a {\bf subset} of a set $B$ if
+
+	\[
+		\forall x \in A, x \in B
+	\]
+
+	In other words, everything in $A$ is also in $B$. As notation, we can say
+	either $A \subseteq B$ or $A \subset B$.
+
+	A {\bf proper} subset is $A \subset B$ but $A \ne B$. Just write $A
+		\subsetneq B$.
+}
+
+For example, $\N \subseteq \Z \subseteq \Q \subseteq \R \subseteq \C$. And,
+importantly, $\varnothing \subseteq A$ for all sets $A$. In other words, the
+empty set is a subset of {\it all} sets.
+
+Two sets are equal if $A = B$, or $A \subseteq B$ {\it and} $B \subseteq A$.
+This is often how you prove set equality.
+
+\subsubsection{Set Operations}
+
+We have four main operations.
+
+\begin{itemize}
+	\item {\bf Union}: $A \cup B = \{x | x \in A \text{ or } x \in B \}$.
+	\item {\bf Intersection}: $A \cap B = \{ x | x \in A \text{ and } x \in B \}$.
+	\item {\bf Product}: $A \times B = \{(a, b) | a \in A, b \in B \}$.
+	\item {\bf Difference}: $A \setminus B = \{x | x \in A \text{ and } x \not\in B\}$
+\end{itemize}
+
+Two sets are {\bf disjoint} if $A \cap B = \varnothing$.
+
+If we're working in a particular {\it universe} $U$ (i.e. all sets are subsets
+of the universal set $U$) then the {\it complement} of $A$ is $A^c = \{x | x
+	\in U \text{ and } x \not\in A \}$.
+
+\subsection{Relations}
+
+\definition {
+	A {\bf relation} between sets $A$ and $B$ is a subset $R \subseteq A \times
+		B$.
+}
+
+If $(a, b) \in R$, then we say that ``$a$ is related to $b$", or we write
+$aRb$, or $a \sim b$.
+
+\example {
+	$R \subseteq \{1, 2, 3\} \times \{2, 3, 4\}$. $R = \{(1, 3), (2, 2), (3, 4) \}$
+}
+
+\note {
+	Relations might not be reflexive! If $(a, b) \in R$, that means $a$ is
+	related to $b$, but it might not be the case that $(b, a) \in R$. In other
+	words, the reverse may not be true!
+}
+
+Another example might be $R \subseteq \R \times \R$, with $R = \{(x, x^3) | x
+	\in \R \}$. Oh look! We just rewrote $f(x) = x^3$, so functions are relations.
+
+\definition {
+	A {\bf partition} of a set $A$ is a collection of {\it disjoint} subsets
+	whose union is $A$.
+
+	Another way to think of this is that any element of $A$ is in one and only
+	one of its partitions.
+}
+
+An example of this might be the partition
+
+\[
+	A = \Z = \{x \in \Z | x < 0 \} \cup \{ 0 \} \cup \{ x \in \Z | x > 0 \}
+\]
+
+is a partition of $\Z$ into 3 sets.
+
+Another example might be $A = \R$, subsets are $\{ x \}$ for each $x \in \R$.
+
+Another, maybe more interesting example might be the following.
+
+\example {
+Fix $n \in \N$, $n \ge 2$. Let
+
+\begin{itemize}
+	\item $\bar 0 = \{x \in \Z | x \text{ is divisible by } n \}$.
+	\item $\bar 1 = \{x \in \Z | x - 1 \text{ is divisible by } n \}$.
+	\item $\bar 2 = \{x \in \Z | x - 2 \text{ is divisible by } n \}$. On and
+	      on until...
+	\item $\overline{n - 1} = \{x \in \Z | x - (n - 1) \text{ is divisible by } n
+		      \}$.
+\end{itemize}
+
+{\bf Claim}: This partitions $\Z$ into in $n$ subsets.
+
+}
+
+\date{Fri. 26 Jan 2024}
+
+Let's go back to relations, which we put aside to talk about partitions.
+
+\definition {
+	A relation $A \subseteq A \times A$ is called an {\bf equivalence relation}
+	if it satisfies 3 properties
+
+	\begin{enumerate}
+		\item {\bf Reflexivity}: $aRA$ for all $a \in A$.
+		\item {\bf Symmetry}: $aRb$ if and only if $bRa$.
+		\item {\bf Transitivity}: If $aRb$ and $bRc$, then $aRc$.
+	\end{enumerate}
+}
+
+The key idea is that equivalence relations on $A$ are {\it the same} as
+partitions of $A$. What's going on here?
+
+From an equivalence relation: If $b$ is related to $b$, put them in the same
+set. Because of symmetry of equivalence relations, order of elements in the
+set doesn't matter.
+
+Conversely, given a partition say $aRb \Leftrightarrow bRa$ are in the same
+subset.
+
+\note {
+	We'll be talking a lot about partitions and equivalence relations in this
+	class.
+}
+
+Now we move on to the next step in our intro: functions.
+
+\subsection{Functions}
+
+A function $f: A \to B$ is a relation $R_f \subseteq A \times B$ such that,
+for all $a \in A$, there is a {\it unique} $b \in B$ such that $aRb$.
+Effectively, this means that
+
+\begin{enumerate}
+	\item We pass the vertical line test.
+	\item The function is defined over its entire domain.
+\end{enumerate}
+
+Which are the properties we expect of functions!
+
+\example {
+	Let $f: \R \to \R$, with $R_f = \{(x, x^3) | x \in \R \}$. We write $f(a)$
+	for the value $b$ where $(a, b) \in R_f$.
+}
+
+Given a function $f: A \to B$. We say that
+
+\begin{itemize}
+	\item $A$ is the {\it domain}.
+	\item $B$ is the {\it codomain}.
+	\item The {\it range} is a {\it subset} of the codomain, only where $f$
+	      outputs values.
+\end{itemize}
+
+The $+$ operation is a function $+: \R \to \R$, also written as $(a, b)
+	\mapsto a + b$. The multiplication operation $\times: \R \times \R \to \R$,
+also written as $(a, b) \to ab$. These are binary operations, very useful in
+Group Theory.
+
+\definition {
+	A {\bf binary operation} on a set $A$ is a function $f: A \times A \to A$.
+	Its an operation on two inputs that outputs one thing.
+}
+
+\note {
+	A dot product does not count here! Because the output of the dot
+	product does not come from the same set as the input.
+}
+
+To do more complicated things in real life (such as $a + b + c$), we must
+parenthesize.
+
+\[
+	f(a, f(b, c)) \text{ or } f(f(a, b), c)
+\]
+
+Of course this doesn't matter for addition in particular, but it might for
+other binary operators!
+
+\example {
+	Fix $n \ge 2$ and consider $\Z_n = \{\bar 0, \bar 1, \dots, \overline{n - 1}
+		\}$ (Note that this is a set of sets!)
+
+	We want to come up with binary operations on this set. We have
+
+	\begin{enumerate}
+		\item Addition: $+: \Z_n \times \Z_n \to \Z_n$, defined as $(\bar a, \bar
+			      b) \mapsto \overline{a + b}$.
+
+		      But this isn't well-defined! For instance, what happens if $a + b$
+		      exceeds $n$? To fix this, let's add the following condition:
+
+		      Let $\bar x = \bar y$ if $x, y$ are in the same subset of partitions.
+		      (i.e. They have the same remainder mod $n$.)
+
+		      \qna {
+			      Is this a well-defined binary operations?
+		      }
+		      {
+			      Yes! But we must check that it doesn't matter how we define our
+			      inputs.
+		      }
+
+		\item Multiplication: $\times: \Z_n \times \Z_n \to \Z_n$, defined as
+		      $(\bar a, \bar b) \mapsto \overline{ab}$
+	\end{enumerate}
+}
+
+\note {
+	We also write $x \equiv y \mod{n} $ if $\bar x = \bar y$.
+}
+
+Now we're ready to jump in.
+
+\section{Properties of Operations on R}
+
+We know that $+$ has the following properties
+
+Properties of $+$ on $\R$, and $\times$ on $\R \setminus \{0\}$.
+
+\begin{enumerate}
+	\item {\bf Associativity}: $a + (b + c) = (a + b) + c$, and similarly for
+	      multiplication
+
+	\item {\bf Identity}: $a + 0 = a$, $a \cdot 1 = a$.
+
+	\item {\bf Inverses}: $a + (-a) = (-a) + a = 0$
+
+	\item {\bf Commutativity}: $a + b = b + a$
+\end{enumerate}
+
+\TODO{} do this for multiplication.
+
+\definition {
+	We say that a binary operation $p: A \times A \to A$ is {\bf associative} if
+
+	\[
+		p(a, p(b, c)) = p(p(a, b), c)
+	\]
+
+	for any $a, b, c \in A$. In other words, how we parenthesize doesn't matter.
+}
+
+\definition {
+	We say that a binary operation $p: A \times A \to A$ has an {\bf identity} if
+
+	\[
+		p(a, e) = p(e, a) = a
+	\]
+
+	for any $a \in A$.
+}
+
+\definition {
+	We say that a binary operation $p: A \times A \to A$ has a {\bf inverses} if
+
+	\begin{enumerate}
+		\item It has an identity element $e$ (otherwise identity is meaningless!)
+
+		\item
+		      \[
+			      p(a, b) = p(b, a) = e
+		      \]
+
+		      for any $a \in A$ and some $b \in A$.
+	\end{enumerate}
+
+	We usually write $b$ as $a^{-1}$.
+}
+
+\definition {
+	We say that a binary operation $p: A \times A \to A$ is {\bf commutative} if
+
+	\[
+		p(a, b) = p(b, a)
+	\]
+
+	for any $a, b \in A$.
+}
+
+Let's look at properties of $(\Z_n, +)$ and $(\Z_n, \times)$.
+
+$(\Z_n, +)$
+
+\begin{enumerate}
+	\item Is Associative.
+	\item Has an identity: $0$.
+	\item Has an inverse: $\overline{(-a)}$ for any $\bar a$.
+	\item Is Commutative: We can move elements around.
+\end{enumerate}
+
+$(\Z_n, \times)$
+
+\begin{enumerate}
+	\item Is Associative
+	\item Has an identity: $1$.
+	\item {\bf Does not} have an inverse! Because $\bar 0$ is still there, we
+	      have no inverse.
+	\item Is Commutative: We can move elements around. In this case, $\bar a
+		      \bar b = \overline{ab} = \overline{ba} = \bar b \bar a$.
+\end{enumerate}
+
+\qna {
+	If we instead looked at $(\Z_n \setminus \{ 0 \}, \times)$, would there be
+	inverses?
+}
+{
+	We've messed the whole thing up! This is not even an binary operation
+	anymore. Since we don't have $\bar 0$, what does $\bar 2 + \bar 2$ even mean
+	now, if $n = 4$?
+
+	We'll study this more in about a week.
+}
+
+Let's look at matrices. $A = \mat_n(\R)$ be the set of $n \times n$ matrices
+with real elements, with the binary operation being matrix multiplication.
+Let's look at its properties.
+
+\begin{enumerate}
+	\item Its associative.
+	\item It has an identity.
+	\item It {\bf does not} have an inverse.
+	\item It {\bf is not} commutative.
+\end{enumerate}
+
+Now looking at $A = \gl_n(\R)$ be the set of $n \times n$ invertible matrices
+with real entries.
+
+\begin{enumerate}
+	\item Its associative.
+	\item It has an identity.
+	\item It {\bf does} have an inverses.
+	\item It {\bf is not} commutative.
+\end{enumerate}
+
+{\bf Proposition}
+
+If $p: A \times A \to A$ is a binary operation with two identities $e, f$,
+then $e = f$.
+
+	{\bf Proof}
+
+$e = p(e, f) = f$, so $e = f$.
+
+
+	{\bf Proposition}
+
+If we have two inverses, then they are the same. More formally: if $p(a, b) =
+	p(b, a)= e$, and $p(a, c) = p(c, a) = e$, then $b = c$
+
+{\bf Proof}
+
+$p(c, p(a, b)) = p(c, e) = c$, but we could have also done $p(p(c, a), b) =
+	p(e, b) = b$, so $b = c$.
+
+\date{Mon. 29 Jan 2024}
+
+\note {
+	Homework 1 is due this Thursday at 11:59PM, on Gradescope. Because this is
+	the first homework, Gradescope will allow late submissions but just submit
+	it on time.
+}
+
+Last time, we talked about binary operations and their properties. Now, we are
+going to put everything together and talk about Groups!
+
+\section{Groups}
+
+\definition {
+	A {\bf Group} is a set $G$ with a binary operation $p: G \times G \to G$
+	that
+
+	\begin{enumerate}
+		\item Is {\it Associative}.
+		\item Has an {\it Identity}.
+		\item Has {\it Inverses}.
+	\end{enumerate}
+}
+
+Note that it does {\bf not} have commutatitivity. We'll talk about that
+later.
+
+Notation-wise, we write $(G, p)$, or just $G$ if the binary operations is
+understood. Additionally, we often write the operation as $a \cdot b$, $a + b$,
+or $ab$ instead of $p(a, b)$.
+
+\definition {
+  A Group is {\bf Abelian} if the operation is also {\it commutative}.
+}
+
+\note {
+  Sometimes, we say that a group is {\it closed} under its operation. However
+  we don't need this because a binary operation, by definition, is necessarily
+  closed.
+}
+
+Let's look at some examples.
+
+\example {
+  These groups are {\bf Abelian}:
+  \begin{enumerate}
+    \item $(\R, +)$
+    \item $(\Z, +)$
+    \item $(\C, +)$
+    \item $(\R \setminus \{0\}, \times)$
+  \end{enumerate}
+
+  These groups are {\bf Non-Abelian}:
+  \begin{enumerate}
+    \item $(\gl_n(\R), \times)$. Recall that this is the set of {\it
+      non-invertible} $n \times n$ matrices with real entries.
+    \item $(\Z_n, +)$. Recall that this was the set of classes of partitions
+      modulo $n$.
+  \end{enumerate}
+
+  These are {\bf not Groups}:
+  \begin{enumerate}
+    \item $(\N \cup \{0\}, +)$, has no inverses.
+    \item $\mat_n(\R), \times)$, has no inverses.
+  \end{enumerate}
+}
+
+\definition {
+  The {\bf Order} of a group, is the {\it cardinality} of the set $G$, denoted
+  $|G|$.
+}
+
+\subsection{Cancellation Law}
+
+In a group $G$, if $ab = ac$, then $b = c$.
+
+{\bf Proof}
+
+Since $G$ has inverses, there is an element $a^{-1} \in G$ such that $a a^{-1} =
+e$. So,
+
+\begin{align*}
+  ab &= ac \\
+  a^{-1} (ab) &= a^{-1} (ac) \\
+  (a^{-1}a) b &= (a^{-1}a) c \\
+  b &= c & \text{Defn of Identity}\\
+\end{align*}
+
+Let's look at some more examples.
+
+\subsection{Groups of Matrices}
+
+\example {
+  From the groups of matrices, we can also talk about
+
+  \begin{itemize}
+    \item $\gl_n(\R)$
+    \item $\gl_n(\C)$
+    \item $\gl_n(\Q)$
+  \end{itemize}
+
+  Which are all groups.
+
+  {\bf Question}: Is $\gl_n(\N)$ a group? What about $\gl_n(\Z)$?
+}
+
+Recall that $\gl$ stands for {\it general linear}. There is also the {\it
+special linear} group $\sl$. This is the set of general linear matrices with
+determinant $1$. Let's look at some examples
+
+\example {
+  \begin{enumerate}
+    \item $\sl = \{ A \in \gl_n(\R) | \det(A) = 1\}$
+
+      Recall that $\det(AB) = \det(A) \det(B)$, so this is closed.
+  \end{enumerate}
+}
+
+\subsection{Symmetric Groups}
+
+\definition {
+  Given the set $\{1, 2, \dots, n\}$, the group of {\it permutations} of this
+  set is the {\bf symmetric group} $S_n$, where the binary operation is {\it
+  function composition}.
+
+  A {\bf permutation} is a bijection $\{1, 2, \dots, n\ \to \{1, 2, \dots, n\}$.
+  A permutation can be described by a list.
+}
+
+\example {
+  If $n = 3$, we have the permutations
+
+  \[
+    \{123, 213, 132, 321, 231, 312 \}
+  \]
+
+  We say that $\sigma: \{1, 2, \dots, n\} \to \{1, 2, \dots, n\}$ takes an input
+  from the set and defines the shuffle.
+}
+
+We'll talk more about Symmetric groups later in the semester.
+
+\note {
+  \begin{itemize}
+    \item The Symmetric group is {\bf Non-Abelian}.
+    \item There are $n!$ permutations of $S_n$, so the order of $S_n$ is $|S_n|
+      = n!$
+    \item Why the Symmetric Group is named as it is is a question for another
+      day.
+  \end{itemize}
+}
+
+\subsection{Subgroups}
+
+\definition {
+  A {\bf subgroup} is a subset $H$ of a group $(G, p)$ such that:
+
+  \begin{enumerate}
+    \item $H$ is closed under $p$.
+
+      If $a, b \in H$, then $p(a, b) \in H$.
+
+      Note that we {\it need} to explicitly state that a subgroup is closed,
+      because $p$ is {\bf not} closed in $H$, but it {\it is} by virtue of the
+      values in $H$. However this does not come for free from $p$, unlike with
+      $G$ like before.
+
+    \item $H$ has inverses.
+
+      If $a \in H$, then $a^{-1} \in H$.
+  \end{enumerate}
+
+  Note that we also have
+
+  \begin{enumerate}
+    \item {\bf The Identity}, by virtue of $H$ being closed and containing
+      inverses.
+
+      \[
+        a a^{-1} = e
+      \]
+
+    \item {\bf Associativity}, because $(G, p)$ is associative. This property is
+      just inherited from $G$.
+  \end{enumerate}
+
+  So $(H, p)$ is a group!
+}
+
+As notation, we say that $H \le G$ if $H$ is a subgroup of $G$.
+
+\example {
+  \[
+    \sl_n(\R) \le \gl_n(\R) \le \gl_n(\C)
+  \]
+
+  Notice the direction of ``subset-ness"!
+}
+
+\example {
+  \[
+    \{\bar 0, \bar 2\} \le (\Z_4, +)
+  \]
+
+  Let's check this one.
+
+  \begin{enumerate}
+    \item {\bf Closure}:
+
+      This is small enough that we can check them all.
+
+      \begin{itemize}
+        \item $\bar 0 + \bar 0 = \bar 0$
+        \item $\bar 0 + \bar 2 = \bar 2$
+        \item $\bar 2 + \bar 0 = \bar 2$
+        \item $\bar 2 + \bar 2 = \bar 4 = \bar 0$
+      \end{itemize}
+
+      Note that we didn't really need to check the middle two, since the group
+      is Abelian, and that property is inherited.
+
+    \item {\bf Inverses}
+
+      \begin{itemize}
+        \item $\bar 0 + \bar 0 = \bar 0$
+        \item $\bar 2 + \bar 2 = \bar 0$
+      \end{itemize}
+  \end{enumerate}
+
+  So we have a subgroup!
+}
+
+\example {
+  If $G$ is a group and $a \in G$ is an element, then
+
+  \[
+    H = \{ \dots, a^{-3}, a^{-2}, a^{-1}, e, a^1, a^2, a^3, \dots \}
+  \]
+
+  is a subgroup.
+
+  As a note
+
+  \begin{itemize}
+    \item $a^{-3} = a^{-1}a^{-1}a^{-1}$
+    \item $a^2 = aa$
+  \end{itemize}
+}
+
+Furthermore, sometimes, $a^n = e$ for some finite $n$. The smallest such $n$ is
+called the {\bf order} of $a$.
+
+\example {
+  The order of $\bar 2 \in \Z_4$ is $2$.
+}
+
+\definition {
+  We say that a subgroup $H \le G$ is called {\bf trivial} if $|H| = 1$. Or,
+
+  \[
+    H = \{e\}
+  \]
+
+  This is a subgroup of {\it every group}.
+}
+
+\note {
+  $G \le G$ for all groups $G$. In other words, a group is always a subgroup of
+  itself.
+
+  We can say that $H < G$ is a {\bf proper} subgroup if $H \le G$ but $H \ne G$
+  and, additionally for this class, $H$ is non-trivial.
+}
+
+\end{document}
