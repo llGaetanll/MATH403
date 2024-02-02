@@ -35,6 +35,7 @@
 \def\sgn{\text{sgn}}
 \def\B{\mathcal B}
 \def\P{\mathcal P}
+\newcommand{\lcm}{\text{lcm}}
 
 \def\Tinv{$T$-invariant}
 
@@ -144,7 +145,7 @@ Examples of sets are
 	\item $\R$ - The set of real numbers.
 	\item $\C$ - The set of complex numbers.
 	\item $\{1, 2, 3, 4\}$
-	\item $\{a \in \Z | a > 2 \}$. This is a set of integers {\it such that} $a
+	\item $\{a \in \Z \mid a > 2 \}$. This is a set of integers {\it such that} $a
 		      > 2$.
 	\item $\varnothing$ - The empty set.
 	\item $\text{GLn}(\R)$ - The set of $n \times n$ invertible matrices with real
@@ -178,16 +179,16 @@ This is often how you prove set equality.
 We have four main operations.
 
 \begin{itemize}
-	\item {\bf Union}: $A \cup B = \{x | x \in A \text{ or } x \in B \}$.
-	\item {\bf Intersection}: $A \cap B = \{ x | x \in A \text{ and } x \in B \}$.
-	\item {\bf Product}: $A \times B = \{(a, b) | a \in A, b \in B \}$.
-	\item {\bf Difference}: $A \setminus B = \{x | x \in A \text{ and } x \not\in B\}$
+	\item {\bf Union}: $A \cup B = \{x \mid x \in A \text{ or } x \in B \}$.
+	\item {\bf Intersection}: $A \cap B = \{ x \mid x \in A \text{ and } x \in B \}$.
+	\item {\bf Product}: $A \times B = \{(a, b) \mid a \in A, b \in B \}$.
+	\item {\bf Difference}: $A \setminus B = \{x \mid x \in A \text{ and } x \not\in B\}$
 \end{itemize}
 
 Two sets are {\bf disjoint} if $A \cap B = \varnothing$.
 
 If we're working in a particular {\it universe} $U$ (i.e. all sets are subsets
-of the universal set $U$) then the {\it complement} of $A$ is $A^c = \{x | x
+of the universal set $U$) then the {\it complement} of $A$ is $A^c = \{x \mid x
 	\in U \text{ and } x \not\in A \}$.
 
 \subsection{Relations}
@@ -210,7 +211,7 @@ $aRb$, or $a \sim b$.
 	words, the reverse may not be true!
 }
 
-Another example might be $R \subseteq \R \times \R$, with $R = \{(x, x^3) | x
+Another example might be $R \subseteq \R \times \R$, with $R = \{(x, x^3) \mid x
 	\in \R \}$. Oh look! We just rewrote $f(x) = x^3$, so functions are relations.
 
 \definition {
@@ -224,7 +225,7 @@ Another example might be $R \subseteq \R \times \R$, with $R = \{(x, x^3) | x
 An example of this might be the partition
 
 \[
-	A = \Z = \{x \in \Z | x < 0 \} \cup \{ 0 \} \cup \{ x \in \Z | x > 0 \}
+	A = \Z = \{x \in \Z \mid x < 0 \} \cup \{ 0 \} \cup \{ x \in \Z \mid x > 0 \}
 \]
 
 is a partition of $\Z$ into 3 sets.
@@ -237,11 +238,11 @@ Another, maybe more interesting example might be the following.
 Fix $n \in \N$, $n \ge 2$. Let
 
 \begin{itemize}
-	\item $\bar 0 = \{x \in \Z | x \text{ is divisible by } n \}$.
-	\item $\bar 1 = \{x \in \Z | x - 1 \text{ is divisible by } n \}$.
-	\item $\bar 2 = \{x \in \Z | x - 2 \text{ is divisible by } n \}$. On and
+	\item $\bar 0 = \{x \in \Z \mid x \text{ is divisible by } n \}$.
+	\item $\bar 1 = \{x \in \Z \mid x - 1 \text{ is divisible by } n \}$.
+	\item $\bar 2 = \{x \in \Z \mid x - 2 \text{ is divisible by } n \}$. On and
 	      on until...
-	\item $\overline{n - 1} = \{x \in \Z | x - (n - 1) \text{ is divisible by } n
+	\item $\overline{n - 1} = \{x \in \Z \mid x - (n - 1) \text{ is divisible by } n
 		      \}$.
 \end{itemize}
 
@@ -295,7 +296,7 @@ Effectively, this means that
 Which are the properties we expect of functions!
 
 \example {
-	Let $f: \R \to \R$, with $R_f = \{(x, x^3) | x \in \R \}$. We write $f(a)$
+	Let $f: \R \to \R$, with $R_f = \{(x, x^3) \mid x \in \R \}$. We write $f(a)$
 	for the value $b$ where $(a, b) \in R_f$.
 }
 
@@ -370,22 +371,33 @@ Now we're ready to jump in.
 
 \section{Properties of Operations on R}
 
-We know that $+$ has the following properties
+Let's look at the properties of $(\R, +)$ and $(\R \setminus \{0\}, \times)$.
 
-Properties of $+$ on $\R$, and $\times$ on $\R \setminus \{0\}$.
+\begin{multicols}{2}
+  $(\R, +)$
 
-\begin{enumerate}
-	\item {\bf Associativity}: $a + (b + c) = (a + b) + c$, and similarly for
-	      multiplication
+  \begin{enumerate}
+    \item {\bf Associativity}: $a + (b + c) = (a + b) + c$
 
-	\item {\bf Identity}: $a + 0 = a$, $a \cdot 1 = a$.
+    \item {\bf Identity}: $a + 0 = a$
 
-	\item {\bf Inverses}: $a + (-a) = (-a) + a = 0$
+    \item {\bf Inverses}: $a + (-a) = (-a) + a = 0$
 
-	\item {\bf Commutativity}: $a + b = b + a$
-\end{enumerate}
+    \item {\bf Commutativity}: $a + b = b + a$
+  \end{enumerate}
 
-\TODO{} do this for multiplication.
+  $(\R \setminus \{0\}, \times)$
+
+  \begin{enumerate}
+    \item {\bf Associativity}: $a \times (b \times c) = (a \times b) \times c$
+
+    \item {\bf Identity}: $a \times 1 = a$.
+
+    \item {\bf Inverses}: $a \times (1/a) = (1/a) \times a = 1$
+
+    \item {\bf Commutativity}: $a \times b = b \times a$
+  \end{enumerate}
+\end{multicols}
 
 \definition {
 	We say that a binary operation $p: A \times A \to A$ is {\bf associative} if
@@ -621,7 +633,7 @@ determinant $1$. Let's look at some examples
 
 \example {
   \begin{enumerate}
-    \item $\sl = \{ A \in \gl_n(\R) | \det(A) = 1\}$
+    \item $\sl = \{ A \in \gl_n(\R) \mid \det(A) = 1\}$
 
       Recall that $\det(AB) = \det(A) \det(B)$, so this is closed.
   \end{enumerate}
@@ -781,6 +793,214 @@ called the {\bf order} of $a$.
 
   We can say that $H < G$ is a {\bf proper} subgroup if $H \le G$ but $H \ne G$
   and, additionally for this class, $H$ is non-trivial.
+}
+
+\date{Wed. 31 Jan 2024}
+
+Today we are going to talk about subgroups of $\Z$ under addition. We want to
+understand {\it all} those subgroups. Both the techniques and the results will
+be useful beyond just this set of groups.
+
+Let $a \in \Z$, and let $a \Z = \{ ax \mid x \in \Z \}$ be all the multiples of
+$a$ (with $0 \Z = \{ 0 \}$.)
+
+{\bf Claim.}
+
+$a \Z$ is a subgroup of $\Z$.
+
+{\bf Proof.}
+
+We need check two properties.
+
+\begin{enumerate}
+  \item {\bf Closure}: Given $ax, ay \in a \Z$, $ax + ay = a(x + y) \in a\Z$.
+  \item {\bf Inverses}: Given $ax \in a \Z$, $a(-x) \in a\Z$, and $ax + a(-x) =
+    ax - ax = 0 \in a\Z$.
+\end{enumerate}
+
+\note {
+  This is how you should prove your questions relating to subgroups on the
+  homework.
+}
+
+{\bf Claim}.
+
+If $H \le \Z$ is a subgroup, then $H = a\Z$ for some $a \in \Z$. In other words,
+this is it! This is {\it all} the subgroups.
+
+{\bf Proof}.
+
+If $H \le \Z$, then $0 \in H$. If $H = \{ 0 \}$< then $H = 0\Z$ is the trivial
+subgroup. Otherwise, $H$ contains non-zero integers. Since $H$ contains
+inverses, it contains positive integers. Let $a$ be the smallest positive
+integer in $H$. We want to show that $H = a\Z$.
+
+Given $ax \in a\Z$, we can express $ax$ as follows
+
+\[
+  ax = \begin{cases}
+    a + \cdots + a & x > 0 \\
+    0              & x = 0 \\
+    (-a) + \cdots + (-a) & x < 0 \\
+  \end{cases}
+\]
+
+In all such cases, $H$ is closed and has inverses/identity, so $ax \in H$ and
+thus $a\Z \subseteq H$.
+
+The harder way is going backwards.
+
+Given $h \in H$, and assume $|h| > a$ (We can do this because $a$ is the
+smallest positive integer in $H$.) Write
+
+\[
+  h = ax + r
+\]
+
+Where $0 \le r < a$. We know that $h \in H$, and $ax \in H$, so
+
+\[
+  r = h - ax \in H
+\]
+
+Because $r$ is a combination of two elements in the subgroup! But recall that
+$r$ is between $0$ and $a$. But we said before that $a$ is the smallest positive
+integer in $H$, so $r$ {\it must} be zero! In other words $h = ax$ and $h \in
+a\Z$. Which proves that $H \subseteq a\Z$.
+
+So $H = a\Z$.
+
+\note {
+  This proof is very important and the techniques in it come back! Be sure you
+  understand what's going on.
+}
+
+This is great! We've now categorized every subgroup of the Integers under
+addition!
+
+Now, given $a\Z$, $b\Z$, form
+
+\[
+  a\Z + b\Z = \{ax + by \mid x, y \in \Z \}
+\]
+
+This is a subgroup of $\Z$. In fact,
+
+{\bf Theorem}
+
+% $a\Z + \b\Z = d\Z$ for some $d \in \Z$, $d \ge 0$. To prove this, we must first
+% introduce some definitions.
+
+\definition {
+  If $a, b \ne 0$, then $d$ is the {\bf greatest common divisor} (gcd), of $a$
+  and $b$,
+
+  \[
+    d = \gcd(a, b)
+  \]
+}
+
+If $a, b = 0$, $d = \gcd(a, b)$, then
+
+\begin{enumerate}
+  \item $d$ divides $a$ and $b$, notated as $d \mid a$ and $d \mid b$.
+
+    {\bf Proof}.
+
+    $a \cdot 1 + b \cdot 0 = a \in d\Z$, so $d \mid a$. Similarly for $b$, $a \cdot
+    0 + b \cdot 1 = b \in d\Z$ so $d \mid b$.
+
+  \item if $e \mid a$ and $e \mid b$, then $e \mid d$
+
+    {\bf Proof}
+
+    If $e \mid a$ $e \mid b$, then $e \mid (ax + by) = d$.
+
+  \item $\exists x, y \in \Z$ such that $d = ax + by$
+
+    {\bf Proof}.
+
+    $d \in a\Z + b\Z$, so $d = ax + by$, for some $x, y \in \Z$.
+\end{enumerate}
+
+{\bf Fact}.
+
+$d$ is the smallest positive value of $|ax + by|$.
+
+This is useful, because if $ax + by = 1$ for some $x, y$, then $\gcd(a, b) = 1$.
+
+\definition {
+  $a, b \in \Z$ are {\bf relatively prime} if $\gcd(a, b) = 1$ and
+
+  \[
+    \gcd(a, b) = 1 \Leftrightarrow ax + by = 1
+  \]
+
+  for some $x, y \in \Z$.
+}
+
+{\bf Proposition}.
+
+Let $p$ be a prime. If $p \mid ab$, then $p \mid a$ or $p \mid b$.
+
+{\bf Proof}.
+
+Assume that $p$ is a prime, and $p \mid ab$, but $p \nmid a$.
+
+We will show that $p \mid b$.
+
+The factors of $p$ are $1$ and $p$, and $p \nmid a$, so $\gcd(p, a) = 1$ (since
+the $\gcd$ is either $1$ or $p$, but if it was $p$, then $p$ would divide $a$.)
+
+So there must exist $x, y \in \Z$ with $px + ay = 1$. Multiplying by $b$, we
+have $pxb + aby = b$. Now of course, $p \mid pxb$ and, more importantly, $p \mid aby$
+since $a$ is a multiple of $p$ so
+
+\[
+  p \mid (pxb + aby) = b
+\]
+
+So $p \mid b$.
+
+{\bf Similarly}.
+
+$a\Z \cap b\Z$ is also a subgroup of $\Z$, say $m\Z$ and $m = \lcm(a, b)$, the
+least common multiple of $a$ and $b$: The smallest number which is both a
+multiple of $a$ and $b$.
+
+{\bf The Euclidean Algorithm}. {\it To find the $\gcd$}
+
+To understand this, let's look at an
+
+\example {
+  Suppose we want to find the $\gcd(210, 45)$. Write $210 = 45 \cdot 4 + 30$. If
+  $x \mid 210$ and $x \mid 45$, then $x \mid 30$. Now $x \mid 30$ and $x \mid 45$ implies that
+  $x \mid 210$.
+
+  Hence $\gcd(210, 45) = \gcd(45, 30)$.
+
+  We can do this trick again!
+
+  $45 = 30 \cdot 1 + 15$, so $\gcd(45, 30) = \gcd(30, 15) = 15$. So $\gcd(210,
+  45) = 15$.
+}
+
+{\bf Cyclic Subgroups}.
+
+$G$ is a group, and $a \in G$. The set
+
+\[
+  \langle a \rangle = \{\dots, a^{-3}, a^{-2}, a^{-1}, e, a, a^2, a^3, \dots\}
+\]
+
+is called the {\bf cyclic subgroup generated by $a$}.
+
+\note {
+  $\langle a \rangle$ is the smallest subgroup of $G$ that contains all these
+  powers of $a$.
+
+  $|\langle a \rangle| = |a|$, the smallest positive $n$ such that $a^n = e$, or
+  $\infty$.
 }
 
 \end{document}
