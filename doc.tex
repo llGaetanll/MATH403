@@ -47,6 +47,8 @@
 
 \newcommand{\ip}[2]{\left( #1 \mid #2 \right)}
 
+\newcommand{\lr}[1]{\langle #1 \rangle}
+
 % preamble
 \input{preamble}
 
@@ -374,29 +376,29 @@ Now we're ready to jump in.
 Let's look at the properties of $(\R, +)$ and $(\R \setminus \{0\}, \times)$.
 
 \begin{multicols}{2}
-  $(\R, +)$
+	$(\R, +)$
 
-  \begin{enumerate}
-    \item {\bf Associativity}: $a + (b + c) = (a + b) + c$
+	\begin{enumerate}
+		\item {\bf Associativity}: $a + (b + c) = (a + b) + c$
 
-    \item {\bf Identity}: $a + 0 = a$
+		\item {\bf Identity}: $a + 0 = a$
 
-    \item {\bf Inverses}: $a + (-a) = (-a) + a = 0$
+		\item {\bf Inverses}: $a + (-a) = (-a) + a = 0$
 
-    \item {\bf Commutativity}: $a + b = b + a$
-  \end{enumerate}
+		\item {\bf Commutativity}: $a + b = b + a$
+	\end{enumerate}
 
-  $(\R \setminus \{0\}, \times)$
+	$(\R \setminus \{0\}, \times)$
 
-  \begin{enumerate}
-    \item {\bf Associativity}: $a \times (b \times c) = (a \times b) \times c$
+	\begin{enumerate}
+		\item {\bf Associativity}: $a \times (b \times c) = (a \times b) \times c$
 
-    \item {\bf Identity}: $a \times 1 = a$.
+		\item {\bf Identity}: $a \times 1 = a$.
 
-    \item {\bf Inverses}: $a \times (1/a) = (1/a) \times a = 1$
+		\item {\bf Inverses}: $a \times (1/a) = (1/a) \times a = 1$
 
-    \item {\bf Commutativity}: $a \times b = b \times a$
-  \end{enumerate}
+		\item {\bf Commutativity}: $a \times b = b \times a$
+	\end{enumerate}
 \end{multicols}
 
 \definition {
@@ -553,60 +555,60 @@ understood. Additionally, we often write the operation as $a \cdot b$, $a + b$,
 or $ab$ instead of $p(a, b)$.
 
 \definition {
-  A Group is {\bf Abelian} if the operation is also {\it commutative}.
+	A Group is {\bf Abelian} if the operation is also {\it commutative}.
 }
 
 \note {
-  Sometimes, we say that a group is {\it closed} under its operation. However
-  we don't need this because a binary operation, by definition, is necessarily
-  closed.
+	Sometimes, we say that a group is {\it closed} under its operation. However
+	we don't need this because a binary operation, by definition, is necessarily
+	closed.
 }
 
 Let's look at some examples.
 
 \example {
-  These groups are {\bf Abelian}:
-  \begin{enumerate}
-    \item $(\R, +)$
-    \item $(\Z, +)$
-    \item $(\C, +)$
-    \item $(\R \setminus \{0\}, \times)$
-  \end{enumerate}
+	These groups are {\bf Abelian}:
+	\begin{enumerate}
+		\item $(\R, +)$
+		\item $(\Z, +)$
+		\item $(\C, +)$
+		\item $(\R \setminus \{0\}, \times)$
+	\end{enumerate}
 
-  These groups are {\bf Non-Abelian}:
-  \begin{enumerate}
-    \item $(\gl_n(\R), \times)$. Recall that this is the set of {\it
-      non-invertible} $n \times n$ matrices with real entries.
-    \item $(\Z_n, +)$. Recall that this was the set of classes of partitions
-      modulo $n$.
-  \end{enumerate}
+	These groups are {\bf Non-Abelian}:
+	\begin{enumerate}
+		\item $(\gl_n(\R), \times)$. Recall that this is the set of {\it
+				      non-invertible} $n \times n$ matrices with real entries.
+		\item $(\Z_n, +)$. Recall that this was the set of classes of partitions
+		      modulo $n$.
+	\end{enumerate}
 
-  These are {\bf not Groups}:
-  \begin{enumerate}
-    \item $(\N \cup \{0\}, +)$, has no inverses.
-    \item $\mat_n(\R), \times)$, has no inverses.
-  \end{enumerate}
+	These are {\bf not Groups}:
+	\begin{enumerate}
+		\item $(\N \cup \{0\}, +)$, has no inverses.
+		\item $\mat_n(\R), \times)$, has no inverses.
+	\end{enumerate}
 }
 
 \definition {
-  The {\bf Order} of a group, is the {\it cardinality} of the set $G$, denoted
-  $|G|$.
+	The {\bf Order} of a group, is the {\it cardinality} of the set $G$, denoted
+	$|G|$.
 }
 
 \subsection{Cancellation Law}
 
 In a group $G$, if $ab = ac$, then $b = c$.
 
-{\bf Proof}
+	{\bf Proof}
 
 Since $G$ has inverses, there is an element $a^{-1} \in G$ such that $a a^{-1} =
-e$. So,
+	e$. So,
 
 \begin{align*}
-  ab &= ac \\
-  a^{-1} (ab) &= a^{-1} (ac) \\
-  (a^{-1}a) b &= (a^{-1}a) c \\
-  b &= c & \text{Defn of Identity}\\
+	ab          & = ac                                    \\
+	a^{-1} (ab) & = a^{-1} (ac)                           \\
+	(a^{-1}a) b & = (a^{-1}a) c                           \\
+	b           & = c           & \text{Defn of Identity} \\
 \end{align*}
 
 Let's look at some more examples.
@@ -614,185 +616,185 @@ Let's look at some more examples.
 \subsection{Groups of Matrices}
 
 \example {
-  From the groups of matrices, we can also talk about
+	From the groups of matrices, we can also talk about
 
-  \begin{itemize}
-    \item $\gl_n(\R)$
-    \item $\gl_n(\C)$
-    \item $\gl_n(\Q)$
-  \end{itemize}
+	\begin{itemize}
+		\item $\gl_n(\R)$
+		\item $\gl_n(\C)$
+		\item $\gl_n(\Q)$
+	\end{itemize}
 
-  Which are all groups.
+	Which are all groups.
 
-  {\bf Question}: Is $\gl_n(\N)$ a group? What about $\gl_n(\Z)$?
+		{\bf Question}: Is $\gl_n(\N)$ a group? What about $\gl_n(\Z)$?
 }
 
 Recall that $\gl$ stands for {\it general linear}. There is also the {\it
-special linear} group $\sl$. This is the set of general linear matrices with
+		special linear} group $\sl$. This is the set of general linear matrices with
 determinant $1$. Let's look at some examples
 
 \example {
-  \begin{enumerate}
-    \item $\sl = \{ A \in \gl_n(\R) \mid \det(A) = 1\}$
+	\begin{enumerate}
+		\item $\sl = \{ A \in \gl_n(\R) \mid \det(A) = 1\}$
 
-      Recall that $\det(AB) = \det(A) \det(B)$, so this is closed.
-  \end{enumerate}
+		      Recall that $\det(AB) = \det(A) \det(B)$, so this is closed.
+	\end{enumerate}
 }
 
 \subsection{Symmetric Groups}
 
 \definition {
-  Given the set $\{1, 2, \dots, n\}$, the group of {\it permutations} of this
-  set is the {\bf symmetric group} $S_n$, where the binary operation is {\it
-  function composition}.
+	Given the set $\{1, 2, \dots, n\}$, the group of {\it permutations} of this
+	set is the {\bf symmetric group} $S_n$, where the binary operation is {\it
+			function composition}.
 
-  A {\bf permutation} is a bijection $\{1, 2, \dots, n\ \to \{1, 2, \dots, n\}$.
-  A permutation can be described by a list.
+	A {\bf permutation} is a bijection $\{1, 2, \dots, n\ \to \{1, 2, \dots, n\}$.
+	A permutation can be described by a list.
 }
 
 \example {
-  If $n = 3$, we have the permutations
+	If $n = 3$, we have the permutations
 
-  \[
-    \{123, 213, 132, 321, 231, 312 \}
-  \]
+	\[
+		\{123, 213, 132, 321, 231, 312 \}
+	\]
 
-  We say that $\sigma: \{1, 2, \dots, n\} \to \{1, 2, \dots, n\}$ takes an input
-  from the set and defines the shuffle.
+	We say that $\sigma: \{1, 2, \dots, n\} \to \{1, 2, \dots, n\}$ takes an input
+	from the set and defines the shuffle.
 }
 
 We'll talk more about Symmetric groups later in the semester.
 
 \note {
-  \begin{itemize}
-    \item The Symmetric group is {\bf Non-Abelian}.
-    \item There are $n!$ permutations of $S_n$, so the order of $S_n$ is $|S_n|
-      = n!$
-    \item Why the Symmetric Group is named as it is is a question for another
-      day.
-  \end{itemize}
+	\begin{itemize}
+		\item The Symmetric group is {\bf Non-Abelian}.
+		\item There are $n!$ permutations of $S_n$, so the order of $S_n$ is $|S_n|
+			      = n!$
+		\item Why the Symmetric Group is named as it is is a question for another
+		      day.
+	\end{itemize}
 }
 
 \subsection{Subgroups}
 
 \definition {
-  A {\bf subgroup} is a subset $H$ of a group $(G, p)$ such that:
+	A {\bf subgroup} is a subset $H$ of a group $(G, p)$ such that:
 
-  \begin{enumerate}
-    \item $H$ is closed under $p$.
+	\begin{enumerate}
+		\item $H$ is closed under $p$.
 
-      If $a, b \in H$, then $p(a, b) \in H$.
+		      If $a, b \in H$, then $p(a, b) \in H$.
 
-      Note that we {\it need} to explicitly state that a subgroup is closed,
-      because $p$ is {\bf not} closed in $H$, but it {\it is} by virtue of the
-      values in $H$. However this does not come for free from $p$, unlike with
-      $G$ like before.
+		      Note that we {\it need} to explicitly state that a subgroup is closed,
+		      because $p$ is {\bf not} closed in $H$, but it {\it is} by virtue of the
+		      values in $H$. However this does not come for free from $p$, unlike with
+		      $G$ like before.
 
-    \item $H$ has inverses.
+		\item $H$ has inverses.
 
-      If $a \in H$, then $a^{-1} \in H$.
-  \end{enumerate}
+		      If $a \in H$, then $a^{-1} \in H$.
+	\end{enumerate}
 
-  Note that we also have
+	Note that we also have
 
-  \begin{enumerate}
-    \item {\bf The Identity}, by virtue of $H$ being closed and containing
-      inverses.
+	\begin{enumerate}
+		\item {\bf The Identity}, by virtue of $H$ being closed and containing
+		      inverses.
 
-      \[
-        a a^{-1} = e
-      \]
+		      \[
+			      a a^{-1} = e
+		      \]
 
-    \item {\bf Associativity}, because $(G, p)$ is associative. This property is
-      just inherited from $G$.
-  \end{enumerate}
+		\item {\bf Associativity}, because $(G, p)$ is associative. This property is
+		      just inherited from $G$.
+	\end{enumerate}
 
-  So $(H, p)$ is a group!
+	So $(H, p)$ is a group!
 }
 
 As notation, we say that $H \le G$ if $H$ is a subgroup of $G$.
 
 \example {
-  \[
-    \sl_n(\R) \le \gl_n(\R) \le \gl_n(\C)
-  \]
+	\[
+		\sl_n(\R) \le \gl_n(\R) \le \gl_n(\C)
+	\]
 
-  Notice the direction of ``subset-ness"!
+	Notice the direction of ``subset-ness"!
 }
 
 \example {
-  \[
-    \{\bar 0, \bar 2\} \le (\Z_4, +)
-  \]
+	\[
+		\{\bar 0, \bar 2\} \le (\Z_4, +)
+	\]
 
-  Let's check this one.
+	Let's check this one.
 
-  \begin{enumerate}
-    \item {\bf Closure}:
+	\begin{enumerate}
+		\item {\bf Closure}:
 
-      This is small enough that we can check them all.
+		      This is small enough that we can check them all.
 
-      \begin{itemize}
-        \item $\bar 0 + \bar 0 = \bar 0$
-        \item $\bar 0 + \bar 2 = \bar 2$
-        \item $\bar 2 + \bar 0 = \bar 2$
-        \item $\bar 2 + \bar 2 = \bar 4 = \bar 0$
-      \end{itemize}
+		      \begin{itemize}
+			      \item $\bar 0 + \bar 0 = \bar 0$
+			      \item $\bar 0 + \bar 2 = \bar 2$
+			      \item $\bar 2 + \bar 0 = \bar 2$
+			      \item $\bar 2 + \bar 2 = \bar 4 = \bar 0$
+		      \end{itemize}
 
-      Note that we didn't really need to check the middle two, since the group
-      is Abelian, and that property is inherited.
+		      Note that we didn't really need to check the middle two, since the group
+		      is Abelian, and that property is inherited.
 
-    \item {\bf Inverses}
+		\item {\bf Inverses}
 
-      \begin{itemize}
-        \item $\bar 0 + \bar 0 = \bar 0$
-        \item $\bar 2 + \bar 2 = \bar 0$
-      \end{itemize}
-  \end{enumerate}
+		      \begin{itemize}
+			      \item $\bar 0 + \bar 0 = \bar 0$
+			      \item $\bar 2 + \bar 2 = \bar 0$
+		      \end{itemize}
+	\end{enumerate}
 
-  So we have a subgroup!
+	So we have a subgroup!
 }
 
 \example {
-  If $G$ is a group and $a \in G$ is an element, then
+	If $G$ is a group and $a \in G$ is an element, then
 
-  \[
-    H = \{ \dots, a^{-3}, a^{-2}, a^{-1}, e, a^1, a^2, a^3, \dots \}
-  \]
+	\[
+		H = \{ \dots, a^{-3}, a^{-2}, a^{-1}, e, a^1, a^2, a^3, \dots \}
+	\]
 
-  is a subgroup.
+	is a subgroup.
 
-  As a note
+	As a note
 
-  \begin{itemize}
-    \item $a^{-3} = a^{-1}a^{-1}a^{-1}$
-    \item $a^2 = aa$
-  \end{itemize}
+	\begin{itemize}
+		\item $a^{-3} = a^{-1}a^{-1}a^{-1}$
+		\item $a^2 = aa$
+	\end{itemize}
 }
 
 Furthermore, sometimes, $a^n = e$ for some finite $n$. The smallest such $n$ is
 called the {\bf order} of $a$.
 
 \example {
-  The order of $\bar 2 \in \Z_4$ is $2$.
+	The order of $\bar 2 \in \Z_4$ is $2$.
 }
 
 \definition {
-  We say that a subgroup $H \le G$ is called {\bf trivial} if $|H| = 1$. Or,
+	We say that a subgroup $H \le G$ is called {\bf trivial} if $|H| = 1$. Or,
 
-  \[
-    H = \{e\}
-  \]
+	\[
+		H = \{e\}
+	\]
 
-  This is a subgroup of {\it every group}.
+	This is a subgroup of {\it every group}.
 }
 
 \note {
-  $G \le G$ for all groups $G$. In other words, a group is always a subgroup of
-  itself.
+	$G \le G$ for all groups $G$. In other words, a group is always a subgroup of
+	itself.
 
-  We can say that $H < G$ is a {\bf proper} subgroup if $H \le G$ but $H \ne G$
-  and, additionally for this class, $H$ is non-trivial.
+	We can say that $H < G$ is a {\bf proper} subgroup if $H \le G$ but $H \ne G$
+	and, additionally for this class, $H$ is non-trivial.
 }
 
 \date{Wed. 31 Jan 2024}
@@ -808,19 +810,19 @@ $a$ (with $0 \Z = \{ 0 \}$.)
 
 $a \Z$ is a subgroup of $\Z$.
 
-{\bf Proof.}
+	{\bf Proof.}
 
 We need check two properties.
 
 \begin{enumerate}
-  \item {\bf Closure}: Given $ax, ay \in a \Z$, $ax + ay = a(x + y) \in a\Z$.
-  \item {\bf Inverses}: Given $ax \in a \Z$, $a(-x) \in a\Z$, and $ax + a(-x) =
-    ax - ax = 0 \in a\Z$.
+	\item {\bf Closure}: Given $ax, ay \in a \Z$, $ax + ay = a(x + y) \in a\Z$.
+	\item {\bf Inverses}: Given $ax \in a \Z$, $a(-x) \in a\Z$, and $ax + a(-x) =
+		      ax - ax = 0 \in a\Z$.
 \end{enumerate}
 
 \note {
-  This is how you should prove your questions relating to subgroups on the
-  homework.
+	This is how you should prove your questions relating to subgroups on the
+	homework.
 }
 
 {\bf Claim}.
@@ -828,7 +830,7 @@ We need check two properties.
 If $H \le \Z$ is a subgroup, then $H = a\Z$ for some $a \in \Z$. In other words,
 this is it! This is {\it all} the subgroups.
 
-{\bf Proof}.
+	{\bf Proof}.
 
 If $H \le \Z$, then $0 \in H$. If $H = \{ 0 \}$< then $H = 0\Z$ is the trivial
 subgroup. Otherwise, $H$ contains non-zero integers. Since $H$ contains
@@ -838,11 +840,11 @@ integer in $H$. We want to show that $H = a\Z$.
 Given $ax \in a\Z$, we can express $ax$ as follows
 
 \[
-  ax = \begin{cases}
-    a + \cdots + a & x > 0 \\
-    0              & x = 0 \\
-    (-a) + \cdots + (-a) & x < 0 \\
-  \end{cases}
+	ax = \begin{cases}
+		a + \cdots + a       & x > 0 \\
+		0                    & x = 0 \\
+		(-a) + \cdots + (-a) & x < 0 \\
+	\end{cases}
 \]
 
 In all such cases, $H$ is closed and has inverses/identity, so $ax \in H$ and
@@ -854,25 +856,25 @@ Given $h \in H$, and assume $|h| > a$ (We can do this because $a$ is the
 smallest positive integer in $H$.) Write
 
 \[
-  h = ax + r
+	h = ax + r
 \]
 
 Where $0 \le r < a$. We know that $h \in H$, and $ax \in H$, so
 
 \[
-  r = h - ax \in H
+	r = h - ax \in H
 \]
 
 Because $r$ is a combination of two elements in the subgroup! But recall that
 $r$ is between $0$ and $a$. But we said before that $a$ is the smallest positive
 integer in $H$, so $r$ {\it must} be zero! In other words $h = ax$ and $h \in
-a\Z$. Which proves that $H \subseteq a\Z$.
+	a\Z$. Which proves that $H \subseteq a\Z$.
 
 So $H = a\Z$.
 
 \note {
-  This proof is very important and the techniques in it come back! Be sure you
-  understand what's going on.
+	This proof is very important and the techniques in it come back! Be sure you
+	understand what's going on.
 }
 
 This is great! We've now categorized every subgroup of the Integers under
@@ -881,7 +883,7 @@ addition!
 Now, given $a\Z$, $b\Z$, form
 
 \[
-  a\Z + b\Z = \{ax + by \mid x, y \in \Z \}
+	a\Z + b\Z = \{ax + by \mid x, y \in \Z \}
 \]
 
 This is a subgroup of $\Z$. In fact,
@@ -892,35 +894,35 @@ This is a subgroup of $\Z$. In fact,
 % introduce some definitions.
 
 \definition {
-  If $a, b \ne 0$, then $d$ is the {\bf greatest common divisor} (gcd), of $a$
-  and $b$,
+	If $a, b \ne 0$, then $d$ is the {\bf greatest common divisor} (gcd), of $a$
+	and $b$,
 
-  \[
-    d = \gcd(a, b)
-  \]
+	\[
+		d = \gcd(a, b)
+	\]
 }
 
 If $a, b = 0$, $d = \gcd(a, b)$, then
 
 \begin{enumerate}
-  \item $d$ divides $a$ and $b$, notated as $d \mid a$ and $d \mid b$.
+	\item $d$ divides $a$ and $b$, notated as $d \mid a$ and $d \mid b$.
 
-    {\bf Proof}.
+		      {\bf Proof}.
 
-    $a \cdot 1 + b \cdot 0 = a \in d\Z$, so $d \mid a$. Similarly for $b$, $a \cdot
-    0 + b \cdot 1 = b \in d\Z$ so $d \mid b$.
+	      $a \cdot 1 + b \cdot 0 = a \in d\Z$, so $d \mid a$. Similarly for $b$, $a \cdot
+		      0 + b \cdot 1 = b \in d\Z$ so $d \mid b$.
 
-  \item if $e \mid a$ and $e \mid b$, then $e \mid d$
+	\item if $e \mid a$ and $e \mid b$, then $e \mid d$
 
-    {\bf Proof}
+	      {\bf Proof}
 
-    If $e \mid a$ $e \mid b$, then $e \mid (ax + by) = d$.
+	      If $e \mid a$ $e \mid b$, then $e \mid (ax + by) = d$.
 
-  \item $\exists x, y \in \Z$ such that $d = ax + by$
+	\item $\exists x, y \in \Z$ such that $d = ax + by$
 
-    {\bf Proof}.
+	      {\bf Proof}.
 
-    $d \in a\Z + b\Z$, so $d = ax + by$, for some $x, y \in \Z$.
+	      $d \in a\Z + b\Z$, so $d = ax + by$, for some $x, y \in \Z$.
 \end{enumerate}
 
 {\bf Fact}.
@@ -930,20 +932,20 @@ $d$ is the smallest positive value of $|ax + by|$.
 This is useful, because if $ax + by = 1$ for some $x, y$, then $\gcd(a, b) = 1$.
 
 \definition {
-  $a, b \in \Z$ are {\bf relatively prime} if $\gcd(a, b) = 1$ and
+	$a, b \in \Z$ are {\bf relatively prime} if $\gcd(a, b) = 1$ and
 
-  \[
-    \gcd(a, b) = 1 \Leftrightarrow ax + by = 1
-  \]
+	\[
+		\gcd(a, b) = 1 \Leftrightarrow ax + by = 1
+	\]
 
-  for some $x, y \in \Z$.
+	for some $x, y \in \Z$.
 }
 
 {\bf Proposition}.
 
 Let $p$ be a prime. If $p \mid ab$, then $p \mid a$ or $p \mid b$.
 
-{\bf Proof}.
+	{\bf Proof}.
 
 Assume that $p$ is a prime, and $p \mid ab$, but $p \nmid a$.
 
@@ -957,32 +959,32 @@ have $pxb + aby = b$. Now of course, $p \mid pxb$ and, more importantly, $p \mid
 since $a$ is a multiple of $p$ so
 
 \[
-  p \mid (pxb + aby) = b
+	p \mid (pxb + aby) = b
 \]
 
 So $p \mid b$.
 
-{\bf Similarly}.
+	{\bf Similarly}.
 
 $a\Z \cap b\Z$ is also a subgroup of $\Z$, say $m\Z$ and $m = \lcm(a, b)$, the
 least common multiple of $a$ and $b$: The smallest number which is both a
 multiple of $a$ and $b$.
 
-{\bf The Euclidean Algorithm}. {\it To find the $\gcd$}
+	{\bf The Euclidean Algorithm}. {\it To find the $\gcd$}
 
 To understand this, let's look at an
 
 \example {
-  Suppose we want to find the $\gcd(210, 45)$. Write $210 = 45 \cdot 4 + 30$. If
-  $x \mid 210$ and $x \mid 45$, then $x \mid 30$. Now $x \mid 30$ and $x \mid 45$ implies that
-  $x \mid 210$.
+	Suppose we want to find the $\gcd(210, 45)$. Write $210 = 45 \cdot 4 + 30$. If
+	$x \mid 210$ and $x \mid 45$, then $x \mid 30$. Now $x \mid 30$ and $x \mid 45$ implies that
+	$x \mid 210$.
 
-  Hence $\gcd(210, 45) = \gcd(45, 30)$.
+	Hence $\gcd(210, 45) = \gcd(45, 30)$.
 
-  We can do this trick again!
+	We can do this trick again!
 
-  $45 = 30 \cdot 1 + 15$, so $\gcd(45, 30) = \gcd(30, 15) = 15$. So $\gcd(210,
-  45) = 15$.
+	$45 = 30 \cdot 1 + 15$, so $\gcd(45, 30) = \gcd(30, 15) = 15$. So $\gcd(210,
+		45) = 15$.
 }
 
 {\bf Cyclic Subgroups}.
@@ -990,17 +992,265 @@ To understand this, let's look at an
 $G$ is a group, and $a \in G$. The set
 
 \[
-  \langle a \rangle = \{\dots, a^{-3}, a^{-2}, a^{-1}, e, a, a^2, a^3, \dots\}
+	\langle a \rangle = \{\dots, a^{-3}, a^{-2}, a^{-1}, e, a, a^2, a^3, \dots\}
 \]
 
 is called the {\bf cyclic subgroup generated by $a$}.
 
 \note {
-  $\langle a \rangle$ is the smallest subgroup of $G$ that contains all these
-  powers of $a$.
+	$\langle a \rangle$ is the smallest subgroup of $G$ that contains all these
+	powers of $a$.
 
-  $|\langle a \rangle| = |a|$, the smallest positive $n$ such that $a^n = e$, or
-  $\infty$.
+	$|\langle a \rangle| = |a|$, the smallest positive $n$ such that $a^n = e$, or
+	$\infty$.
 }
+
+\date{Fri. 2 Feb 2024}
+
+\section{Cyclic Groups and Subgroups}
+
+We're going to repeat a little bit from last class, just to make sure we're on
+the same page.
+
+\definition {
+	If $G$ is a group and $a \in G$, the set
+
+	\[
+		\lr {a} = \{\dots, a^{-3}, a^{-2}, a^{-1}, e, a, a^2 , a^3, \dots\}
+	\]
+
+	Is the cyclic subgroup generated by $a$.
+
+	If $G = \lr{a}$ for some $a \in G$, we say $G$ is a {\bf cyclic group}.
+}
+
+\example {
+	$G = \Z$, $a = 2$, We have that
+
+	\[
+		\lr {2} = \{\dots, -4, -2, 0, 2, 4, \dots\}
+	\]
+
+	In general, $\lr{a} = a\Z$, and $\lr {1} = \Z$, so $\Z$ is a cyclic group.
+}
+
+\note {
+	$\lr {a}$ is the smallest subgroup of $G$ containing $a$.
+}
+
+Recall: Let $n \in \N$ be the smallest number such that $a^n = e$ (or $\infty$
+if $a^n \ne e$ for all $n$) we say that $n$ is the order of $a$, or $|a| = n$.
+
+	{\bf Proposition}
+
+Let $|a| = n < \infty$. Then
+
+\begin{enumerate}
+	\item $a^l = a^m$ if and only if $l - m \equiv 0 \mod n$.
+	\item $\lr {a} = \{e, a, a^2, \dots, a^{n - 1}\}$, and $|\lr{a}| = n$.
+\end{enumerate}
+
+{\bf Proof}
+
+\begin{enumerate}
+	\item If $a^l = a^m$, then $a^la^{-m} = e$ and so $a^{l - m} = e$. Assume that
+	      $l - m \le 0$.
+
+	      If $l - m \not\equiv 0 \mod n$ then $l - m > n$, because $n$ is minimal.
+	      Then $l - m = nk + r$, and $r \in \{0, 1, \dots, n - 1\}$.
+
+	      So
+
+	      \[
+		      a^r = a^{(l - m) - nk} = \underbrace{a^{l - m}}_{e} \underbrace{(a^n)^{-k}}_{e}
+	      \]
+
+	      But $r < n$ so in fact $r = 0$. This contradicts $l - m \not\equiv 0 \mod
+		      n$, hence $l - m \equiv 0 \mod n$.
+
+	\item If $l \in \Z$, write $l = nk + r$, $r \in \{0, 1, \dots, n - 1\}$, then
+	      $a^l = a^{nk + r} = (a^n)^ka^r = e^ka^r = a^r$. So
+
+	      \[
+		      \lr{a} = \{e, a, \dots, a^{n - 1}\}
+	      \]
+
+	      If $a^l = a^m$ for $l, m \in \{0, 1, \dots, n - 1\}$, then $l - m \equiv 0
+		      \mod n$. This only happens for $l = m$, so $|\lr{a}| = n$.
+\end{enumerate}
+
+This answers the question to the overloading of the word ``order" from before.
+The {\it order} of an element is in fact the order of the cyclic subgroup that
+it generates!
+
+\example {
+	If $|a| = n$, then
+
+	\[
+		|a^l| = \frac{n}{\gcd(n, l)}
+	\]
+
+	This is a good exercise for understanding subgroups. If you understand why
+	it's true, you're in good shape.
+}
+
+\definition {
+	An {\bf infinite cyclic group} is a cyclic group $\lr{a}$ where $|a| =
+		\infty$.
+
+	For example, $\Z$.
+
+		{\bf Finite cyclic groups}, for example $\Z_n = \lr{ \bar 1 }$
+}
+
+\example {
+	If $G = \gl_2(\R)$, then
+
+	\[
+		A = \begin{bmatrix}
+			2 & 0 \\
+			0 & 2 \\
+		\end{bmatrix}
+	\]
+
+	Has infinite order. Raising it to a power keeps generating larger and larger
+	matrices.
+
+	However other matrices have finite order. For example, rotation matrices! In
+	fact, it's possible to generate a rotation matrix of any order!
+
+	\[
+		B_n = \begin{bmatrix}
+			\cos(2 \pi / n) & -\sin(2 \pi / n) \\
+			\sin(2 \pi / n) & \cos(2 \pi / n)
+		\end{bmatrix}
+	\]
+
+	Has order $n$. It's a rotation matrix!
+}
+
+\subsection{Homomorphisms}
+
+So far we've been studying groups in isolation, but we may want to make general
+statements about the relation between different groups.
+
+We want function between groups that ``respect" the group operation.
+
+\definition {
+	Given groups $(G, p)$ and $(G', p')$. A {\bf Homomorphism} $\varphi: G \to G'$
+	is a function such that
+
+	\[
+		\varphi(p(a, b)) = p'(\varphi(a), \varphi(b))
+	\]
+
+	It doesn't matter if we combine elements before or after the binary
+	operations.
+
+	Suppressing $p$ and $p'$, we can write $\varphi(ab) = \varphi(a) \varphi(b)$.
+}
+
+Alternatively, we have the following diagram
+
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJHIFxcdGltZXMgRyJdLFsyLDAsIkciXSxbMCwyLCJHJyBcXHRpbWVzIEcnIl0sWzIsMiwiRyciXSxbMCwyLCJcXHZhcnBoaSBcXHRpbWVzIFxcdmFycGhpIiwxXSxbMCwxLCJwIiwxXSxbMiwzLCJwJyIsMV0sWzEsMywiXFx2YXJwaGkiLDFdXQ==
+\[
+  \begin{tikzcd}
+		{G \times G} && G \\
+		\\
+		{G' \times G'} && {G'}
+		\arrow["{\varphi \times \varphi}"{description}, from=1-1, to=3-1]
+		\arrow["p"{description}, from=1-1, to=1-3]
+		\arrow["{p'}"{description}, from=3-1, to=3-3]
+		\arrow["\varphi"{description}, from=1-3, to=3-3]
+	\end{tikzcd}
+\]
+
+\example {
+  We can express the determinant function as
+
+  \[
+    \det : \gl_n(\R) \to (\R \setminus \{0\}, \times)
+  \]
+
+  Or
+
+  \[
+    A \to \det(A)
+  \]
+
+  And we can check that $\det(AB) = \det(A)\det(B)$
+}
+
+Similarly
+
+\example {
+  Consider the function $\exp : (\R, +) \to (\R \setminus \{0\}, \times)$
+
+  Or
+
+  \[
+    x \to e^x
+  \]
+
+  And we can check that $\exp(x + y) = e^x e^y = \exp(x) \exp(y)$
+}
+
+A more general
+
+\example {
+  Given a group $G$, $a \in G$, we have
+
+  \[
+    \varphi: (\Z, +) \to G
+  \]
+
+  or
+
+  \[
+    n \to a^n
+  \]
+
+  If $|a| = n$, then $\varphi(\Z_n, +) \to G$, or $\bar i \to a^i$.
+}
+
+\example {
+  The {\bf trivial homomorphism} $\phi: G \to G'$ can be defined as $a \to e$
+  for all $a \in G$.
+}
+
+\note {
+  The difference between an {\it Isomorphism} and a {\it Homomorphism} is {\bf
+  not} necessarily a bijection.
+}
+
+{\bf Proposition}
+
+If $\varphi: G \to G'$ is a homomorphism, then
+
+\begin{enumerate}
+  \item $\varphi(a_1, \dots, a_n) = \varphi(\a_1) \cdots \varphi(a_n)$
+  \item $\varphi(e_G) = e_{G'}$
+  \item $\varphi(a^{-1}) = \varphi(a)^{-1}$
+\end{enumerate}
+
+It's important to note that these aren't by definition, but {\it derived} from
+the definition.
+
+{\bf Proof}.
+
+\begin{enumerate}
+  \item This one is by induction, we won't prove it.
+  \item $\varphi(e_{G} e_{G}) = \varphi(e_G) \varphi(e_G)$
+
+    We can can ``cancel" $\varphi(e_G)$ from both sides and get
+
+    \[
+      e_{G'} = \varphi(e_G)
+    \]
+
+  \item $e_{G'} = \varphi(e_G) = \varphi(a a^{-1}) = \varphi(a) \varphi(a^{-1})$
+    so $\varphi(a)\varphi(a^{-1}) = e_{G'}$ and so $\varphi(a^{-1}) =
+    \varphi(a)^{-1}$
+\end{enumerate}
 
 \end{document}
