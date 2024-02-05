@@ -37,6 +37,8 @@
 \def\P{\mathcal P}
 \newcommand{\lcm}{\text{lcm}}
 
+\def\phi{\varphi}
+
 \def\Tinv{$T$-invariant}
 
 
@@ -1252,5 +1254,214 @@ the definition.
     so $\varphi(a)\varphi(a^{-1}) = e_{G'}$ and so $\varphi(a^{-1}) =
     \varphi(a)^{-1}$
 \end{enumerate}
+
+\date{Mon. 5 Feb 2024}
+
+Recall: A {\bf Homomorphism} is a function $\phi: G \to G'$ satisfying $\phi(ab)
+= \phi(a)\phi(b)$.
+
+When we talk about functions, we like to talk about the {\it image} of that
+function.
+
+\definition {
+  The {\bf image} (or {\bf range}) of $\phi$ is $\phi(G) = \{\phi(a) \mid a \in
+  G \}$ is the set of all outputs of $\phi$ on its domain.
+}
+
+\definition {
+  The {\bf Kernel} of $\phi$ is $\ker(\phi) = \{a \in G \mid \phi(a) = e_{G'} \}$.
+}
+
+A vector space under addition is actually a group!
+
+{\bf Proposition}
+
+\begin{enumerate}
+  \item $\phi(G)$ is a subgroup of $G'$. The image is a subgroup of the
+    codomain.
+
+    {\bf Closure}
+
+    If $\phi(a), \phi(b) \in \phi(G)$, then $\phi(a) \phi(b) = \phi(ab)$ since
+    $\phi$ is a Homomorphism. But notice that $\phi(ab) \in \phi(G)$, so we have
+    closure.
+
+    {\bf Inverses}
+
+    If $\phi(a) \in \phi(G)$, then $\phi(a)^{-1} = \phi(a^{-1}) \in \phi(G)$, so
+    it's a subgroup.
+
+  \item $\ker(G)$ is a subgroup of $G$. The kernel is a subgroup of the domain.
+
+    {\bf Closure}
+
+    If $a, b \in \ker(\phi)$, $\phi(ab) = \phi(a) \phi(b) = e \cdot e = e$, so
+    $\phi(ab) \in \ker(\phi)$.
+
+    {\bf Inverses}
+
+    If $a \in \ker(\phi)$, then $\phi(a^{-1}) = \phi(a)^{-1} = e^{-1} = e$, so
+    $a^{-1} \in \ker(\phi)$.
+\end{enumerate}
+
+Let's look at an
+
+\example {
+  Consider the determinant function $\det: \gl_n(\R) \to (\R \setminus \{0\},
+  \times)$, $A \to \det(A)$
+
+  Here, the determinant is onto, so $\det(\gl_n(\R)) = \R \setminus \{0\}$.
+  Additionally,
+
+  \[
+    \ker(\det) = \{A \in \gl_n(\R) \min \det(A) = 1 \} = \sl_n(\R)
+  \]
+}
+
+To prove that something is a subgroup, it's often useful to find a homomorphism
+whose kernel (or image) is a subgroup.
+
+Consider the following
+
+\example {
+  $\exp(\R, +) \to (\R \setminus \{0\}, \times)$ is a homomorphism, $x \to e^x$.
+
+  $\exp(\R) = \{x \in \R \mid x > 0\}$, and $\ker(\exp) = \{x \in \R \mid
+  \exp(x) = 1 \} = \{0\}$.
+}
+
+{\bf Proposition}:
+
+$\phi: G \to G'$ is one to one if and only if $\ker(\phi) = \{e\}$.
+
+{\bf Proof}:
+
+($\Rightarrow$): $\phi(e) = e$, so $e \in \ker(\phi)$.
+
+If $a \ne e$ and $a \in \ker(\phi)$, then $\phi(a) = \phi(e) = e$ so $\phi$ is
+not injective, and we have a contradiction. Thus $\ker(\phi) = \{e\}$.
+
+($\Leftarrow$): If $\phi(a) = \phi(b)$, then $\phi(a) \phi(b)^{-1} = e$, but
+then $\phi(a) \phi(b^{-1}) = \phi(a b^{-1}) = e$ but since only $\phi(e) = e$,
+this means $a b^{-1} = e$ and so $a = b$ and so $\phi$ is injective.
+
+\subsection{Isomorphisms}
+
+\definition {
+  An {\bf Isomorphism} $\phi: G \to G'$ is a bijective homomorphism.
+}
+
+\note {
+  To check that something is an Isomorphism, you need to check two things:
+
+  \begin{enumerate}
+    \item It's a Homomorphism
+    \item It's a Bijection.
+
+      Note that if the function sets are finite, you only need to prove either
+      one to one-ness or onto-ness and the other should follow. Think about
+      why!
+  \end{enumerate}
+}
+
+\subsubsection{Examples}
+
+Some examples include:
+
+\begin{itemize}
+  \item $\exp: (\R, \times) \to (\R_{> 0}, \times)$
+  \item $\phi': (\Z, +) \to \lr {a} \le G$ is an isomorphism {\bf if and only
+    if} $|a| = \infty$.
+
+    This should make sense, as we never get the identity by a non-zero power of
+    $a$.
+
+  \item Given any $A \in \gl_n(\R)$, the linear map $f_A: (\R^n, +) \to (\R^n,
+    +)$ that sends $\bar x \to A \bar x$ is an isomorphism.
+
+  \item If $a \in G$, the map $\phi_a: G \to G$ that sends $b \to aba^{-1}$ is
+    an isomorphism, called {\bf conjugation by $a$}
+
+    {\bf Check}:
+
+    \begin{enumerate}
+      \item {\bf Homomorphism}
+
+        \begin{align*}
+          \phi(bc) &= a(bc)a^{-1} = abeca^{-1} \\
+                   &= (aba^{-1})(aca^{-1}) \\
+                   &= \phi_a(b)\phi_a(c)
+        \end{align*}
+
+      \item {\bf One to One}:
+
+        If $\phi_a(b) = e$, then $aba^{-1} = e$, then $a^{-1}aba^{-1}a =
+        a^{-1}a$, and so $b = e$, so $\phi_a$ is injective.
+
+      \item {\bf Onto}:
+        If $c \in G$, we want $b \in G$ such that $\phi_a(b) = c$, i.e.
+        $aba^{-1} = c$.
+
+        So choose $b = a^{-1}ca$, then $\phi_a(b) = aba^{-1} = a(a^{-1}ca)a^{-1}
+        = c$, so $\phi_a$ is surjective.
+    \end{enumerate}
+\end{itemize}
+
+{\bf Proposition}: If $\phi: G \to G'$ is an isomorphism, then $\phi^{-1}: G'
+\to G$ is also an isomorphism.
+
+{\bf Proof}:
+
+Since isomorphisms are bijections, it suffices to show that $\phi^{-1}$ is a homomorphism.
+
+If $x, y \in G'$, we want to show that $\phi^{-1}(xy) = \phi^{-1}(x)
+\phi^{-1}(y)$.
+
+Say $\phi^{-1}(x) = a$, $\phi^{-1}(y) = b$, and $\phi^{-1}(ab) = c$. Then we
+want to show that $ab  = c$.
+
+Then $ab = c$ if and only if $\phi(ab) = \phi(c)$ (since $\phi$ is bijective,
+in fact injectivity is sufficient for this.)
+
+But then this is true if and only if $\phi(a)\phi(b) = \phi(c)$, if and only if
+$\phi(\phi^{-1}(x))\phi(\phi^{-1}(y)) = \phi(\phi^{-1}(xy))$, if and only if $xy
+= xy$. Thus $ab = c$ and $\phi^{-1}$ is a homomorphism.
+
+\begin{align*}
+  ab = c &\Leftrightarrow \phi(ab) = \phi(c) \\
+         &\Leftrightarrow \phi(a)\phi(b) = \phi(c) \\
+         &\Leftrightarrow \phi(\phi^{-1}(x))\phi(\phi^{-1}(y)) = \phi(\phi^{-1}(xy)) \\
+         &\Leftrightarrow xy = xy
+\end{align*}
+
+\definition {
+  $G$ and $G'$ are {\bf isomorphic} if there exists an isomorphism $\phi: G \to
+  G'$.
+}
+
+Note again that since isomorphisms are bijective, this means that the
+isomorphism goes both ways.
+
+We write $G \cong G'$ or $G \backsimeq G'$, but mostly the former.
+
+\note {
+  The goal of this class is to give a good classification to a lot of groups.
+  Note that it's not really possible to completely do this, even for groups of a
+  given order, because we have infinitely many possible groups of order one, but
+  that's okay because there's an isomorphism between.
+
+  We say that we care about these groups {\it up to isomorphism}.
+
+  What this means is that if we have two groups that are isomorphic, we're going
+  to treat them as the same. When classifying or counting, we can count $G$ and
+  $G'$ are one if $G \cong G'$.
+}
+
+{\bf Exercise}. There is only one group of order one up to isomorphism.
+
+So if $|G| = |G^{-1}| = 1$, then $G \cong G'$.
+
+Next week we'll talk about specific types of groups and take a break from the
+theory.
 
 \end{document}
