@@ -12,9 +12,13 @@
     includefoot,
     % includehead
 ]{geometry}
+
+\usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{multicol}
 \usepackage{hyperref}
+
+\usetikzlibrary{shapes.geometric}
 
 \hypersetup{
     colorlinks=false,
@@ -1669,5 +1673,249 @@ What we get out of this is a map $\sgn: S_n \to (\{\pm 1, \times\})$ with
 \]
 
 {\bf Claim}: $\sgn$ is a homomorphism called the {\it signature} homomorphism.
+
+\date{Fri. 9 Feb 2024}
+
+Today we keep talking about the symmetric group and introduce the {\it Dyhedral
+Group!}
+
+{\bf Recall}: Last time, we defined $S_n$ is the symmetric group of
+permutations. We talked about transpositions, $(ab) \in S_n$ for $a \ne b$ every
+element $\sigma \in S_n$ can be written as a product of transpositions
+
+\example {
+  We said that $(1234) = (12)(23)(34)$.
+}
+
+\TODO{} More graphs here. Explain how this works.
+
+{\bf Recall}: Last time, we said that $\sigma \in S_n$ is {\bf even} if it can
+be written as product of an even number of transpositions, or $\sigma \in S_n$
+is {\bf odd} otherwise. We also claimed that it couldn't be both.
+
+We can consider the following table
+
+  \begin{center}
+    \begin{tabular}[c]{l|l|l}
+      & $\sigma$ even & $\sigma$ odd \\
+      \hline
+      $\tau$ & even & odd \\
+      $\tau$ & odd & even \\
+
+      \hline
+    \end{tabular}
+  \end{center}
+
+  Hence $\sgn: S_n \to (\{ \pm 1\}, \times)$ defined as
+\[
+  \sgn(sigma) = \begin{cases}
+    1 & \sigma \text{ even} \\
+    -1 & \sigma \text{ odd} \\
+  \end{cases}
+\]
+
+is called the signature.
+
+The kernel $\ker(\sgn)$ is a subgroup of $S_n$ called the {\bf alternating
+group} $A_n$
+
+\[
+  A_n = \{\sigma \in S_n \mid \sigma \text{ even}\}
+\]
+
+Let's look at an
+
+\example {
+  \[
+    S_4 = \{
+      e,
+      (12),
+      (13),
+      (14),
+      (23),
+      (24),
+      (34),
+      (123),
+      (132),
+      (124),
+      (142),
+      (134),
+      (143),
+      (234),
+      (243),
+      (12)(34),
+      (13)(24),
+      (14)(23),
+      (1234),
+      (1243),
+      (1324),
+      (1342),
+      (1423),
+      (1432),
+    \}
+  \]
+
+  and
+
+  \[
+    A_4 = \{
+      e,
+      (123),
+      (132),
+      (124),
+      (142),
+      (134),
+      (143),
+      (234),
+      (243),
+      (12)(34),
+      (13)(24),
+      (14)(23),
+    \}
+  \]
+}
+
+{\bf Fact}: $|S_n| = n!$ so $|A_n| = n! / 2$.
+
+Let's talk about order of elements.
+
+Suppose we have a cycle $(12 \dots k)$. What's the order of this cycle?
+
+Since $\sigma^j(1) = j$, so if we want $\sigma^j(1) = 1$ with $j < k$, we need
+$j = k$. And moreover, $\sigma^k(i) = i$ which means that $\sigma^k = e$.
+
+If $\sigma$ has cycle notation, that is the product of a $k$-1 cycle, a $k$-2
+cycle... Then
+
+\[
+  |\sigma| = \lcm(k_1, k_2, \dots)
+\]
+
+Let's look at some
+
+\example {
+  \begin{itemize}
+    \item $|(12)(345)| = \lcm(2, 3) = 6$
+    \item $|(12)(34)| = \lcm(2, 2) = 2$
+    \item $|(12)(23)(34)| = |(1234)| = 4$
+
+      This looks like a bunch of 2-cycles, but it's actually a 4-cycle. Be sure
+      to use cycle notation to figure this out!
+  \end{itemize}
+}
+
+\section{Symmetry Groups}
+
+Consider a regular polygon
+
+\begin{center}
+  \begin{tikzpicture}
+    \node[regular polygon, draw,
+      regular polygon sides = 6,
+      minimum size = 6cm] (p) at (0,0) {};
+  \end{tikzpicture}
+\end{center}
+
+\TODO{} This looks so bad
+
+We call this $D_{2n}$, the group of symmetries of a regular $n$-gon, also known
+as the {\bf Dyhedral Group} of order $2n$.
+
+\example {
+  $D_6 = \{e, y, y^2, x, yx, y^2x\}$ is the symmetries of a triangle.
+
+  \begin{center}
+    \begin{tikzpicture}
+      \node[regular polygon, draw,
+        regular polygon sides = 3,
+        minimum size = 4cm] (p) at (0,0) {};
+    \end{tikzpicture}
+  \end{center}
+
+  To keep track of what's going on, put names on your vertices.
+
+  There are only 6 possible symmetries of this group. Symmetries are determined
+  by where the labels on the vertices go.
+}
+
+Consider an $n$-gon and take $A_1$, any vertex of this $n$-gon. You can take
+$A_1$ to any of $n$ vertices, then chose whether to put $A_2$ (a neighbor of
+$A_1$) clockwise or counter-clockwise of $A_1$. Then, everything else is determined!
+
+\note {
+  $D_{2n}$ is {\bf not} Abelian. Simply convince yourself that rotate then
+  reflect is {\it different} from reflect, then rotate. If you're not convinced,
+  draw it!
+}
+
+\example {
+  In $D_{2n}$, if $x$ is a reflection, $y$ is not counter-clockwise by $2 \pi /
+  n$ radians
+}
+
+{\bf Fact}: $D_{2n} \le S_n$ for $n \ge 3$. Since symmetry in $D_{2n}$ is a
+permutation of vertex labels.
+
+{\bf Exercise}: Show that $D_6 \cong S_3$.
+
+\definition {
+  If $H \le G$, define
+
+  \[
+    aH = \{ ah \mid h \in H \} \subseteq G
+  \]
+
+  is called a {\bf left coset} of $H$.
+}
+
+{\bf Proposition}: If we have a homomorphism $\phi: G \to G'$, and $a, b \in G$,
+then if $K = \ker(\phi)$ (which remember is a subgroup of $G$), then
+
+\[
+  \phi(a) = \phi(b) \Leftrightarrow a^{-1}b \in K \Leftrightarrow b \in a K
+  \Leftrightarrow a K = b K
+\]
+
+What we have is that cosets determine when elements map to the same spot under a
+homomorphism.
+
+{\bf Proof}:
+
+$\phi(a) = \phi(b) \Leftrightarrow \phi(a)^{-1}\phi(b) = e \Leftrightarrow
+\phi(a^{-1}b) = e \Leftrightarrow a^{-1}b \in K \Leftrightarrow a^{-1}b = k$ for
+some $k \in K$, which is true if and only if $b = ak$ for some $k \in K$, again
+if and only if $b \in a K$
+
+\begin{align*}
+  &\phi(a) = \phi(b) \\
+  \Leftrightarrow &\phi(a)^{-1}\phi(b) = e \\
+  \Leftrightarrow &\phi(a^{-1}b) = e \\
+  \Leftrightarrow &a^{-1}b \in K \\
+  \Leftrightarrow &a^{-1}b = k \\
+  \Leftrightarrow &ab = k
+\end{align*}
+
+\TODO {}
+
+Similarly, $a \in bK$.
+
+\example {
+  $a \in bk$ and $b \in ak$ if and only if $aK = bK$.
+}
+
+In fact, for any subgroup $H \le G$, $a^{-1}b \in H \Leftrightarrow b \in aH
+\Leftrightarrow aH = bH$.
+
+So given $H \le G$, define a relation $\sim$ no $G$ by $a \sim b \Leftrightarrow
+a \in bH$. But by the above, this true if and only if $aH \Leftrightarrow bH$.
+Hence $\sim$ is an equivalence relation.
+
+What we get out of this is that
+
+\begin{enumerate}
+  \item {\bf the cosets of $H$ partition $G$}.
+  \item The number of cosets of $H$ is the index of $H \in G$, written $[G : H]$, which may be $\infty$.
+\end{enumerate}
+
 
 \end{document}
