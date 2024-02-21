@@ -41,6 +41,7 @@
 \def\B{\mathcal B}
 \def\P{\mathcal P}
 \newcommand{\lcm}{\text{lcm}}
+% \newcommand{\Aut}{\text{Aut}}
 
 \def\phi{\varphi}
 \def\sgn{\text{sgn}}
@@ -2581,8 +2582,243 @@ from $H$ and $G / H$.
 
 \date{Mon. 19 Feb 2024}
 
-\TODO{}
+Today we are talking about Product Groups!
 
+\section{Product Groups}
+
+Today we try to build up larger groups from smaller groups.
+
+Let's write out explicitly the binary operations. Let $(G, p), (G', p')$ be two
+groups.
+
+The set
+
+\[
+  G \times G' = \{(g, g') \mid g \in G, g' \in G' \}
+\]
+
+Can be given a binary operation
+
+\[
+  (g, g') \cdot (h, h') = (p(g, h), p'(g', h'))
+\]
+
+Basically, you do the operations component-wise.
+
+{\bf Claim}: This is a group!
+
+\begin{enumerate}
+  \item {\bf Identity}: $(e_G, e_{G'})$
+  \item {\bf Inverses}: $(g, g')^{-1} = (g^{-1}, (g')^{-1})$
+\end{enumerate}
+
+\definition {
+  $G \times G'$ is the {\bf product} of $G$ and $G'$. It's also known as the
+  {\bf direct product}.
+}
+
+\note {
+  $|G \times G'| = |G| \cdot |G'|$
+}
+
+From this we can get special Homomorphisms. Quite a few in fact.
+
+% https://q.uiver.app/#q=WzAsNSxbMiwxLCJHIFxcdGltZXMgRyciXSxbNCwwLCJHIl0sWzQsMiwiRyciXSxbMCwwLCJHIl0sWzAsMiwiRyciXSxbMCwxLCJcXHBpX0ciXSxbMCwyLCJcXHBpX3tHJ30iLDJdLFszLDAsIlxcaW90YV97R30iLDJdLFs0LDAsIlxcaW90YV97Ryd9IiwyXV0=
+\begin{center}
+  \begin{tikzcd}
+    G &&&& G \\
+    && {G \times G'} \\
+    {G'} &&&& {G'}
+    \arrow["{\pi_G}", from=2-3, to=1-5]
+    \arrow["{\pi_{G'}}"', from=2-3, to=3-5]
+    \arrow["{\iota_{G}}"', from=1-1, to=2-3]
+    \arrow["{\iota_{G'}}"', from=3-1, to=2-3]
+  \end{tikzcd}
+\end{center}
+
+All of these are homomorphisms. We say that $\iota_G$ and $\iota_{G'}$ are {\bf
+inclusions}, and that $\pi_G$ and $\pi_{G'}$ are {\bf projections}. Let's look
+at them in more detail
+
+{\bf Inclusions}
+\begin{itemize}
+  \item $\iota_G(g) = (g, e)$. We have no other choice here for the second
+    element. Think about why.
+  \item $\iota_{G'}(g') = (e, g')$
+\end{itemize}
+
+{\bf Projections}
+\begin{itemize}
+  \item $\pi_G(g, g') = g$
+  \item $\pi_{G'}(g') = g'$
+\end{itemize}
+
+Note that these maps are onto, and in fact $\ker(\pi_G) = \{ (e_{G}, g') \mid g'
+\in G' \}$. Similarly, $\ker(\pi_{G'}) = \image(\iota_G)$.
+
+Now using the 1st isomorphism theorem, we know that $G \times G' / G' \cong G$.
+This means that $\iota_{G'}(G') \le G \times G'$.
+
+Similarly, $G \times G' / G \cong G$, meaning that $\iota_G(G) \le G \times G'$.
+
+This is fairly inline with how we expect the quotient group to behave.
+
+Let's look at an
+
+\example {
+  \[
+    \Z_2 \times \Z_3 = \{ (\bar 0, \bar 0), (\bar 1, \bar 0), (\bar 0, \bar 1),
+    (\bar 0, \bar 2), (\bar 1, \bar 2) \}
+  \]
+}
+
+Let's turn our attention to $\lr { (\bar 1, \bar 1) }$. We have that
+
+\[
+  \lr { (\bar 1, \bar 1) } = \{ (\bar 0, \bar 0), (\bar 1, \bar 1), (\bar 0, \bar
+  2), (\bar 1, \bar 0), (\bar 0, \bar 1), (\bar 1, \bar 2) \}
+\]
+
+So in fact $(\bar 1, \bar 1)$ is a generator of $\Z_2 \times \Z_3$. This means
+that $\Z_2 \times \Z_6$ is not a new group, it's isomorphic to $\Z_6$ ! In fact,
+this is generalizable.
+
+{\bf Proposition}
+
+$\Z_m \times \Z_n \cong \Z_{mn}$ if and only if $\gcd(m, n) = 1$.
+
+{\bf Proof}
+
+All we have to do is figure out when the group on the left is cyclic.
+
+{\bf Lemma}:
+
+The order of $(g, g') \in G \times G'$ is the $\lcm(|g|, |g'|)$.
+
+{\bf Proof of Lemma}
+
+If $\gcd(m, n) = 1$, then the $\lcm(|\bar 1|, |\bar 1|) = \lcm(m, n)$. Moreover,
+
+\[
+  \lcm(m, n) = \frac{mn}{\gcd(m, n)}
+\]
+
+This means that $(\bar 1, \bar 1)$ generates $\Z_m \times \Z_n$, so it is
+cyclic, and so it is isomorphic to $\Z_{mn}$
+
+On the other hand, if $\gcd(m, n) \ne 1$, then for any $(\bar a, \bar b) \in
+\Z_m \times \Z_n$, then $|(\bar a, \bar b)| = \lcm(|\bar a|, |\bar b|) \le
+\lcm(m, n) < mn$, in which case $\Z_m \times \Z_n$ cannot be cyclic! And so it
+is {\bf not} isomorphic to $\Z_{mn}$
+
+For instance, $\Z_2 \times \Z_2 \not\cong \Z_4$.
+
+{\bf Proposition}: There are two groups of order $4$, up to isomorphism.
+
+\[
+  \Z_4 \text{ or } \Z_2 \times \Z_2
+\]
+
+{\bf Proof}: Let $G$ be a group of order $4$. If $G$ is cyclic, then $G \cong
+\Z_4$. If not, then $|a| = 2$ for all non-trivial elements in our group. Pick $a
+\in G$, and $b \in G$ with $b \ne e$ and $b \ne a$. Then
+
+\[
+  ab \ne \begin{cases}
+    e & \text{ as } b \ne a^{-1} = a \\
+    a & \text{ as } b \ne e \\
+    b & \text{ as } a \ne e
+  \end{cases}
+\]
+
+So $ab$ is the $4$ element of $G$, and thus $G = \{e, a, b, ab\}$. Then we have
+that $\varphi: \Z_2 \times \Z_2 \to G$ with
+
+\begin{itemize}
+  \item $(\bar 0, \bar 0) \mapsto e$
+  \item $(\bar 1, \bar 0) \mapsto a$
+  \item $(\bar 0, \bar 1) \mapsto b$
+  \item $(\bar 1, \bar 1) \mapsto ab$
+\end{itemize}
+
+Is an isomorphism.
+
+{\bf Structure Theorem for Finitely Generated Abelian Groups}
+
+If $G$ is finitely generated, (i.e. there is a finite set $S \subseteq G$ such
+that all elements of $G$ are products of elements of $S$ and their inverses) and
+$G$ is Abelian, then
+
+\[
+  G \cong \Z \times \cdots \times \Z \times \Z_{m_1} \times \cdots \times \Z_{m_k}
+\]
+
+Moreover, if $G$ is finite and Abelian, then
+
+\[
+  G \cong \Z_{m_1} \times \cdots \times \Z_{m_k}
+\]
+
+\btw {
+  This is all the material you need to know for this Exam. From this point
+  forward is {\bf not} exam material.
+}
+
+\section{Semidirect Product}
+
+Given a group $G$, the set $\Aut(G)$ of {\bf automorphisms} of $G$ (i.e.
+isomorphisms $G \to G$) is a group under composition.
+
+\definition {
+  Let $G, H$ be groups, $\varphi: H \to \Aut(G)$ be a homomorphism with
+  $\varphi(h) = \varphi_h$. Then the group
+
+  \[
+    G \times_\varphi H \text{ or } G \rtimes H
+  \]
+
+  is called a {\bf semidirect product}, where the elements $(g, h) \in G \times
+  H$, but the binary operation
+
+  \[
+    (g, h)(g', h') = (g \cdot (\varphi_h(g')), hh')
+  \]
+}
+
+The set is the same! But the binary operation is different, so we have a new
+group structure.
+
+The identity: $(g, h)(e, e) = (g \varphi_h(e), he) = (ge, he) = (g, h)$.
+On the other side: $(e, e)(g, h) = (e \varphi_e(g), eh) = (eg, eh) = (g, h)$,
+since $\varphi_e = \varphi(e) = e_{\Aut(G)}$ so $\varphi_e(g) = g$.
+
+\example {
+  If $\varphi: H \to \Aut(G)$ is the identity, then
+
+  \[
+    (g, h)(g', h') = (g \varphi_h(g'), hh') = (gg', hh')
+  \]
+
+  So
+
+  \[
+    G \times_\varphi H = G \times H
+  \]
+}
+
+\example {
+  Let $G = \Z_n$ and $H = \Z_2$ with $\varphi: \Z_2 \to \Aut(\Z_n)$ with $\bar 0
+  \mapsto e$ and $\bar 1 \mapsto f$. $f: \Z_n \to \Z_n$ is determined by $f(\bar
+  1)$.
+
+  We need $f \circ f = id$ as $\varphi(\bar 1 + \bar 1) = \varphi(\bar 0) = id$.
+  For any $n$, $f = id$ or $f(\bar 1) = \overline{-1} = \overline{(n - 1)}$.
+
+  With the former, $\Z_n \times_\varphi Z_2 \cong \Z_n \times \Z_2$. With the
+  latter, $\Z_n \times_\varphi \Z_2 \cong D_{2n}$.
+}
+
+\newpage
 \date{Wed. 21 Feb 2024}
 
 Today is review!
