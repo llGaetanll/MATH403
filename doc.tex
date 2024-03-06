@@ -34,6 +34,7 @@
 \def\Stab{\text{Stab}}
 \def\Isom{\text{Isom}}
 \def\Perm{\text{Perm}}
+\def\Sylp{\text{Sylp}}
 
 \newcommand{\GCD}{\text{GCD}}
 \def\RowSpace{\text{RowSpace}}
@@ -3924,5 +3925,175 @@ In particular, if $|G| = n$, then $\Perm(G) \cong S_n$, so $G \cong H \le S_n$.
 \note {
   All of finite Group Theory is isomorphic to subgroups of the symmetric group.
 }
+
+\date{Wed. Mar 6 2024}
+
+\btw {
+  Question 6 is challenging. We have a class equation: $20 = 1 + 4 + 5 + 5 + 5$.
+  We're looking for subgroups, we should be looking for the $Z(a)$ for certain
+  elements.
+
+  We know that the order is equal to $\frac{20}{|C(a)|}$
+
+  We know that normal subgroups are unions of conjugacy classes, including the
+  conjugacy class of the identity $C(e)$.
+
+  A subgroup of order $4$ is not possible, $5$ is and we want to prove it. If
+  $|Z(a)| = 5$, then $Z(a) = \{e, a, a^2, a^3, a^4 \}$. We want to show that
+  $Z(a) = C(e) \cup C(a)$, i.e. we want to show that $C(a) = \{a, a^2, a^3,
+  a^4\}$. Instead of finding $b$ such that $aba^{-1} = a^2$, etc...
+
+  Show that $|C(a^2)| = 4$, but there is only one such conjugacy class, so it
+  must be the same and $a^2 \in C(a)$ and so $C(a^2) = C(a)$.
+
+  The way that you would say this is by saying $\frac{20}{|Z(a^2)|}$. Remember:
+  the larger the centralizer, the smaller the conjugacy class.
+
+  {\bf Question 2}: $H \le \Stab(S)$, don't forget to prove that $H$ is also a
+  subgroup.
+}
+
+\section{Sylow Theorems}
+
+{\it This is the last topic in Group Theory for this class.}
+
+{\bf Recall}: We know from Lagrange's Theorem that if $H \le G$, then $|H|$
+divides $|G|$, but in general, the converse is false.
+
+Our goal is to come up with the best converse that we can, in generality.
+
+\definition {
+  If $|G| = p^e m$ where $p$ is prime, $e > 0$ and $p \nmid m$, then $H \le G$
+  is a {\bf Sylow $p$ subgroup of $G$} if $|H| = p^e$, in other words, it's the
+  highest power of $p$ possible.
+
+  The set of Sylow $p$ subgroups of $G$ is denoted by $\Sylp(G)$.
+}
+
+\subsection{First Sylow Theorem}
+
+If $p$ divides $|G|$, then there exists a Sylow $p$ subgroup of $G$.
+
+{\bf Proof}: Say $|G| = n = p^e m$ where $p \nmid m$.
+
+Let $S = \{U \subseteq G \mid |U| = p^e \}$ (our hope is that one
+of these is actually a subgroup, if so great!) Immediately, we know that $|S| =
+\binom{n}{p^e} = \frac{n!}{p^e! (n - p^e)!}$.
+
+{\bf Lemma}: $|S|$ is not divisible by $p$. This is just a counting question, if
+you're not convinced, just expand the form above and see for yourself.
+
+Consider $G \acts S$ by left multiplication. We know that the orbits partition
+$S$, so
+
+\[
+  |S| = \sum_{\text{orbits}} |\text{orbits}|
+\]
+
+By our lemma, the left hand side is not divisible by $p$, which means that there
+exists at least one orbit $O_u$ with $|O_u|$ not divisible by $p$.
+
+Let $H = \Stab(U) = \{a \in G \mid aU = U\}$. Then elements of $H$ permute the
+elements of $U$. Consider $H \acts U$, where $h * u = hu$ by left multiplication
+(same action as above.) The orbit of $u \in U$, is $Hu$, which is a right coset
+of $H$, which means that the orbit of $U$ has the same size as the coset, in
+other words
+
+\[
+  |O_u| = |Hu| = |H|
+\]
+
+Just like before, the orbits partition $U$, so we know that $|U| =
+\sum_{\text{orbits}} |\text{orbit}|$, but then $p^e = \sum_{\text{orbits}}
+|H|$, which means that $p^e = |H| * (\text{number of orbits})$, so then $|H|$
+must be a power of $p$.
+
+\[
+  H = p^i
+\]
+
+So we have a subgroup, and it's a $p$ group! But now we need to figure out what
+power it is.
+
+Going back to our group action, by the Orbit Stabilizer Theorem,
+
+\[
+  |G| = |H| |O_u| = |\Stab(U)| \cdot |O_u|
+\]
+
+But recall that $|O_u|$ is not divisible by $p$, in other words, $p^em = p^i k$,
+where $k$ is not divisible by $p$, so in fact, $i = e$ and $|O_u| = m$, and $H$
+in fact, is a Sylow $p$ subgroup.
+
+{\bf Corollary}: (Cauchy's Theorem)
+
+If $p$ is prime and $p$ divides $|G|$, then $G$ contains an element of order
+$p$.
+
+{\bf Proof}: Let $H$ be a Sylow $p$ subgroup of $G$, and let $a \in H$ be
+non-trivial. Then $|a|$ divides $|H|$ meaning that $|a| = p^i$ for some $i \ge
+1$. Then $a^{p^{i - 1}}$ has order $p$ (as an example, consider $p = 2$ and $i =
+3$).
+
+\subsection{Second Sylow Theorem}
+
+\begin{enumerate}
+  \item All Sylow $p$ subgroups are conjugate
+
+    i.e. if $H$ and $H'$ are Sylow $p$ subgroups, then, there's an element $a
+    \in G$ such that $aHa^{-1} = H'$.
+
+  \item If $K \le G$, and $|K| = p^i$, then there exists a group $H \in
+    \Sylp(G)$ such that $K \le H \le G$.
+
+    Every $p$ group sits inside a Sylow $p$ subgroup.
+\end{enumerate}
+
+{\bf Corollary}:
+
+\[
+  \Sylp(G) = \{H\} \Leftrightarrow H \trianglelefteq G
+\]
+
+Having only a single Sylow $p$ subgroup means that it is normal!
+
+{\bf Proof}: $\Sylp(G) = \{H\}$ if and only if $aHa^{-1} = H$ for all $a \in G$,
+and this means that $H$ is normal.
+
+Let $n_p = |\Sylp(G)|$
+
+\subsection{Third Sylow Theorem}
+
+Let $|G| = p^e m$, $e \ge 1$, $p$ is prime, and $p$ does not divide $m$. Then
+
+\begin{itemize}
+  \item $n_p | m$
+  \item $n_p \equiv 1 \mod p$
+  \item $n_p = [G : N_G(H)]$, where $N_G(H)$ is the normalizer, defined as
+
+    \[
+      N_G(H) = \{a \in G \mid aHa^{-1} = H \}
+    \]
+
+    Even if $H$ is not normal, the normalizer is the things in $G$ that make $H$
+    look normal.
+
+    \QUESTION{} Does that mean the center is the normalizer of $G$?
+\end{itemize}
+
+{\bf Theorem}: If $|G| = 35$, then $G \cong \Z_{15}$
+
+{\bf Proof}: $35 = 5 \cdot 7$, let $H \in \text{Syl}_5(G)$, $k \in
+\text{Syl}_7(G)$. Then $n_5 \mid 7$ and $n_5 \equiv 1 \mod 5$, which means that
+$n_5 = 1$ and $H$ is normal.
+
+$n_7 \mid 5$ and $n_7 \equiv 1 \mod 7$, which means $n_7 = 1$  and $K$ is
+normal.
+
+We have that $H = \lr{h}$ and $K = \lr{k}$, and $H \cap K = \{e\}$, so we can
+write the isomorphism $\Z_5 \times \Z_7 \to G$, defined as $(i, j) \mapsto h^i
+k^j$
+
+{\bf Check}: $hk = kh$, so it's Abelian!
 
 \end{document}
