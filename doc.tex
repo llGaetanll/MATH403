@@ -3653,7 +3653,7 @@ Let's look at some examples.
   Each 1 corresponds to an element in the center, so we can count the number of
   ones.
 
-  {\bf Fact}: The class equation of $G$ is $n = 1 + \cdots 1$ if and only if $G$
+  {\bf Fact}: The class equation of $G$ is $n = 1 + \cdots + 1$ if and only if $G$
   is Abelian.
 }
 
@@ -4096,4 +4096,202 @@ k^j$
 
 {\bf Check}: $hk = kh$, so it's Abelian!
 
+\date{Fri. 8 Mar 2024}
+
+{\it Today is the final day of Group Theory! We're going to move over to Rings!}
+
+We've been using a Theorem without stating it this whole time!
+
+{\bf How to recognize your group is a product?}
+
+\theorem {
+  If $H, K \trianglelefteq G$, with $H \cap K = \{e\}$ and $G = \{hk \mid h \in
+  H, k \in K \}$, then
+
+  \[
+    G \cong H \times K
+  \]
+}
+
+{\bf Proof}: Let $\varphi: H \times K \to G$ for which $(h, k) \mapsto hk$.
+Since $HK = G$, we automatically know that $\varphi$ is surjective. Since $G$
+might not be finite, we still need to show injectivity.
+
+If $\varphi(h, k) = \varphi(h', k')$, then $hk = h'k'$, which means $(h')^{-1}h
+= k'k^{-1}$, which are both in $H \cap K = \{e\}$, so in fact $h = h'$ and $k =
+k'$ and $\varphi$ is injective.
+
+To show that $\varphi$ is a hom, simply notice that $\varphi(hh', kk') =
+hh'kk'$. This is equal to $hkh'k' = \varphi(h, k)\varphi(h', k')$ if $H$ and $K$
+commute.
+
+So given $h \in H$ and $k \in K$, consider $(hkh^{-1})k^{-1}$. Notice that,
+since $K$ is normal, $(hkh^{-1}) \in K$, and so in fact, $(hkh^{-1})k^{-1} \in
+K$. However notice that $(hkh^{-1})k^{-1} = h(kh^{-1}k^{-1}) \in H$ since $H$ is
+normal, so $hkh^{-1}k^{-1} \in H \cap K = \{e\}$ so $hkh^{-1}k^{-1} = e$ and so
+$hk = kh$.
+
+Let's take this for a spin in another
+
+{\bf Theorem}:
+
+If $|G| = pq$, where $p$ and $q$ are prime with $p > q$ and $q \equiv 1 \mod
+p$, then
+
+\[
+  G \cong \Z_{pq}
+\]
+
+\begin{proof}
+  We know that $n_p = |\Sylp(G)|$ satisfies $n_p \mid q$ and $n_p \equiv 1 \mod
+  q$. But $q \not\equiv 1 \mod p$, so $n_p = 1$. Additionally, $n_q$ satisfies $n_q
+  \mid p$ and $n_q \equiv 1 \mod q$ so $n_q = 1$.
+
+  {\bf Remember}: $n_p = 1$ if and only if $H \in \Sylp(G)$ is normal. So there
+  exists $H, K \trianglelefteq G$ with $|H| = p$ and $|K| = q$.
+
+  We should see that $H \cap K = \{e\}$ since it must divide both orders but
+  only $1$ divides two different primes.
+
+  Now we need only check that their product is the entire group, but these
+  groups are finite, so simply notice that $HK = G$, since $|HK| = |H||K| = pq =
+  |G|$, {\it because} their intersection is trivial.
+
+  So in fact, $G \cong H \times K \cong \Z_p \times \Z_q \cong \Z_{pq}$ since
+  $\gcd(p, q) = 1$.
+\end{proof}
+
+\section{Group Presentations}
+
+{\bf Recall}: Every element of $D_{2n}$ is a product of $x$ and $y$ where $x^2 =
+e$, $y^n = e$, and $xyx = y^{-1}$. Then, we can write the group as follows
+
+
+\[
+  \lr{x, y \mid x^2 = y^n = xyxy = e }
+\]
+
+Similarly, we could say that
+
+\begin{itemize}
+  \item Every element of $\Z_n$ is a sum of $\bar 1$ and $\bar 1 \cdot n = \bar
+    0$
+\end{itemize}
+
+\definition {
+  A set $\{x_1, \dots, x_n\} \subseteq G$ {\bf generates} $G$ if every element
+  in $G$ is a product of the $x_i$ and their inverses.
+}
+
+\definition {
+  A {\bf relation} in the generators is a product of $x_i$ and their inverses
+  that is $e \in G$.
+
+  For example $x^2, y^n, xyxy \in D_{2n}$.
+}
+
+\definition {
+  A {\bf word} in the generators is any product of $x_i$ and their inverses.
+}
+
+\definition {
+  The {\bf free group} on $n$ generators is 
+
+  \[
+    F_n = \lr{x_1, \dots, x_n}
+  \]
+
+  Is the group with $n$ generators and the only relations are the ``obvious
+  ones", i.e. conjugates of the identity. For example 
+
+  \[
+    x_1 x_2 x_3  x_3^{-1} x_2^{-1} x_1^{-1} = e
+  \]
+}
+
+\example {
+  $F_1 = \lr{ x } \cong (\Z, +)$ by $\varphi: \Z \to F_1$ for which $n \mapsto
+  x^n$.
+}
+
+\example {
+  $F_2 = \lr {x, y}$ has elements
+
+  \[
+    F_2 = \{e, x, x^2, \dots, x^{-1}, x^{-2}, \dots, y, y^2, \dots, y^{-1},
+    y^{-2}, \dots, xy, xy^2, \dots, xy^{-1}, x^{-1}y, \dots, xyx^{-2}y^3x^{-7},
+    \dots, yx, \dots\}
+  \]
+}
+
+Let $R \subseteq F_n$ be some subset. For example $R = \{x^2, y^n, xyxy\}
+\subseteq F_2$. We define $N_R \trianglelefteq F_2$ to be the smallest normal
+subgroup of $F_n$ that contains $R$.
+
+What does this look like? Well
+
+{\bf Lemma}:
+
+An element $g \in N_R$ if and only if $g$ can be attained by a finite sequence
+of
+
+\begin{enumerate}
+  \item products by elements in $R$
+  \item inversions
+  \item conjugation by elements of $F_n$
+\end{enumerate}
+
+Let's look at an
+
+\example {
+  $R = \{x^2, y^n, xyxy \} \subseteq F_2$. Then $N_R$ contains $(xy)(y^n
+  xyxy)(xy)^{-1}(yx^2) (x^2)^{-1}(yx^2)^{-1}$.
+
+  We have a product of conjugates of elements inside $R$.
+}
+
+\definition {
+  The group $\lr {x_1, \dots, x_n \mid R }$ is $F_n / N_R$. In fact we write it
+  as
+
+  \[
+    \lr {x_1, \dots, x_n | r_1, \dots }
+  \]
+
+  Where $R = \{r_1, \dots\}$
+}
+
+\example {
+  We know that $\Z_n \cong \Z / \lr{n} \cong F_1 / \lr{x^n} = \lr{x | x^n}$.
+}
+
+\example {
+  The product group $\Z \times \Z \cong \lr {x, y \mid xyx^{-1}y^{-1}}$, or in
+  other words $xy = yx$ (it commutes).
+}
+
+We can do a little more!
+
+\example {
+  Say we have $\Z_n \times \Z_m \cong \lr{x, y \mid x^n, y^n, xyx^{-1}y^{-1} }$
+}
+
+Unsurprisingly,
+
+\example {
+  $D_{2n} \cong \lr {x, y \mid x^2, y^n, xyxy }$
+}
+
+These are called {\bf group presentations}, $G$ is called finitely generated if
+it has a finite generating set.
+
+$G$ is {\bf finitely presented} if it has presentation
+
+\[
+  \lr {x_1, \dots, x_n \mid r_1, \dots, r_m }
+\]
+
+
 \end{document}
+
+
