@@ -63,6 +63,10 @@
 
 \newcommand{\lr}[1]{\langle #1 \rangle}
 
+\renewcommand{\mid}{\Big|}
+
+\renewcommand{\char}{\text{char}}
+
 % preamble
 \input{preamble}
 
@@ -4454,6 +4458,189 @@ $\alpha$ with the coefficients in $\Q$, i.e.
 
   i.e. $\Q, \R, \C, \Z_p, \Q[i], \Q[\sqrt{2}]$
 }
+
+\date{Wed 13 Mar 2024}
+
+\note {
+  Homework is due tomorrow on the Sylow Theorem. For number 4, you can use the
+  theorem used in class.
+}
+
+\section{Polynomial Rings}
+
+If $x$ is a variable (i.e. not a specific element of $\C$) then
+
+\[
+  \Z[x] = \{ a_0 + a_1 x + \cdots a_n x^n \mid a_i \in \Z, n \ge 0 \}
+\]
+
+Is the polynomial ring with variable $x$ and coefficients in $\Z$.
+
+\example {
+  If $R$ is any ring, then $R[x]$ is the ring of polynomials in variable $x$
+  with coefficients in $R$.
+}
+
+If we have $f(x) = a_0 + a_1 x + \cdots a_n x^n \in R[x]$ and $a_n \ne 0$, then
+
+
+\begin{enumerate}
+  \item the {\bf degree} of $f(x)$ is $n$
+  \item the {\bf leading coefficient} is $a_n$
+  \item $f$ is {\bf monic} if $a_n = 1$
+  \item $f$ is {\bf constant} if $\deg f = 0$ or $f = 0$
+\end{enumerate}
+
+\note {
+  Convention says that the degree of $f(x) = 0$ is undefined.
+}
+
+Let's define addition and multiplication. If $f(x) = a_0 + a_1 x + \cdots a_n
+x^n$ and $g(x) = b_0 + b_1 x + \cdots b_m x^m$ and assume that $n \ge m$. Then 
+
+\begin{enumerate}
+  \item $f(x) + g(x) = (a_0 + b_0) + (a_1 + b_1)x + \cdots (a_n + b_n)x^n$ where
+    $b_n = 0$ for $n > m$.
+
+  \item $f(x)g(x) = (a_0 b_0) + (a_0 b_1 + a_1 b_0)x + \cdots $
+\end{enumerate}
+
+We have our {\bf additive identity}: $f(x) = 0$ and our {\bf multiplicative
+identity}: $f(x) = 1$.
+
+$R$ can be thought of as a subring of $R[x]$, in fact elements in our ring
+correspond to polynomials
+
+\[
+  r \in R \leftrightarrow f(x) = r
+\]
+
+\subsection{Division with Remainder}
+
+If $R$ is a ring, and $f, g \in R[x]$ and $f$ is monic, then there exists unique
+$q, r \in R[x]$ with
+
+\[
+  g = fq + r
+\]
+
+and $r(x) = 0$ or $\deg r < \deg f$.
+
+{\bf Existence}; Long Division
+
+{\bf Uniqueness}: If $g = fq + r = fq' + r'$ with $q' \ne q$ and $r' \ne r$,
+then $r - r' = f(q' - q)$ and so the left hand side must have $\deg < f$, but
+the right hand side has $\deg f$ because $f$ is monic.
+
+The leading coefficient of $f(q - q') = $ leading coefficient of $q - q'$.
+
+{\bf Why does being monic matter here?} 
+
+Consider $\Z_4[x]$, $(\bar 2 x)(\bar 2 x) = \bar 4 x^2 = \bar 0$ so two
+polynomials of degree $1$ multiply to a polynomial of undefined degree.
+
+The point is that if the leading coefficient of one of them is 1, then the
+degree does not increase.
+
+\example {
+  In $\Z_4[x]$, let's take $g = \bar 2 x^2 + \bar 1 x + \bar 3 = \bar 2 x^2 + x
+  + \bar 3$, and $f = x + \bar 2$.
+
+  Long Division:
+
+  \TODO{} See picture for Mar 13 2024
+
+  So $q = \bar 2 x + \bar 1$, $r = \bar 1$, and $g = fq + r$.
+}
+
+Similarly, if the leading coefficient of $f$ is a unit $u \in R$, then we can
+write $f = f \cdot \bar f$, where $\bar f$ is a monic, where $\bar f$ is
+effectively $f$ with $u$ factored out.
+
+If $g = \bar f q + r$, then $g = (u \bar f)(u^{-1} q) + r = f(u^{-1} q) + r$. So
+we can do the division algorithm with $f$ as well.
+
+{\bf Corollary}: If $f \in R[x]$ and $\alpha \in R$, then the remainder of
+dividing $f$ by $x - \alpha$ is $f(\alpha)$
+
+{\bf Proof}: $x - \alpha$ is monic, so write $f = (x - \alpha)q + r$, where $r =
+0$, or constant, since $\deg r < \deg (x - \alpha) = 1$.
+
+Plug in $\alpha$, then $f(\alpha) = r(\alpha)$, but $r$ is constant, so $r(x) =
+f(\alpha)$.
+
+\note {
+  This is the same as saying that you can factor out a root out of your
+  polynomial, which should make sense!
+}
+
+If we work with more than one variable, we can make the polynomial ring
+
+\[
+  R[x_1, \dots, x_n] = \text{polynomials in $x_i$ with coefficients in $R$}
+\]
+
+\definition {
+  The characteristic of $R$ is the smallest $n \in \N$ such that 
+
+  \[
+    \underbrace{1 + 1 + \cdots + 1}_{\text{$n$ times}} = 0
+  \]
+
+  And $\char R = 0$ if no such $n$ exists.
+}
+
+\example {
+  \begin{enumerate}
+    \item $\char \Z = 0$
+    \item $\char \Z_n = n$
+    \item $\char R[x] = \char R$
+  \end{enumerate}
+}
+
+\subsection{Homomorphisms}
+
+\definition {
+  $\varphi: R \to R'$ is a {\bf ring homomorphism} if 3 properties hold.
+
+  \begin{enumerate}
+    \item $\varphi(a + b) = \varphi(a) + \varphi(b)$
+    \item $\varphi(ab) = \varphi(a)o\varphi(b)$
+    \item $\varphi(1_R) = 1_{R'}$ (The multiplicative identity is preserved)
+  \end{enumerate}
+}
+
+\definition {
+  We say that $\varphi$ is a {\bf ring isomorphism} if it's a bijective ring
+  homomorphism.
+}
+
+Let's look at some
+
+\example {
+  $\varphi_k: \Z \to \Z$ is the map that takes $n \mapsto kn$ for some fixed $k
+  \in \Z$. And
+
+  \[
+    \varphi_k(a + b) = k(a + b) = ka + kb = \varphi_k(a) + \varphi_k(b)
+  \]
+
+  But multiplication causes some issues
+
+  \[
+    \varphi_k(ab) = k(ab)
+  \]
+
+  and
+
+  \[
+    \varphi_k(a) \varphi_k(b) = k^2 ab
+  \]
+
+  But now, the identity rule tells us that $\varphi_k(1)_k = k = 1$, so in fact,
+  $id_\Z : \Z \to \Z$ with $n \mapsto n$ is the only ring homomorphism $\Z \to \Z$
+}
+
 
 \end{document}
 
