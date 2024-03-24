@@ -3860,7 +3860,7 @@ let $S = \{1, \dots, n\}$
 {\bf Proposition}: There is a bijection
 
 \[
-  \{\text{ actions } G \acts S\} \leftrightarrow \{\text{ permutation
+  \{\text{actions } G \acts S\} \leftrightarrow \{\text{permutation
   representations } \varphi: G \to S_n \}
 \]
 
@@ -4045,6 +4045,9 @@ non-trivial. Then $|a|$ divides $|H|$ meaning that $|a| = p^i$ for some $i \ge
     i.e. if $H$ and $H'$ are Sylow $p$ subgroups, then, there's an element $a
     \in G$ such that $aHa^{-1} = H'$.
 
+    This means that you can get from any $H$ to $H'$ on some element $a \in G$,
+    where $H, H' \in \Syl_p(G)$
+
   \item If $K \le G$, and $|K| = p^i$, then there exists a group $H \in
     \Syl_p(G)$ such that $K \le H \le G$.
 
@@ -4062,15 +4065,20 @@ Having only a single Sylow $p$ subgroup means that it is normal!
 {\bf Proof}: $\Syl_p(G) = \{H\}$ if and only if $aHa^{-1} = H$ for all $a \in G$,
 and this means that $H$ is normal.
 
-Let $n_p = |\Syl_p(G)|$
-
 \subsection{Third Sylow Theorem}
 
-Let $|G| = p^e m$, $e \ge 1$, $p$ is prime, and $p$ does not divide $m$. Then
+Let $n_p = |\Syl_p(G)|$ and let $|G| = p^e m$, $e \ge 1$, $p$ is prime, and $p$
+does not divide $m$. Then
 
 \begin{itemize}
   \item $n_p | m$
+
+    The number of Sylow $p$ subgroups divides $m$.
+
   \item $n_p \equiv 1 \mod p$
+
+    The number of Sylow $p$ subgroups is one more than a multiple of $p$.
+
   \item $n_p = [G : N_G(H)]$, where $N_G(H)$ is the normalizer, defined as
 
     \[
@@ -4085,7 +4093,7 @@ Let $|G| = p^e m$, $e \ge 1$, $p$ is prime, and $p$ does not divide $m$. Then
 
 {\bf Theorem}: If $|G| = 35$, then $G \cong \Z_{15}$
 
-{\bf Proof}: $35 = 5 \cdot 7$, let $H \in \text{Syl}_5(G)$, $k \in
+{\bf Proof}: $35 = 5 \cdot 7$, let $H \in \text{Syl}_5(G)$, $K \in
 \text{Syl}_7(G)$. Then $n_5 \mid 7$ and $n_5 \equiv 1 \mod 5$, which means that
 $n_5 = 1$ and $H$ is normal.
 
@@ -4639,6 +4647,274 @@ Let's look at some
   $id_\Z : \Z \to \Z$ with $n \mapsto n$ is the only ring homomorphism $\Z \to \Z$
 }
 
+\date{Fri. 15 March 2024}
+
+We've been talking about Ring Homomorphisms $\phi: R \to R'$, which satisfies 3
+conditions:
+
+\begin{enumerate}
+  \item $\varphi(a + b) = \varphi(a) + \varphi(b)$
+  \item $\varphi(ab) = \varphi(a)o\varphi(b)$
+  \item $\varphi(1_R) = 1_{R'}$ (The multiplicative identity is preserved)
+\end{enumerate}
+
+Let's look at some more examples
+
+\example {
+  $\varphi: \Z \to \Z_n$ is a ring homomorphism which maps $x \mapsto \bar x$
+}
+
+\example {
+  If $R$ is any ring, there is a {\bf unique} hom $\varphi: \Z \to R$ and the
+  map is $\varphi(1) = 1_R$ and 
+
+  \[
+    \varphi(n) = \begin{cases}
+      1_R + \cdots + 1_R & n > 0 \\
+      0 & n = 0 \\
+      -1_R - \cdots - 1_R & n < 0
+    \end{cases}
+  \]
+
+  This is the only map from the integers to a ring that satisfies the conditions
+  of ring homomorphisms.
+}
+
+On the other hand, 
+
+\example {
+  There is {\bf no} ring hom $\varphi: \Z_n \to \Z_n$. If
+  $\varphi(\bar 1) = x$, then 
+
+  \[
+    \varphi(\underbrace{\bar 1 + \cdots + \bar 1}_{n}) = \varphi(\bar 0) = 0
+  \]
+
+  But $\varphi(\bar 1 + \cdots + \bar 1) = nx$ which means $x = 0$. The problem is
+  that ring homs must take the multiplicative identity of the input to the
+  multiplicative identity of the output. So we need $\varphi(\bar 1) = 1$, so no
+  such $\varphi$ exists.
+}
+
+\example {
+  If $R$ is a ring, with $r \in R$ any element, there is a hom $\text{eval}_r:
+  R[x] \to R$ with $f(x) \mapsto f(r)$. It takes a polynomial and plugs in $r$
+  instead of $x$.
+
+  This is a hom since plugging in before you add an multiply in a polynomial is
+  the same thing as plugging in after you add and multiply the polynomial.
+}
+
+\example {
+  If $R \subseteq R'$ is a subring, and $\alpha \in R'$, then there is a hom
+  $\text{eval}_\alpha: R[x] \to R'$ where $f(x) = f(\alpha)$.
+
+  Note here that the point is that this is still a good homomorphism even if
+  $\alpha \not\in R$. For instance, If $R$ is the rationals and $R'$ is the
+  reals, plugging in $\pi$ into your polynomial now gives you real outputs
+  instead of just rationals. But this is completely fine.
+
+  Of course if $\alpha \in R$ then $\Im(\text{eval}_\alpha) = R$, however if
+  $\alpha \in R'$, then $\Im(\text{eval}_\alpha) = R[\alpha]$, the smallest
+  subring which contains both $R$ and $\alpha$.
+
+  \QUESTION{} We keep saying that $R[\alpha]$ is the smallest subring which
+  contains $R$ and $\alpha$ but never proved it. Why not?
+}
+
+\example {
+  If we have any $\varphi: R \to R'$ a hom, we can get another homomorphism
+
+  \[
+    R[x] \to R'
+  \]
+
+  Where $\sum a_i x^i \mapsto \sum \varphi(a_i) x^i$. In other words, we apply
+  $\varphi$ to all the coefficients
+}
+
+We can actually use these last two examples to create different polynomial rings
+and evaluate them.
+
+Let's look at one more
+
+\example {
+  For any ring $R$, $\varphi: R \to R[x]$ with $r \mapsto f(x) = r$ is a ring
+  hom.
+
+  In other words, we take a number and map it to the constant polynomial of that
+  number. Exhilarating.
+}
+
+Now we get to talk about Kernels.
+
+\definition {
+  If $\varphi: R \to R'$ is a ring homomorphism, the {\bf kernel} of $\varphi$
+  is 
+
+  \[
+    \ker(\phi) = \{ r \in R \mid \varphi(r) = 0 \}
+  \]
+}
+
+{\bf Note}: Not $1$!
+
+Under every ring homomorphism is a group homomorphism, if we just {\it forget}
+about multiplication in $R$ and $R'$, we're left with Abelian groups.
+
+In other words, the kernel of the ring homomorphism is the same as the kernel of
+the group homomorphism.
+
+So in fact $\ker(\phi)$ is still a subgroup! Moreover, its a normal subgroup
+since $R$ and $R'$ are Abelian groups.
+
+{\bf Remark}: If $s \in \ker(\varphi)$ and $r \in R$, then $\varphi(rs) =
+\varphi(r) \varphi(s) = \varphi(r) \cdot 0 = 0$, which means that $rs \in
+\ker(\varphi)$.
+
+This is interesting because, we already knew that $\ker(\varphi)$ is a subgroup,
+but now we also see that it has multiplicative properties. If you take anything
+in this kernel, and {\it scale it} by any element of your ring, it stays in the
+kernel!
+
+\note {
+  $\ker(\varphi)$ is {\bf not necessarily} a ring, as it does not necessarily
+  contain $1$.
+}
+
+This is motivation for our next
+
+\definition {
+  An {\bf Ideal} $I$ of a ring $R$ is a non-empty subset $I \subseteq R$ that
+  satisfies
+
+  \begin{enumerate}
+    \item $(I, +) \le (R, +)$
+
+      It is a subgroup of $R$ as an additive group. We can also note that it is
+      normal since $R$ as a group is normal (although this is not part of the
+      definition.)
+
+    \item If $s \in I$ and $r \in R$, then $rs \in I$
+  \end{enumerate}
+}
+
+This captures what our kernel is!
+
+\note {
+  If you don't have commutative multiplication, you can talk about {\it left
+  ideals} and {\it right ideals} based on which side you multiply from.
+
+  For the kernel, this doesn't make any difference between you're multiplying by
+  zero, so it's always both a left and right ideal.
+}
+
+Equivalently, $I \ne \varnothing$, and for any $s_1, \dots, s_n \in I$, 
+
+\[
+  r_1 s_1 + \cdots + r_n s_n \in I \text{ for all $r_i \in R$}
+\]
+
+\example {
+  The {\bf principal ideal} generated by $a \in R$ is 
+
+  \[
+    I = (a) = \{ra \mid r \in R\}
+  \]
+
+  Also sometimes denoted $aR$ or $Ra$
+
+  {\bf Check}: $(a) \ne \varnothing$ as $0, a \in (a)$
+
+  If $r_1 a, r_2 a, \dots, r_n a \in (a)$ and $r_1' \dots, r_n' \in R$, then 
+
+  \[
+    r_1' (r_1 a) + \cdots + r_n' (r_n a) = (r_1' r_1 + \cdots + r_n' r_n)a \in (a)
+  \]
+
+  So it's closed under linear combinations in $R$, and non-empty.
+}
+
+We have two principal ideals:
+
+\begin{enumerate}
+  \item $(1) = R$, called the {\bf unit ideal}
+
+    This gives you the whole ring
+
+  \item $(0) = \{0\}$, called the {\bf zero ideal}
+\end{enumerate}
+
+Any other ideal is called a {\bf proper ideal}.
+
+\note {
+  Ideals are {\it almost} subrings, except they don't contain $1$ unless your
+  ideal is the entire ring.
+
+  Because once you have $1$, you get all multiples of $1$, so you get the whole
+  ring.
+
+  Besides that, it satisfies all the properties of a subring!
+}
+
+\example {
+  $\text{eval}_2: \R[x] \to R$ which maps $f(x) \mapsto f(2)$, now
+
+  \begin{align*}
+    \ker(\text{eval}_2) &= \{f(x) \in \R[x] \mid f(2) = 0\} \\
+                        &= \{f(x) \mid \text{ $f(x)$ is divisible by $(x - 2)$}\}
+  \end{align*}
+
+  So in fact, this is all polynomials which are multiples of $(x - 2)$, so
+
+  \begin{align*}
+    \ker(\text{eval}_2) &= \{f(x) \mid \text{ $f(x)$ is divisible by $(x - 2)$}\} \\
+                        &= \{(x - 2) g(x) \mid g(x) \in \R[x]\} \\
+                        &= (x - 2)
+  \end{align*}
+
+  So this is an ideal generated by $(x - 2)$
+}
+
+\example {
+  Similarly, if $\text{eval}_r: R[x] \to R$ and $r \in R$ for which $f(x) \mapsto
+  f(r)$, then
+
+  \[
+    \ker(\text{eval}_r) = (x - r)
+  \]
+}
+
+\definition {
+  The ideal generated by $a_1, \dots, a_n \in R$ is 
+
+  \[
+    (a_1, \dots, a_n) = \{r_1 a_1 + \cdots + r_n a_n \mid r_1, \dots, r_n \in R \}
+  \]
+  
+  So by design, satisfies the properties of an ideal.
+}
+
+This gives us interesting examples.
+
+\example {
+  Look at $(2, x) \subseteq \Z[x]$. This contains all polynomials with an even
+  constant term. Why? Well, when you take multiples of $x$, you get polynomials
+  with no constant terms. But then, we can start adding multiples of $2$ and get
+  any even constants.
+
+  This ideal cannot be written as a principal ideal, which is generated by a
+  single element.
+}
+
+{\bf Proposition}: If $F$ is a field, $I \subseteq F$ is an ideal, then $I =
+(0)$ or $I = (1) = F$.
+
+{\bf Proof}. If $I \ne (0)$, then there is some $a \in I$ with $a \ne I$, but
+since $F$ is a field, $a^{-1} \in F$, but then $a^{-1} a = 1 \in I$. But then $1
+\in I$ so $I = (1) = F$.
+
+Once you have a unit, you have $1$, and once you have $1$, you have everything.
 
 \end{document}
 
