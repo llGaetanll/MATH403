@@ -5078,4 +5078,209 @@ Similar to groups, we have the {\bf First Isomorphism Theorem}: If $\varphi: R
 \to R'$ is a ring homomorphism, and $I = \ker(\varphi)$, then $R / I \cong
 \im(\varphi)$.
 
+\date{Last class}
+
+\TODO{}
+
+\date{Fri. 29 Mar 2024}
+
+We'll push back product rings for a while and get back to them later.
+
+Suppose we have $\Z$ and we want to ``add" a multiplicative inverse to $2 \in
+\Z$. We're going to {\it force} this. We'll add a new element called $x$
+
+\[
+  \Z \to \Z[x]
+\]
+
+But $x$ doesn't yet do what we need to do. If $x$ is a multiplicative inverse to
+$2$, it must satisfy $2x = 1$, or $2x - 1 = 0$.
+
+The way that we do that is by making all multiples of $2x - 1$ be zero. So in
+fact we can quotient out by $2x - 1$. Let $R = \Z[x] / (2x - 1)$. Let $\alpha =
+\bar x$. Then $\bar 2 \alpha - \bar 1 = \bar 0$. Why? Because $\alpha$ is the
+coset corresponding to $2x - 1$, which is the zero coset, since we mod out by
+it. So $2x - 1$ is a multiplicative inverse of $\bar 2$.
+
+In general, if $R$ is a ring, and $\alpha$ is the solution to 
+
+\[
+  f(x) = a_n x^n + \cdots + a_0 = 0
+\]
+
+where $f(x) \in R[x]$. We call $R' = R[x] / (f)$ is called a {\bf ring
+extension} of $R$, by adjoining $\alpha = \bar x$ to $R$. We write $R' =
+R[\alpha]$.
+
+Also, we could require $\alpha$ to satisfy a system of polynomial equations
+
+\[
+  \alpha \models \begin{cases*}
+    f_1(x) = 0 \\
+    \vdots \\
+    f_n(x) = 0
+  \end{cases*}
+\]
+
+And get $R[\alpha] = R[x] / (f_1, \dots, f_n)$.
+
+We already saw that $\Z[i] \cong Z[x] / (x^2 + 1)$, and we can now interpret
+this differently. We're adding a new element which is $\sqrt{-1}$.
+
+If $f \in \Z[x]$ is monic, $f(x) = x^n + a_{n - 1} x^{n - 1} + \cdots + a_0$ and
+$R[\alpha] = R[x] / (f)$, where $\alpha = \bar x$, then
+
+\begin{itemize}
+  \item $R[\alpha]$ has a {\bf basis} $\{1, \alpha, \dots, \alpha^{n - 1}\}$
+
+    In other words, we can write every element as
+
+    \[
+      \bar a_0 \cdot 1 + \bar a_1 \cdot \alpha + \cdots + \bar a_{n - 1} \alpha^{n - 1}
+    \]
+
+    for $\bar a_0, \dots, \bar a_{n - 1} \in R$. This is nothing new, we saw
+    this even when we introduced $\Z[i]$.
+
+    Since 
+
+    \[
+      \alpha^n + \bar a_{n - 1} \alpha^{n - 1} + \cdots + \bar a_0 = \bar 0
+    \]
+
+    We can actually write $\alpha^n = -\bar a_{n - 1} \alpha^{n - 1} - \cdots -
+    \bar a_0$, and in fact, $\alpha^{n + m} = \alpha^m \alpha^n = \alpha^m (\cdots)$
+
+  \item If $\beta, \beta' \in R[\alpha]$, what's $\beta \beta'$ ?
+
+    Let $\beta = g(x)$, $\beta' = g'(\alpha)$ for some $g, g' \in R[x]$. Then,
+    $gg' = fq + r$, where $\deg r < \deg f$ or $r = 0$. Then 
+
+    \begin{align*}
+      \overline{gg'} &= \overline{fq} + \bar r \\
+      g(\alpha)g'(\alpha) &= f(\alpha)q(\alpha) + r(\alpha) \\
+      \beta \beta' &= r(\alpha)
+    \end{align*}
+\end{itemize}
+
+Let's look at an
+
+\example {
+  Let's investigate $\Z_5[\sqrt{\bar 3}]$. This is $\Z_5[x] / (x^2 - \bar 3)$.
+
+  {\bf Claim}: This is a field with $25$ elements.
+
+  {\bf Proof}: $x^2 - 3$ is monic, so $\Z_5[\sqrt{\bar 3}]$ has a basis $\{1,
+  \alpha\}$ where $\alpha = \bar x$. We'll write $\sqrt{\bar 3} = \alpha$. So
+  $\Z_5[\sqrt{3}] = \{A + B \sqrt{3} \mid A, B \in \Z_5 \}$. We have $5$ choices
+  for $A$, $5$ choices for $B$, which gives us $25$ total choices!
+
+  Now $A + 0\sqrt{\bar 3}$ is a unit for $A = \bar 0$, since $\Z_5$ is a field.
+  If $B \ne \bar 0$, then $(A + B \sqrt{3})(A - B\sqrt{3}) = A^2 - \bar 3 B^2$.
+  If $A^2 - \bar 3 B^2 \ne 0$, then it's invertible, so
+
+  \[
+    (A + B\sqrt{\bar 3})\underbrace{(A - B\sqrt{\bar 3})(A^2 - \bar 3 B^2)^{-1}}_{= (A + B\sqrt{\bar 3})^{-1}} = \bar 1
+  \]
+
+  If $A^2 - \bar 3 B^2 = \bar 0$, then $\bar 3 = A^2 (B^{-1})^2 = (AB^{-1})^2$
+  so $\bar 3$ has a square root in $\Z_5$, but of course it doesn't. So $A^2 -
+  \bar 3 B^2 \ne \bar 0$ and $A + B \sqrt{\bar 3}$ is a unit.
+
+  Hence $\Z_5[\sqrt{\bar 3}]$ is a field.
+}
+
+Let's try the following
+
+\example {
+  Let $\Z[\alpha]$ where $2\alpha - 1 = 0$ and $3\alpha - 1 = 0$. So we have
+
+  \[
+    \Z[\alpha] = \Z[x] / \underbrace{(2x - 1, 3x - 1)}_{I}
+  \]
+
+  So 
+
+  \begin{align*}
+    (3x - 1) - (2x - 1) &= x \in I
+    2(x) - 2(x - 1) &= 1 \in I
+                    &\Rightarrow I = \Z[x]
+  \end{align*}
+
+  So in fact $\Z[\alpha] = \Z[x] / \Z[x] = \{\bar 0\}$
+}
+
+{\bf Exercise}: See what happens when you try to add restrictions to $2$ and
+$4$.
+
+\subsection{Fractions}
+
+Given a ring $R$, a {\bf fraction} is $a / b$, for $a, b \in R$ and $b \ne 0$.
+
+Consider $a / 1$ as $a$.
+
+\begin{itemize}
+  \item $a / b = a' / b' \Leftrightarrow ab' = a'b$
+  \item $a / b + c / d = \frac{ad + bc}{bd}, \frac{a}{b} \cdot \frac{c}{d} =
+    \frac{ac}{bd}$
+\end{itemize}
+
+But at this point, we have a problem. What if $b, d \ne 0$, but $bd = 0$? This
+might happen in $\Z_4$ if $b = 1/2$ and $d = 1/2$.
+
+\definition {
+  A {\bf zero divisor} in $R$ is $a \ne 0$, $a \in R$ with $ab = 0$ for some $b
+  \in R$
+}
+
+\definition {
+  An {\bf integral domain} (also called a domain) is a ring with no zero
+  divisors.
+
+  Of course we know that $ab = 0 \Rightarrow a = 0$ or $b = 0$
+}
+
+Integral Domains (often abbreviated I.D.) have a {\it cancellation law}. If $ab
+=ac, a \ne 0$, then $b = c$. Since
+
+\begin{alignat*}{2}
+  &ab &= ac \\
+  \Rightarrow&a(b - c) &= 0 \\
+  \Rightarrow&b - c &= 0 \\
+\end{alignat*}
+
+Since $a \ne 0$.
+
+{\bf Theorem}: If $R$ is an integral domain, and $F$ is the set of equivalence
+classes of fractions in $R$. Then $F$ is a field called the field of fractions
+of $R$.
+
+{\bf Proof}: Omitted.
+
+Instead, let's look at some examples.
+
+\example {
+  If $R$ is an integral domain, then $R[x]$ is an integral domain.
+
+  If $f, g \in R[x]$, then $\deg(fg) = \deg(f) + \deg(g)$. If you're not
+  convinced of this just multiply two polynomials and see for yourself.
+
+  What we gather from this is that multiplying polynomials only makes your
+  degree larger (or keeps it as is.)
+
+  But now we can take the {\bf field of rational functions} over $R$ is $R(x)$,
+  the fraction field of $R[x]$. It is defined as
+
+  \[
+    R(x) = \left\{\frac{f}{g} \mid f, g \in R[x], g \ne 0\right\} / \approx
+  \]
+
+  \QUESTION{} what's this $/ \approx$ business??
+}
+
+Similarly, $R(\alpha)$ is the field of fractions of $R[\alpha]$, if it's an I.D.
+In particular, subrings of integral domains are also integral domains. So
+$\Q[\alpha]$ for $\alpha \in \C$ is also an I.D., and $\Q(\alpha)$ is its field
+of fractions.
+
 \end{document}
