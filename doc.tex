@@ -5078,9 +5078,281 @@ Similar to groups, we have the {\bf First Isomorphism Theorem}: If $\varphi: R
 \to R'$ is a ring homomorphism, and $I = \ker(\varphi)$, then $R / I \cong
 \im(\varphi)$.
 
-\date{Last class}
+\date{Wed. 27 Mar 2024}
 
-\TODO{}
+Today we are covering Quotient Rings!
+
+This is probably the hardest Ring day, because a lot of calculations and work is
+required for even small examples.
+
+Let's remind ourselves of the First Isomorphism Theorem.
+
+$\varphi: R \to R'$ is a ring hom, then $R / \ker(\varphi) \cong \im(\varphi)$
+
+\example {
+  If we take any ring $R$, and the identity map $\varphi: R \to R$, then
+  $\ker(\varphi) = (0), \im(\varphi) = R$, then $R / (0) \cong R$
+}
+
+\example {
+  Here, let's look at the unique ring hom $\varphi: \Z \to \Z_n$ where $k
+  \mapsto \bar k$. Now of course $\varphi$ is surjective, and moreover
+
+  \[
+    \ker(\varphi) = \{k \in \Z \mid k \equiv 0 \mod n\} = n\Z
+  \]
+
+  Which is an ideal, as we know. So
+
+  \[
+    \Z / n\Z \cong \Z_n
+  \]
+
+  Since we use this a lot, we also write the notation $\Z / n$ for $\Z / n\Z$,
+  (even if of course, we know that we can't mod out by a number, only by an
+  ideal.) \QUESTION{} Why can we only mod out by ideals?
+}
+
+\example {
+  Consider the evaluation map $\varphi_i[x] \to \C$ defined as $f(x) \mapsto
+  f(i)$. It plugs in $x$ as $i$. This is a ring homomorphism, and in fact
+
+  \[
+    \im(\varphi_i) = \Z[i]
+  \]
+
+  You should try to convince yourself that this is true!
+
+  {\bf What is $\ker(\varphi_i)$ ?}
+
+  Well, we know that
+
+  \begin{align*}
+    \ker(\varphi_i) &= \{f \in \Z[x] : f(i) = 0 \} \\
+                    &= \{f \in \Z[x] \subseteq \C[x] : f(i) = 0\} &\text{Let's think of them as complex polynomials} \\
+                    &= \{f \in \Z[x] \subseteq \C[x] : (x - i) \mid f \} &\text{Since $f(i) = 0$}
+  \end{align*}
+
+  However, this is not $(x - i)$, because it's not an ideal of $\Z[x]$. If we
+  did this in $\C[x]$, then it would be, but because we're only working with
+  integers, we're somewhat restricted to what our polynomials could be.
+
+  If $(x - i) \mid f$, then $f(x) = (x - i)g(x)$, for some $g \in \C[x]$. But
+  then, we can take complex conjugates
+
+  \[
+    \overline{f(x)} = \overline{(x - i)} \cdot \overline{g(x)}
+  \]
+
+  Now, $x$ is a variable, not a complex number, so we will ignore the
+  conjugation on $x$. Also notice that $f$ has {\it real} coefficients. So in
+  fact $\overline{f(x)} = f(x)$, so we have that $f(x) = \overline{(x - i)}
+  \cdot \overline{g(x)}$ and so $x + i \mid f$.
+
+  As a sidenote, we know when working with polynomials that complex roots come
+  in pairs. This is how it's proven!
+
+  What we get from this is that $x - i$ and $x + i$ are factors, and so $(x -
+  i)(x + i) \mid f$ so $x^2 + 1 \mid f$.
+
+  So $\ker(\varphi) \subseteq (x^2 + 1)$, but if $g \in (x^2 + 1)$, then $g(x) =
+  (x^2 + 1) h(x)$, which means that $g(i) = 0$ so $g \in \ker(\varphi)$, which
+  means that $\ker(\varphi_i) = (x^2 + 1)$.
+
+  So the First Isomorphism Theorem tells us that $\Z[x] / (x^2 + 1) \cong \Z[i]$
+}
+
+One more easier example before we get to the hard stuff.
+
+\example {
+  Consider another evaluation map $\varphi_r: R[x] \to R$ for which $f(x)
+  \mapsto f(r)$, with $r \in R$. Then, $\im(\varphi_r) = R$, since $\varphi(f(x)
+  = a) = a$ for all $a \in R$. In other words, we can get any element of the
+  ring just by evaluating the polynomial of that constant.
+
+  The question now is
+
+  {\bf What is $\ker(\varphi_r)$ ?}
+
+  Well, once again
+
+  \begin{align*}
+    \ker(\varphi_r) &= \{ f \in R[x] : f(r) = 0 \} \\
+                    &= \{ f \in R[x] : (x - r) \mid f \} \\
+                    &= (x - r)
+  \end{align*}
+
+  Which tells us that $R[x] / (x - r) \cong R$. We'll use this quite a lot!
+}
+
+\note {
+  If $\varphi: R \to R'$ is an isomorphism, and $\varphi(a) = b$, then
+
+  \[
+    R / (a) \cong R' / (b)
+  \]
+
+  And we can write down the explicit map! This shouldn't be that weird. An
+  isomorphism is just a renaming of elements.
+}
+
+Okay! Now the hard stuff!
+
+\example {
+  Identify $\Z[i] / (i - 2)$. We want to quotient by all multiples of $i - 2$.
+  Here, when we say ``identify", we really mean ``determine a simpler ring which
+  is isomorphic to this quotient ring."
+}
+
+It's hard to work with $\Z[i]$, and it's easier to work with $\Z[x]$.
+Remember, we have an isomorphism $\varphi: \Z[x] / (x^2 + 1) \to \Z[i]$. (The
+examples we've done up to this point were very intentional, as they are very
+useful.) And, $\varphi(\overline{x - 2}) = i - 2$. And of course, 
+
+\[
+  \Z[i] / (i - 2) \cong \frac{(\Z[x] / (x^2 + 1))}{(\overline{x - 2})}
+\]
+
+So we have a map $\psi$ defined as
+
+\begin{center}
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXFpbeF0iXSxbMiwwLCJcXFpbeF0vKHheMiArIDEpIl0sWzQsMCwiXFxmcmFje1xcWlt4XS8oeF4yICsgMSl9eyhcXG92ZXJsaW5le3ggLSAyfSl9Il0sWzAsMSwiXFxwaV8xIl0sWzEsMiwiXFxwaV8yIl1d
+  \begin{tikzcd}
+    {\Z[x]} && {\Z[x]/(x^2 + 1)} && {\frac{\Z[x]/(x^2 + 1)}{(\overline{x - 2})}}
+    \arrow["{\pi_1}", from=1-1, to=1-3]
+    \arrow["{\pi_2}", from=1-3, to=1-5]
+  \end{tikzcd}
+\end{center}
+
+Now we know that $\psi$ is surjective since $\pi_1$ and $\pi_2$ are both
+surjective. But again, we ask the age-old question
+
+{\bf What's the $\ker(\psi)$ ?}
+
+Well,
+
+\begin{align*}
+  \ker(\psi) &= \{f \in \Z[x] \mid \pi_1 (f) = \bar 0 \text{ or } \pi_2(\pi_1(f)) = \bar 0 \} \\
+             &= \{f \in \Z[x] \mid \underbrace{f \in (x^2 + 1)}_{\text{redundant}} \text{ or } \pi_1(f) \in (\underbrace{\overline{x - 2}}_{\bar g \cdot (\overline{x - 2})})\}
+\end{align*}
+
+But at this point, remember what $(\overline{x - 2})$ is
+
+\[
+  (\overline{x - 2}) = g \cdot \underbrace{(x - 2)}_{\in \Z[x]} + \underbrace{(x^2 - 2)}_{\text{The ideal}}
+\]
+
+So $(\overline{x - 2})$ is a coset! It's a coset of $x - 2$, plus the ideal
+$(x^2 + 1)$. But now, we're looking at the ideal generated by this coset, which
+means {\it all multiples of that coset}, hence $g$ times $x - 2$.
+
+But what's in that set? Well
+
+\begin{align*}
+  \ker(\psi) &= \{f \in \Z[x] \mid f \in (x^2 + 1) \text{ or } \pi_1(f) \in (\overline{x - 2})\} \\
+             &= \{f \in \Z[x] \mid f = f \cdot (x - 2) + h (x^2 + 1) \} \\
+             &= (x - 2, x^2 + 1)
+\end{align*}
+
+{\bf Moral of the story:}
+
+\[
+  \frac{R / (a)}{(\bar b)} \cong R / (a, b) \cong \frac{R / (b)}{(\bar a)}
+\]
+
+We can reverse the order!!! Applying this to our example from earlier, we have
+that 
+
+\[
+  \frac{\Z[x] / (x^2 + 1)}{(\overline{x - 2})} \cong \Z[x] / (x^2 + 1, x - 2)
+  \cong \frac{\Z[x] / (x - 2)}{(\overline{x^2 + 1})}
+\]
+
+But we saw ealier that $\Z[x] / (x - 2) \cong \Z$, with $\overline{f(x)} \mapsto
+f(2)$. This is the ``evaluate at $2$" map. This means that
+
+\[
+  (\Z[x] / (x - 2)) / (\overline{x^2 + 1}) \cong \Z / ((2)^2 + 1) \cong \Z / (5)
+  \cong \Z_5
+\]
+
+
+\example {
+  Identify 
+
+  \[
+    \underbrace{\Z[x]}_{R} / \overbrace{(x^2 - 3, 2x + 4)}^{I}
+  \]
+
+  Our goal here is to understand (and simplify) $I$. In other words, find a
+  simpler set of generators for $I$.
+
+  First, we can look at $I$ and try to cancel our some higher powers to come up
+  with something simpler.
+
+  Note that
+
+  \begin{align*}
+     (2)(x^2 - 3) + (2 - x)(2x + 4)    &\in I \\
+    =2x^2 - 6 + 4x + 8 - 2x^2 - 4x = 2 &\in I
+  \end{align*}
+
+  So now
+
+  {\bf Claim}: $I = (x^2 - 3, 2)$
+
+  {\bf Proof 1}: $I = (x^2 - 3, 2x + 4) = (x^2 - 3, 2x + 4, 2)$ doesn't change
+  anything. But now, since $2x + 4$ is a multiple of $2$, we can remove it since
+  it's redundant, and so $I = (x^2 - 3, 2)$
+
+  {\bf Proof 2}: Set inclusion both ways. Omitted.
+
+  So our quotient ring $R / I \cong \Z[x] / (2, x^2 - 3)$. At this point, we can
+  use our trick from earlier
+
+  \begin{align*}
+          &R / I \\
+    \cong &\Z[x] / (2, x^2 - 3) \\
+    \cong &(\Z[x] / (2)) / (\overline{x^2 - 3}) \\
+    \cong &\Z_2[x] / (x^2 - \bar 3) \\
+    \cong &\Z_2[x] / (x^2 + \bar 1) &\text{Since in $\Z_2$, $\overline{-3} = \bar 1$}
+  \end{align*}
+
+  For this particular example, we can't go any further. However we can spend
+  {\it some} time to understand what our elements look like.
+
+  Elements of $R / I$ are $\bar f$, for $f \in \Z_2[x]$. Say that 
+
+  \[
+    f = a_0 + a_1 x + a_2 x^2 + \cdots + a_n x^n \in \Z_2[x]
+  \]
+
+  So $a_i \in \{\bar 0, \bar 1\}$. Now, in $R / I$, $\overline{x^2 + \bar 1} =
+  \overline{\bar 0}$. Since we're quotienting by $(x^2 + \bar 1)$. What this
+  tells us is that $x^2 = \overline{\overline{-1}} = \overline{\bar 1}$.
+
+  What this all means is that
+
+  \[
+    \bar f = \bar a_0 + \bar a_1 x + \cdots + \bar a_n \{ \bar x / \bar 1 \}
+  \]
+
+  \begin{align*}
+    \bar f &= \bar a_0 + \bar a_1 x + \cdots + \bar a_n \{ \bar x / \bar 1 \} \\
+           &= \left(\sum_{i \text{ even}} \bar a_i\right) + \left(\sum_{i \text{ odd}} \bar a_i\right) x
+  \end{align*}
+
+  Since we're working mod $2$. So 
+
+  \[
+    R / I = \{\overline{\bar 0}, \overline{\bar 1}, \bar x, \overline{x + \bar 1}\}
+  \]
+
+  Now this group structure is not $\Z_4$, it's $\Z_2 \times \Z_2$.
+}
+
+
+\newpage
 
 \date{Fri. 29 Mar 2024}
 
