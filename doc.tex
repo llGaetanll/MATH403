@@ -5552,4 +5552,183 @@ In particular, subrings of integral domains are also integral domains. So
 $\Q[\alpha]$ for $\alpha \in \C$ is also an I.D., and $\Q(\alpha)$ is its field
 of fractions.
 
+\date{Mon. 1 Apr 2024}
+
+Let's remember what we have done so far.
+
+{\bf Recall}: 
+\begin{itemize}
+  \item A Field is a ring in which all non-zero elements are {\it units}.
+  \item An {\bf Integral Domain} is a ring with no zero divisors. 
+
+    In particular, $ab = 0$ implies that $a = 0$ or $b = 0$. (Unlike for example
+    in $\Z_4$ where $(\bar 2)(\bar 2) = \bar 0$)
+
+    As an
+
+    \example {
+      \begin{itemize}
+        \item $\Z_p$ is an integral domain (and also a field) when $p$ is prime.
+        \item $\Z$ is an integral domain (but {\it not} a field)
+        \item $\Z_n$ is not an integral domain for $n$ composite.
+
+          As if $n = ab$, then $\bar a \cdot \bar b = \bar n = \bar 0 \in \Z_n$
+      \end{itemize}
+    }
+\end{itemize}
+
+A natural question might be:
+
+{\bf Question}: If $R$ is any ring, and $I \subseteq R$ is an ideal, under what
+condition is $R / I$ an integral domain or a field?
+
+{\bf Recall}: A ring is a field {\bf if and only if} the only proper ideal is
+$(0)$.
+
+\definition {
+  An ideal $I \subseteq R$ is a {\bf maximal ideal} if $I \ne R$ and if $I
+  \subseteq J \subseteq R$, then either $J = I$ or $J = R$.
+}
+
+Let's first look at a non-example.
+
+$I = (x) \subseteq \Z[x]$ is not maximal. This is because $(x) \subsetneq (2, x)
+\subsetneq \Z[x]$.
+
+\begin{enumerate}
+  \item The first non-equality is because $2 \in (2, x)$, but $2 \not\in (x)$.
+  \item The second is because $1 \in Z[x]$ but $1 \not\in (2, x)$.
+\end{enumerate}
+
+{\bf Exercise}: $(2, x)$ is a maximal ideal. Think about why
+
+Now, a real
+
+\example {
+  $I = (x) \subseteq \Q[x]$ is maximal
+
+  Why? Well if $(x) \subseteq J \subseteq \Q[x]$, then $J$ is an ideal in
+  $\Q[x]$, and since $\Q$ is a field, $J = (f)$ for some $f \in \Q[x]$.
+
+  Since $x \in (x) \subseteq J$, so $x \in (f)$ which means that there exists
+  some $g \in \Q[x]$ such that $x = fg$.
+
+  Looking at the degrees, either ($\deg(f) = 1$ and $\deg(g) = 0$), or
+  ($\deg(f) = 0$ and $\deg(g) = 1$.)
+
+  If $\deg(f) = 0$, then $f$ is a non-zero constant, which means it's a unit.
+  Then $J = (f) = \Q[x]$.
+
+  If $\deg(f) = 1$, then $f = ax + b$ and $g = c$ for $a, b, c \in \Q$. This
+  means that $x = 1 \cdot x + 0 = fg = ac x + bc$, meaning $ac = 1$ and $bc =
+  0$. From this, we know $b = 0$, and $ac = 1$, which means
+
+  \[
+    f = ax \in (x) \Rightarrow (f) \subseteq (x)
+  \]
+
+  So $J = (x)$ or $J = \Q[x]$ hence $(x)$ is a maximal ideal.
+}
+
+\theorem {
+  $R / I$ is a field {\bf if and only if} $I$ is a maximal ideal.
+}
+
+{\bf Proof}. Consider $\pi: R \to R / I$ for which $a \mapsto \bar a$. We
+already know that $R / I$ is a field if and only if its only proper ideal is
+$(\bar 0)$.
+
+{\bf Claim}. If $J \subseteq R / I$ is an ideal, then $\pi^{-1}(J) = \{s \in R
+\mid \pi(s) \in J \}$ is an ideal of $R$ that contains $\ker(\pi) = I$.
+
+{\bf Proof}: Exercise!
+
+So if $J \subseteq R / I$ is an ideal, then $\pi^{-1}(J)$ is an ideal and $I
+\subseteq \pi^{-1}(J) \subseteq R$ and in fact, $\pi$ is surjective, so
+$\pi(\pi^{-1}(J)) = J$.
+
+$\Leftarrow$. If $I$ is maximal, then $\pi^{-1}(J)$ is either $I$ or $R$. If
+$\pi^{-1}(J) = I$, then $J = \pi(\pi^{-1}(J)) = (\bar 0)$ as $I = \ker(\pi)$. If
+$\pi^{-1}(J) = R$, then $J = \pi(\pi^{-1}(J)) = R / I$. So $R / I$ has only one
+proper ideal, $(\bar 0)$, so is a field.
+
+$\Rightarrow$. If $R / I$ is a field, then consider $I \subsetneq J \subseteq
+R$. Then $\pi(J) \ne (\bar 0)$
+
+{\bf Exercise}: Show that $\pi(J)$ is an ideal of $R / I$. (Use surjectivity of
+$\pi$.)
+
+Since $R / I$ is a field, $\pi(J) \ne (\bar 0)$ so $\pi(J) = R / I$, so $J =
+\pi^{-1}(\pi(J)) = R$, so $I$ is a maximal ideal.
+
+(One key idea here is to use the fact that fields only have two ideals.)
+
+\example {
+  $(0) \subseteq F$ is a maximal ideal when $F$ is a field.
+}
+
+\example {
+  $(2, x) \subseteq \Z[x]$ is maximal, as
+
+  \[
+    \Z[x] / (2, x) \cong (\Z[x] / (x)) / (\bar 2) \cong \Z / (2) = \Z_2
+  \]
+
+  Hence $(n, x) \subseteq \Z[x]$ is maximal {\it if and only if} $n$ is prime,
+  as $\Z[x] / (n, x) \cong \Z_n$, and we know when that's a field.
+}
+
+\definition {
+  An ideal is called a {\bf prime ideal} if
+
+  \[
+    ab \in I \Rightarrow a \in I \text{ or } b \in I
+  \]
+
+  If you're wondering what the relation to prime numbers is, think that: if $p |
+  ab$, then $p | a$ or $p | b$. The parallel here is that, if $ab \in (p)$, then
+  $a \in (p)$ or $b \in (p)$.
+}
+
+\theorem {
+  $R / I$ is an integral domain {\bf if and only if} $I$ is a proper prime ideal
+  in $R$.
+}
+
+{\bf Proof}.
+
+$\Leftarrow$. If $I \subsetneq R$ is a prime ideal, consider $\bar a, \bar b \in
+R / I$ such that $\bar a \cdot \bar b = \bar 0$. This tells us that
+$\overline{ab} = \bar 0$, which means $ab \in I$. Now, $I$ is prime, so either
+$a \in I$, or $b \in I$, which means either $\bar a = \bar 0$, or $\bar b = \bar
+0$, so $R / I$ is an integral domain.
+
+$\Rightarrow$. If $R / I$ is an integral domain, then consider $a, b \in R$ such
+that $ab \in I$. Then $\overline{ab} = \bar 0$, which means that $\bar a \cdot
+\bar b = \bar 0$, so either $a \in I$ or $b \in I$.
+
+A natural follow up question to ask might be
+
+{\bf When is a principal ideal maximal or prime?}
+
+\definition {
+  \begin{itemize}
+    \item An element $p \in R$ is {\bf prime} if
+      \begin{enumerate}
+        \item $p$ is not a unit or $0$, {\bf and}
+        \item If $p | ab$, then $p | a$ or $p | b$.
+      \end{enumerate}
+
+    \item An element $a \in R$ is {\bf irreducible} if
+      \begin{enumerate}
+        \item $a$ is not a unit or $0$, {\bf and}
+        \item If $a = bc$, then one of $b$ or $c$ is a unit.
+
+          In other words, there's no ``non-trivial" factorization of $a$.
+      \end{enumerate}
+  \end{itemize}
+}
+
+Next time, we'll see how this relates to our ideals!
+
 \end{document}
