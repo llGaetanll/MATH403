@@ -5020,7 +5020,7 @@ Moreover, $\gcd(f, g) = 1 \Leftrightarrow \exists p, q \in F[x]$ with $fp + gq =
 
 \section{Quotient Rings}
 
-If $I \subseteq Q$ is an ideal, then $(I, +) \trianglelefteq (R, +)$ is a normal
+If $I \subseteq R$ is an ideal, then $(I, +) \trianglelefteq (R, +)$ is a normal
 subgroup, since $(R, +)$ is Abelian.
 
 We can get quotient group $R / I$, where the cosets of $I$ are $a + I$, {\bf written
@@ -5113,7 +5113,7 @@ $\varphi: R \to R'$ is a ring hom, then $R / \ker(\varphi) \cong \im(\varphi)$
 }
 
 \example {
-  Consider the evaluation map $\varphi_i[x] \to \C$ defined as $f(x) \mapsto
+  Consider the evaluation map $\varphi_i: \Z[x] \to \C$ defined as $f(x) \mapsto
   f(i)$. It plugs in $x$ as $i$. This is a ring homomorphism, and in fact
 
   \[
@@ -5471,9 +5471,9 @@ Let's try the following
   So 
 
   \begin{align*}
-    (3x - 1) - (2x - 1) &= x \in I
-    2(x) - 2(x - 1) &= 1 \in I
-                    &\Rightarrow I = \Z[x]
+    (3x - 1) - (2x - 1) &= x \in I \\
+        2(x) - 2(x - 1) &= 1 \in I \\
+          \Rightarrow I &= \Z[x]
   \end{align*}
 
   So in fact $\Z[\alpha] = \Z[x] / \Z[x] = \{\bar 0\}$
@@ -5498,8 +5498,8 @@ But at this point, we have a problem. What if $b, d \ne 0$, but $bd = 0$? This
 might happen in $\Z_4$ if $b = 1/2$ and $d = 1/2$.
 
 \definition {
-  A {\bf zero divisor} in $R$ is $a \ne 0$, $a \in R$ with $ab = 0$ for some $b
-  \in R$
+  A {\bf zero divisor} in $R$ is an element $a \in R$ with $a \ne 0$ and $ab =
+  0$ for some $b \in R$.
 }
 
 \definition {
@@ -5930,5 +5930,168 @@ contradiction.
 
 Similarly, $3 + 1 \pm \sqrt{-5}$, but $3 | (1 \sqrt{-5})(1 - \sqrt{-5}) = 6$,
 similarly for $1 \pm \sqrt{-5} | 6$.
+
+\date{Fri. 5 Apr 2024}
+
+\note {
+  Exam is next Friday. Everything since Exam 2 until today and part of Monday is
+  fair game. That includes
+
+  \begin{itemize}
+    \item Group Actions (mostly this)
+    \item Orbit Stabilizer (and this)
+    \item Class Equation (with the conjugation action)
+    \item Cayley's Theorem (know what it is)
+    \item Sylow Theorem
+    \item {\bf not presentation, nor free groups}
+    \item rings, homs, isoms, ideals, quotient rings, adjoining elements,
+      fractions, prime/maximal ideals, primes/irreducibles, Euclidean Domains,
+      PIDs.
+  \end{itemize}
+
+  {\bf Format of the Exam}
+
+  \begin{itemize}
+    \item One page of short answer
+    \item One page of true/false
+    \item Two long questions (one on group theory, one on ring theory)
+  \end{itemize}
+}
+
+Back to primes and irreducibles.
+
+{\bf Remember}: In $\Z[\sqrt{-5}]$ (which is an integral domain), we show that
+$2$, $3$, and $1 \pm \sqrt{-5}$ are irreducible but not prime. The way that we
+showed this was that, if you multiply $2$, and $3$, you get $6$, all of which
+divide $6$.
+
+So irreducible does not imply prime. In general, prime does not imply
+irreducible. For
+
+\example {
+  In $\Z_6$, $\bar 2$ is prime. Why? Well, $\bar 2 \mid \bar 0$, $\bar 2 \mid
+  \bar 2$, and $\bar 2 \mid \bar 4$, and the only products in $\Z_6$ giving
+  $\bar 0, \bar 2, \bar 4$ involve a $\bar 0, \bar 2, \bar 4$. So $\bar 2$
+  divides one of the factors.
+
+  But $\bar 2$ is not irreducible, since $\bar 2 = \bar 2 \cdot \bar 4$, and
+  neither $\bar 2$ nor $\bar 4$ is a unit.
+}
+
+\theorem {
+  In an integral domain, primality implies irreducibility.
+}
+
+{\bf Proof}. Suppose that $R$ is an I.D. and $p \in R$ is prime. Let $p = ab$,
+then $p \mid ab$. Since $p$ is prime, it must divide $a$ or $b$, suppose it's
+$a$. This means that $a = px$ for some $x \in R$, and $p = ab = pxb$.
+
+Since $R$ is an integral domain, we have the cancellation law, so $p = pxb$
+implies that $1 = xb$, and hence $b$ is a unit. So $p$ is irreducible.
+
+\subsection{Division Algorithm}
+
+\definition {
+  Given a ring $R$, a {\bf size function} is any function $\sigma: R \setminus
+  \{0\} \to \N_{\ge 0}$.
+
+  Note that there are no further requirements on this function.
+}
+
+\definition {
+  A {\bf Euclidean Domain} is an integral domain $R$ with a size function
+  $\sigma$ such that ``the division algorithm works."
+}
+
+More concretely, for all $a, b \in R$, $b \ne 0$, these exists $q, r \in R$ such
+that 
+
+\[
+  a = bq + r
+\]
+
+and $r = 0$ or $\sigma(r) < \sigma(b)$. Now, $q, r$ may not be unique. In other
+words, $\sigma$ is a sort of ``decider" of size. It defines what ``size" means
+in the structure we're working in.
+
+\example {
+  $R = \Z$, and $\sigma(n) = |n|$. Here, $q, r$ are not necessarily unique
+  (unless $r = 0$.)
+
+  For instance
+
+  \[
+    3 = 2 \cdot 1 + 1 = 2 \cdot 2 + (-1)
+  \]
+}
+
+Now, the way that we make it unique for the integers is by requiring that $r >
+0$, and while this works for $\Z$, it may not work for other rings.
+
+\example {
+  If $F$ is a field, $R = F[x]$, and $\sigma(f) = \deg(f)$. And we've worked
+  with this property before!
+}
+
+\example {
+  $R = \Z[i]$ with $\sigma(x + iy) = |x + iy|^2 + x^2 + y^2$.
+
+  The claim is that this is a Euclidean Domain.
+
+  Given $\alpha, \beta \in \Z[i]$, if $\beta \mid \alpha$, then $\alpha = \beta
+  \gamma$ for some $\gamma \in \Z[i]$, so set $\alpha = \beta \gamma + \rho$.
+
+  If $\beta \nmid \alpha$, then we want $\gamma$ and $\rho$ such that $\alpha =
+  \beta \gamma + \rho$ and $\sigma(\rho) < \sigma(\beta)$. i.e. 
+
+  \[
+    |\rho|^2 < |\beta|^2 \Leftrightarrow |\rho| < |\beta|
+  \]
+
+  \TODO{} I cannot draw this grid of $\beta$s.
+
+  It means that $\C$ is tiled by squares of side length $\beta$. We know that
+  $\alpha$ is not a vertex of a square, since it's not divisible by $\beta$, so
+  it must be inside some square.
+
+  Now, pick a nearest vertex to $\alpha$ and call it $\gamma \beta$ (note that
+  it might not be unique!)
+
+  Let $\rho = \alpha - \gamma \beta$, so $\alpha = \gamma \beta + \rho$. Now
+  calculate $|\rho|$.
+
+  So $\Z[i]$ is a Euclidean Domain with size function $\sigma$.
+}
+
+Note of course that we could have chosen another size function.
+
+Let's look at another
+
+\example {
+  Let $R = \Z[\sqrt{-5}]$ with $\sigma(x + y\sqrt{-5}) = |x + y\sqrt{-5}|^2 -
+  x^2 + 5y^2$. This is {\bf not} is a Euclidean domain.
+
+  This leaves the question open of ``is there a different $\sigma$ that works?"
+
+  This question is too hard to answer directly. Later, we will develop tools to
+  analyze properties of Euclidean domains more carefully.
+}
+
+For contradiction, we assume that $(R, \sigma)$ is a E.D. Let $a = 1 +
+\sqrt{-5}$ and $b = 2$. If $1 + \sqrt{-5} = 2q + r$ and we know that $r \ne 0$
+as $2 \nmid 1 + \sqrt{-5}$. This tells us that $\sigma(r) < \sigma(2) = 4$. But
+we showed last time that $\sigma = 2, 3$ is impossible, so $\sigma(r) = 1$ and
+$r = \pm 1$ is a unit.
+
+So we have that
+
+\[
+  1 + \sqrt{-5} = 2q \pm 1
+\]
+
+Meaning that $2q$ is either $\sqrt{-5}$, or $2 + \sqrt{-5}$. If $2q =
+\sqrt{-5}$, then $|2q|^2 = |\sqrt{-5}|^2$ so $4 |q|^2 = 5$, which is a
+contradiction, and similarly if $2q = 2 + \sqrt{-5}$, so no such $q$ exists and
+$(R, \sigma)$ cannot be a E.D.
 
 \end{document}
