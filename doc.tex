@@ -13,8 +13,11 @@
     % includehead
 ]{geometry}
 
-\usepackage{tikz}
-\usepackage{tikz-cd}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{tikz, tikz-cd}
+\usepackage{parskip}
+
 \usepackage{multicol}
 \usepackage{hyperref}
 \usepackage{breqn}
@@ -35,86 +38,66 @@
 \def\Isom{\text{Isom}}
 \def\Perm{\text{Perm}}
 \def\Syl{\text{Syl}}
-
-\newcommand{\GCD}{\text{GCD}}
 \def\RowSpace{\text{RowSpace}}
 \def\ColSpace{\text{ColSpace}}
 \def\trace{\text{trace}}
 \def\Ann{\text{Ann}}
+\def\Aut{\text{Aut}}
 \def\sgn{\text{sgn}}
+\def\lcm{\text{lcm}}
 \def\B{\mathcal B}
 \def\P{\mathcal P}
-\newcommand{\lcm}{\text{lcm}}
-% \newcommand{\Aut}{\text{Aut}}
-
 \def\phi{\varphi}
 \def\sgn{\text{sgn}}
 \def\image{\text{image}}
-
+\def\char{\text{char}}
 \def\Tinv{$T$-invariant}
+\def\acts{\curvearrowright} % group actions
+\def\mat{\text{Mat}}
+\def\gl{\text{GL}}
+\def\sl{\text{SL}}
 
+\def\N{{\mathbb N}}
+\def\Z{{\mathbb Z}}
+\def\Q{{\mathbb Q}}
+\def\R{{\mathbb R}}
+\def\C{{\mathbb C}}
 
-% create a command for TODOs
-\newcommand{\TODO}{\color{red}\textbf{TODO}\color{black}}
-
-\newcommand*{\xdash}[1][3em]{\color{darkgray}\rule[0.5ex]{#1}{0.55pt}\color{black}}
-
-\newcommand{\ip}[2]{\left( #1 \mid #2 \right)}
+\def\TODO{\color{red}\textbf{TODO}\color{black}}
+\def\QUESTION{\color{red}\textbf{QUESTION}\color{black}\,}
 
 \newcommand{\lr}[1]{\langle #1 \rangle}
 
-\renewcommand{\char}{\text{char}}
+\newcommand{\qna}[2]{
+  {\bf Question.} #1
+
+  {\bf Answer.} #2
+}
 
 % preamble
-\input{preamble}
+% \input{preamble}
 
 % colors used in proof boxes
 \definecolor{proof_fg}{HTML}{ABABAB}
 \definecolor{proof_bg}{HTML}{EDEDED}
 
-\def\acts{\curvearrowright}
+\renewcommand{\mod}[1]{\text{ (mod $#1$) }}
 
+% theorem variants
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Defn}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}[theorem]{Lemma} % uses the same counter as theorem
 
-% box solutions
-\newenvironment{solution}{
-  \begin{leftbar}
+\theoremstyle{remark}
+\newtheorem{example}{Example}
 
-  \noin
-  {\large \sc solution} \\
-}
-{
+% unnumbered
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
 
-  \medskip
-  \noin
-  \textcolor{proof_fg}{$\blacksquare$}
-
-  \end{leftbar}
-}
-
-
-
-% style a problem and solution
-\newcommand{\prob}[3]{
-  \bigskip \bigskip \noin
-  {\Large\sc Problem #1}
-
-  \medskip\noin
-  #2
-
-  \begin{solution}
-    \noin
-    #3
-  \end{solution}
-}
-
-\renewcommand{\mod}[1]{
-  \text{ (mod $#1$) }
-}
-
-\def\mat{\text{Mat}}
-\def\gl{\text{GL}}
-\def\sl{\text{SL}}
-
+\theoremstyle{remark}
+\newtheorem*{note}{Note}
 
 
 \begin{document}
@@ -123,34 +106,28 @@
 
 \date{Wed. 24 Jan 2024}
 
-\note {
-All info for the class is available on the canvas page.
-Notes from the prof are written on the iPad, and PDFs will be provided after
-each class. Despite this taking notes is helpful.
-
-Offices are hours are Tuesdays in person, and Thursdays on Zoom. Hours may
-vary.
-
-A text for this class is not {\it required}. Technically, we are using
-Fraleigh's {\it A first course in Abstract Algebra}
-
-No quizzes in this class, weekly Homeworks except on Exam weeks, two
-midterms, and one final.
-
-Readings on the class schedule are not additional, it's for people that need
-extra material, or people that missed that day.
-}
+\begin{note}
+  All info for the class is available on the canvas page. Notes from the prof
+  are written on the iPad, and PDFs will be provided after each class. Despite
+  this taking notes is helpful. Offices are hours are Tuesdays in person, and
+  Thursdays on Zoom. Hours may vary. A text for this class is not {\it
+  required}. Technically, we are using Fraleigh's {\it A first course in
+  Abstract Algebra}. No quizzes in this class, weekly Homeworks except on Exam
+  weeks, two midterms, and one final. Readings on the class schedule are not
+  additional, it's for people that need extra material, or people that missed
+  that day.
+\end{note}
 
 \section{Introduction - Sets and Relations}
 
 \subsection{Sets}
 
-\definition{
-	A {\bf Set}. is a well-defined collection of objects called {\it elements}.
+\begin{definition}[Set]
+	A {\bf Set} is a well-defined collection of objects called {\it elements}.
 
 	$a \in A$ means ``$A$ is a set, $a$ is an element of a set, and $a$ is in
 	$A$.
-}
+\end{definition}
 
 Examples of sets are
 
@@ -170,7 +147,7 @@ Examples of sets are
 	\item $C(\R)$ - The set of continuous functions $f: \R \to \R$.
 \end{itemize}
 
-\definition{
+\begin{definition}[Subset]
 	A set $A$ is a {\bf subset} of a set $B$ if
 
 	\[
@@ -182,7 +159,7 @@ Examples of sets are
 
 	A {\bf proper} subset is $A \subset B$ but $A \ne B$. Just write $A
 		\subsetneq B$.
-}
+\end{definition}
 
 For example, $\N \subseteq \Z \subseteq \Q \subseteq \R \subseteq \C$. And,
 importantly, $\varnothing \subseteq A$ for all sets $A$. In other words, the
@@ -210,34 +187,33 @@ of the universal set $U$) then the {\it complement} of $A$ is $A^c = \{x \mid x
 
 \subsection{Relations}
 
-\definition {
-	A {\bf relation} between sets $A$ and $B$ is a subset $R \subseteq A \times
-		B$.
-}
+\begin{definition}[Relation]
+	A {\bf relation} between sets $A$ and $B$ is a subset $R \subseteq A \times B$.
+\end{definition}
 
 If $(a, b) \in R$, then we say that ``$a$ is related to $b$", or we write
 $aRb$, or $a \sim b$.
 
-\example {
+\begin{example}
 	$R \subseteq \{1, 2, 3\} \times \{2, 3, 4\}$. $R = \{(1, 3), (2, 2), (3, 4) \}$
-}
+\end{example}
 
-\note {
+\begin{note}
 	Relations might not be reflexive! If $(a, b) \in R$, that means $a$ is
 	related to $b$, but it might not be the case that $(b, a) \in R$. In other
 	words, the reverse may not be true!
-}
+\end{note}
 
 Another example might be $R \subseteq \R \times \R$, with $R = \{(x, x^3) \mid x
 	\in \R \}$. Oh look! We just rewrote $f(x) = x^3$, so functions are relations.
 
-\definition {
+\begin{definition}[Partition]
 	A {\bf partition} of a set $A$ is a collection of {\it disjoint} subsets
 	whose union is $A$.
 
 	Another way to think of this is that any element of $A$ is in one and only
 	one of its partitions.
-}
+\end{definition}
 
 An example of this might be the partition
 
@@ -1243,7 +1219,7 @@ A more general
 If $\varphi: G \to G'$ is a homomorphism, then
 
 \begin{enumerate}
-	\item $\varphi(a_1, \dots, a_n) = \varphi(\a_1) \cdots \varphi(a_n)$
+	\item $\varphi(a_1, \dots, a_n) = \varphi(a_1) \cdots \varphi(a_n)$
 	\item $\varphi(e_G) = e_{G'}$
 	\item $\varphi(a^{-1}) = \varphi(a)^{-1}$
 \end{enumerate}
@@ -1987,11 +1963,9 @@ We finally get to one of the landmars of Group Theory, this is
 
 
 \section{Lagrange's Theorem}
-\Theorem {
-  If $H \le G$ and $G$ is finite, then $|H|$ divides $|G|$.
-}
-{
-  The cosets of $H$ partition $G$, and all have the same size. Therefore
+\begin{theorem}[Lagrange's Theorem]
+  If $H \le G$ and $G$ is finite, then $|H|$ divides $|G|$. The cosets of $H$
+  partition $G$, and all have the same size. Therefore
 
   \[
     |G| = \sum_{aH} |aH| = \sum_{[G : H]} = |H| [G : H]
@@ -2000,47 +1974,46 @@ We finally get to one of the landmars of Group Theory, this is
   Where $aH$ is a left coset of $G$.
 
   Furthermore, $|H|$ divides $|G|$ and $[G : H] = \frac{|G|}{|H|}$
-}
+\end{theorem}
 
-\Corollary {
+\begin{corollary}
   If $a \in G$, then $|a|$ divides $|G|$
-}
-{
+\end{corollary}
+\begin{proof}[Proof of Corollary]
   $|a| = |\lr {a}|$ and $\lr {a} \le G$ so we are done by Lagrange's Theorem.
-}
+\end{proof}
 
-\note {
+\begin{note}
   {\bf The converse is not necessarily true!}
-}
+\end{note}
 
-\Corollary {
+\begin{corollary}
   If $|G| = p$ a prime, then $G$ is cyclic.
-}
-{
+\end{corollary}
+\begin{proof}[Proof of Corollary]
   Take $a \in G$, $a \ne e$, then $|a| \ne 1$ (because its not the identity.)
   But $|a| \mid p$, so in fact $|a| = p$. But $|G| = p$ and $\lr {a} \le G$, and
   $\lr {a} = G$, so $G$ is cyclic.
 
   In fact, every element in $G$ which is not the identity is a generator of the
   group!
-}
+\end{proof}
 
-\Lemma {
+\begin{lemma}
   If $G, G'$ are cyclic groups of order $n$, then $G \cong G'$.
-}
-{
-  We saw that $G \cong \Z_n$, and $G' \cong \Z_n$, and so it follows that $G
-  \cong G'$.
-}
+\end{lemma}
+\begin{proof}[Proof of Lemma]
+  We saw that $G \cong \Z_n$, and $G' \cong \Z_n$, and so it follows that $G \cong G'$.
+\end{proof}
 
-\Corollary {
+\begin{corollary}
   All order $p$ groups, $p$ a prime, are isomorphic.
-}
-{
+\end{corollary}
+\begin{proof}[Proof of Corollary]
   Proof Omitted. It just follows from everything we've seen so far!
 
   {\bf Up to isomorphism}, there is only one group of order $p$.
-}
+\end{proof}
 
 Let's go back and talk about those left cosets.
 
@@ -2263,7 +2236,7 @@ Well, $\sigma$ is even. If $\tau$ is odd, then so is $\tau^{-1}$ so $\tau
 \sigma \tau^{-1}$ is even. If $\tau$ is even, then so is $\tau^{-1}$, so again
 $\tau \sigma \tau^{-1}$, so $\tau \sigma \tau^{-1} \in A_n$.
 
-\sidenote {
+\begin{note}
   Why is it that $|\sigma| = |\sigma^{-1}|$, with $\sigma \in S_n$? Well, just
   think of
 
@@ -2278,7 +2251,7 @@ $\tau \sigma \tau^{-1}$, so $\tau \sigma \tau^{-1} \in A_n$.
   \]
 
   so $|\sigma| = |\sigma^{-1}|$.
-}
+\end{note}
 
 So $\tau \sigma \tau^{-1} \in A_n$, and $A_n$ is normal.
 
@@ -2752,10 +2725,10 @@ Moreover, if $G$ is finite and Abelian, then
   G \cong \Z_{m_1} \times \cdots \times \Z_{m_k}
 \]
 
-\btw {
+\begin{note}
   This is all the material you need to know for this Exam. From this point
   forward is {\bf not} exam material.
-}
+\end{note}
 
 \section{Semidirect Product}
 
@@ -3810,7 +3783,7 @@ ways to show that this is surjective, but perhaps more interestingly, let's
 instead define an inverse function.
 
 Let $g: a * U \to U$ defined as $x \mapsto a^{-1} * x$. First, we check that
-$\im(g) \subseteq U$. If $x \in a * U$, then $x = a * u$, for some $u \in U$.
+$\Im(g) \subseteq U$. If $x \in a * U$, then $x = a * u$, for some $u \in U$.
 Then $g(x) = a^{-1} * x = a^{-1} * (a * u) = (a^{-1}a) * u = e * u = u \in U$.
 
 Now we check that, in fact, $g = f^{-1}$,
@@ -3891,7 +3864,7 @@ is one to one.
 So group actions are really just homomorphisms in disguise!
 
 {\bf Recall}: If $\varphi: G \to G'$ is injective, then $\ker \phi$ is trivial,
-and so the first isomorphism theorem tells us that $G \cong \im(G)$, and
+and so the first isomorphism theorem tells us that $G \cong \Im(G)$, and
 furthermore, $G \cong \text{subgroup of } G'$
 
 \definition {
@@ -3927,7 +3900,7 @@ In particular, if $|G| = n$, then $\Perm(G) \cong S_n$, so $G \cong H \le S_n$.
 
 \date{Wed. Mar 6 2024}
 
-\btw {
+\begin{note}
   Question 6 is challenging. We have a class equation: $20 = 1 + 4 + 5 + 5 + 5$.
   We're looking for subgroups, we should be looking for the $Z(a)$ for certain
   elements.
@@ -3950,7 +3923,7 @@ In particular, if $|G| = n$, then $\Perm(G) \cong S_n$, so $G \cong H \le S_n$.
 
   {\bf Question 2}: $H \le \Stab(S)$, don't forget to prove that $H$ is also a
   subgroup.
-}
+\end{note}
 
 \section{Sylow Theorems}
 
@@ -5073,7 +5046,7 @@ it's a surjective ring homomorphism, and $\ker(\pi) = I$.
 
 Similar to groups, we have the {\bf First Isomorphism Theorem}: If $\varphi: R
 \to R'$ is a ring homomorphism, and $I = \ker(\varphi)$, then $R / I \cong
-\im(\varphi)$.
+\Im(\varphi)$.
 
 \date{Wed. 27 Mar 2024}
 
@@ -5084,11 +5057,11 @@ required for even small examples.
 
 Let's remind ourselves of the First Isomorphism Theorem.
 
-$\varphi: R \to R'$ is a ring hom, then $R / \ker(\varphi) \cong \im(\varphi)$
+$\varphi: R \to R'$ is a ring hom, then $R / \ker(\varphi) \cong \Im(\varphi)$
 
 \example {
   If we take any ring $R$, and the identity map $\varphi: R \to R$, then
-  $\ker(\varphi) = (0), \im(\varphi) = R$, then $R / (0) \cong R$
+  $\ker(\varphi) = (0), \Im(\varphi) = R$, then $R / (0) \cong R$
 }
 
 \example {
@@ -5115,7 +5088,7 @@ $\varphi: R \to R'$ is a ring hom, then $R / \ker(\varphi) \cong \im(\varphi)$
   f(i)$. It plugs in $x$ as $i$. This is a ring homomorphism, and in fact
 
   \[
-    \im(\varphi_i) = \Z[i]
+    \Im(\varphi_i) = \Z[i]
   \]
 
   You should try to convince yourself that this is true!
@@ -5163,7 +5136,7 @@ One more easier example before we get to the hard stuff.
 
 \example {
   Consider another evaluation map $\varphi_r: R[x] \to R$ for which $f(x)
-  \mapsto f(r)$, with $r \in R$. Then, $\im(\varphi_r) = R$, since $\varphi(f(x)
+  \mapsto f(r)$, with $r \in R$. Then, $\Im(\varphi_r) = R$, since $\varphi(f(x)
   = a) = a$ for all $a \in R$. In other words, we can get any element of the
   ring just by evaluating the polynomial of that constant.
 
@@ -6336,5 +6309,189 @@ What we gather from this, is the fundamental fact that
 \[
   \{\text{EDs}\} \subsetneq \{\text{PIDs}\}
 \]
+
+\date{Wed 10 Apr 2024}
+
+\section{Exam 2 Review}
+
+\begin{note}
+  Today is review! Friday's exam is going to look similar to Exam 1.
+
+  \begin{enumerate}
+    \item One page of 3 short questions
+    \item Second page: true or false, 4 of them
+    \item Two longer question. One on group theory, one on ring theory.
+  \end{enumerate}
+
+  Things not on the exam:
+  \begin{enumerate}
+    \item Anything from Monday (irreducible are also prime)
+    \item Group presentations
+    \item Free groups
+    \item Normalizers
+  \end{enumerate}
+\end{note}
+
+\subsection{Normal Subgroups \& Conjugacy Classes}
+
+If $H \le G$ is a subgroup, then $H$ is a normal subgroup if and only if $H$ is
+a union of conjugacy classes.
+
+If we look at $gHg^{-1}$, it contains $ghg^{-1}$ for all $h \in H$. If $h \in H$
+and $h' \in C(H)$, and $H \trianglelefteq G$, then $h' = ghg^{-1}$ for some $g
+\in G$, which means that $h' \in gHg^{-1} = H$, since $H$ is normal. This all
+means that $C(h) \subseteq H$.
+
+\begin{note}
+  Normal subgroups contain unions of conjugacy classes.
+\end{note}
+
+Conversely, if $h \in H$, then $C(h) \subseteq H$, then for any $g \in G$, $h \in
+H$, 
+
+\[
+  ghg^{-1} \in C(h) \subseteq H
+\]
+
+So $H$ is normal.
+
+\begin{note}
+  Inverses don't have to be in the same conjugacy class. For example, consider
+  an Abelian group, in which every conjugacy class is size $1$.
+
+  However, the sizes of the conjugacy classes should be the same, since $ab = ba
+  \Leftrightarrow b^{-1}a^{-1} = a^{-1}b^{-1}$.
+\end{note}
+
+\subsection{Conjugacy Classes of $D_{10}$}
+
+We have that $D_{10} = \{e, y, y^2, y^3, y^4, x, yx, y^2x, y^3x, y^4x \}$.
+
+With conjugacy classes $(1, 5, 5, 5, 5, 2, 2, 2, 2, 2)$
+
+We also know that $xy = y^{-1}x = y^4x$. Let's try to take some conjugates.
+
+\[
+  y^i y^k y^{-i} = y^k
+\]
+
+\[
+  xy^kx^{-1} = (xy^k) = y^{-k}xx = y^{-k}
+\]
+
+\[
+  (y^ix)^i y^k (y^ix)^{-i} = y^i (xy^kx) y^{-i} = y^{-k}
+\]
+
+So these are the conjugacy classes of powers of $y$.
+
+{\bf Exercise}:
+\begin{itemize}
+  \item What happens if you take conjugates of $y^i (y^k x) y^{-i}$
+
+    See class notes for answers.
+
+  \item What happens if you take conjugates of $(y^i x) (y^k x) (y^i x)^{-1}$
+\end{itemize}
+
+So our class equation
+
+\[
+  10 = 1 + 2 + 2 + 5
+\]
+
+\subsection{Group Actions}
+
+$G \acts G$ with the action $g * a = ga$. Now we create a group action on a
+subset $S \subseteq G$ where
+
+\[
+  g * S = \{ ga \mid a \in G \}
+\]
+
+{\bf Prove}: $S \subseteq \Stab(S) \Leftrightarrow S = \Stab(S) \Leftrightarrow S \le G$.
+
+(sps $a \Leftrightarrow b \Leftrightarrow c$)
+
+For $G$ finite or infinite.
+
+$a \Rightarrow b$ is obvious
+
+$a \Rightarrow c$: If $x \in \Stab(S)$, then $x
+\in \Stab(s)$, then $x * S = S$, which means that $\exists y \in S$ such that $x
+* y = x$, which means $xy = x$, which means $y = e \in S$.
+
+Hence, there exists an element in the set such that $x * y = e$, which means $y
+= x^{-1} \in S$, and for all $x, y \in S$, $x * y \in S$ implies that $xy \in
+S$. So $S$ is closed and has inverses, so $S \le G$.
+
+We'll leave some of the other stuff for later.
+
+---
+
+Why does $A_5$ have $3$ $\Syl_p$ subgroups. We know that
+
+\[
+  A_5 = \{\sigma \in S_5 \mid \sigma \text{ even}\}
+\]
+
+Recall that $|A_5| = 5! / 2 = 60$. We have that $3 \mid 60$, and $n_3 \equiv 1
+\mod 3$ implies that $n_3 = 1$, or $n_3 = 4$, or $n_3 = 10$.
+
+So our Sylow $3$ subgroups are all order $3$, and it contains $2$ elements of
+order $3$. How many $\sigma \in A_5$ are order $3$?
+
+$\sigma = (ijk)$, there are $\binom{5}{3}$ ways to pick these, and $2$ ways to
+order them (up to cyclic reordering.) And $\binom{5}{3} \cdot 2 = 20$, which
+means $10$ subgroups of order $3$, and so $n_3 = 10$.
+
+\subsection{Elements of $\Z_2[x] / (x^2 - x - 1)$}
+
+We know that
+
+\[
+  \Z_2[x] / (x^2 - x - 1) = \{A + B\alpha \mid A, B \in \Z_2\}
+\]
+
+for $\alpha = \bar x$.
+
+For example, $\alpha^2 = \alpha \cdot \alpha = \alpha + 1$, because $\alpha^2 -
+\alpha - 1 = 0$. $(\alpha + 1) = \alpha^2 + 2 \alpha + 1 = \alpha^2 + 1 =
+(\alpha + 1) + 1 = \alpha$
+
+{\bf Check}: $\alpha(\alpha + 1)$
+
+---
+
+How do we know that $x^4 + x^3 + x^2 + 1$ irreducible in $\Q[x]$?
+
+We have not does this! Don't worry about it. Cubic or Quadratic over a field
+factors if and only if it has a root.
+
+How do I know that $(x^3 + x + 1) \subseteq \Z_2[x]$ is maximal? You know how to
+do that!
+
+---
+
+Identify $\Z[x] / I$. The goal is to find a monic linear term in $I$, say $x -
+a$.
+
+If $I = (f, g) = (f, g, x - a)$, then we get $\Z[x] / I \cong (\Z[x] / (x - a))
+/ (\bar f, \bar g) \cong \Z_a / (\bar f, \bar g)$
+
+\begin{note}
+  \TODO: Make the argument that $\Z / (x - a) \cong \Z_a$. Simply consider the map
+  $f(x) \mapsto f(a)$, then $\ker(f) = (x - a)$.
+\end{note}
+
+Now we have $\Z / (f(a), g(a)) \cong \Z_d$ where $d = \gcd(f(a), g(a))$
+
+---
+
+\begin{example}
+  $\Z[x] / (4x - 5, 2x^2 - 4)$
+
+  Try to simplify the ideal, see his notes.
+\end{example}
 
 \end{document}
