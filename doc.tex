@@ -17,6 +17,7 @@
 \usepackage{mathtools}
 \usepackage{tikz, tikz-cd}
 \usepackage{parskip}
+\usepackage{enumitem}
 
 \usepackage{multicol}
 \usepackage{hyperref}
@@ -56,6 +57,7 @@
 \def\mat{\text{Mat}}
 \def\gl{\text{GL}}
 \def\sl{\text{SL}}
+\def\im{\text{im}}
 
 \def\N{{\mathbb N}}
 \def\Z{{\mathbb Z}}
@@ -3783,7 +3785,7 @@ ways to show that this is surjective, but perhaps more interestingly, let's
 instead define an inverse function.
 
 Let $g: a * U \to U$ defined as $x \mapsto a^{-1} * x$. First, we check that
-$\Im(g) \subseteq U$. If $x \in a * U$, then $x = a * u$, for some $u \in U$.
+$\im(g) \subseteq U$. If $x \in a * U$, then $x = a * u$, for some $u \in U$.
 Then $g(x) = a^{-1} * x = a^{-1} * (a * u) = (a^{-1}a) * u = e * u = u \in U$.
 
 Now we check that, in fact, $g = f^{-1}$,
@@ -3864,7 +3866,7 @@ is one to one.
 So group actions are really just homomorphisms in disguise!
 
 {\bf Recall}: If $\varphi: G \to G'$ is injective, then $\ker \phi$ is trivial,
-and so the first isomorphism theorem tells us that $G \cong \Im(G)$, and
+and so the first isomorphism theorem tells us that $G \cong \im(G)$, and
 furthermore, $G \cong \text{subgroup of } G'$
 
 \definition {
@@ -4581,7 +4583,7 @@ If we work with more than one variable, we can make the polynomial ring
 
   \begin{enumerate}
     \item $\varphi(a + b) = \varphi(a) + \varphi(b)$
-    \item $\varphi(ab) = \varphi(a)o\varphi(b)$
+    \item $\varphi(ab) = \varphi(a)\varphi(b)$
     \item $\varphi(1_R) = 1_{R'}$ (The multiplicative identity is preserved)
   \end{enumerate}
 }
@@ -4684,8 +4686,8 @@ On the other hand,
   reals, plugging in $\pi$ into your polynomial now gives you real outputs
   instead of just rationals. But this is completely fine.
 
-  Of course if $\alpha \in R$ then $\Im(\text{eval}_\alpha) = R$, however if
-  $\alpha \in R'$, then $\Im(\text{eval}_\alpha) = R[\alpha]$, the smallest
+  Of course if $\alpha \in R$ then $\im(\text{eval}_\alpha) = R$, however if
+  $\alpha \in R'$, then $\im(\text{eval}_\alpha) = R[\alpha]$, the smallest
   subring which contains both $R$ and $\alpha$.
 
   \QUESTION{} We keep saying that $R[\alpha]$ is the smallest subring which
@@ -5046,7 +5048,7 @@ it's a surjective ring homomorphism, and $\ker(\pi) = I$.
 
 Similar to groups, we have the {\bf First Isomorphism Theorem}: If $\varphi: R
 \to R'$ is a ring homomorphism, and $I = \ker(\varphi)$, then $R / I \cong
-\Im(\varphi)$.
+\im(\varphi)$.
 
 \date{Wed. 27 Mar 2024}
 
@@ -5057,11 +5059,11 @@ required for even small examples.
 
 Let's remind ourselves of the First Isomorphism Theorem.
 
-$\varphi: R \to R'$ is a ring hom, then $R / \ker(\varphi) \cong \Im(\varphi)$
+$\varphi: R \to R'$ is a ring hom, then $R / \ker(\varphi) \cong \im(\varphi)$
 
 \example {
   If we take any ring $R$, and the identity map $\varphi: R \to R$, then
-  $\ker(\varphi) = (0), \Im(\varphi) = R$, then $R / (0) \cong R$
+  $\ker(\varphi) = (0), \im(\varphi) = R$, then $R / (0) \cong R$
 }
 
 \example {
@@ -5088,7 +5090,7 @@ $\varphi: R \to R'$ is a ring hom, then $R / \ker(\varphi) \cong \Im(\varphi)$
   f(i)$. It plugs in $x$ as $i$. This is a ring homomorphism, and in fact
 
   \[
-    \Im(\varphi_i) = \Z[i]
+    \im(\varphi_i) = \Z[i]
   \]
 
   You should try to convince yourself that this is true!
@@ -5136,7 +5138,7 @@ One more easier example before we get to the hard stuff.
 
 \example {
   Consider another evaluation map $\varphi_r: R[x] \to R$ for which $f(x)
-  \mapsto f(r)$, with $r \in R$. Then, $\Im(\varphi_r) = R$, since $\varphi(f(x)
+  \mapsto f(r)$, with $r \in R$. Then, $\im(\varphi_r) = R$, since $\varphi(f(x)
   = a) = a$ for all $a \in R$. In other words, we can get any element of the
   ring just by evaluating the polynomial of that constant.
 
@@ -6477,10 +6479,10 @@ Identify $\Z[x] / I$. The goal is to find a monic linear term in $I$, say $x -
 a$.
 
 If $I = (f, g) = (f, g, x - a)$, then we get $\Z[x] / I \cong (\Z[x] / (x - a))
-/ (\bar f, \bar g) \cong \Z_a / (\bar f, \bar g)$
+/ (\bar f, \bar g) \cong \Z / (\bar f, \bar g)$
 
 \begin{note}
-  \TODO: Make the argument that $\Z / (x - a) \cong \Z_a$. Simply consider the map
+  \TODO: Make the argument that $\Z / (x - a) \cong \Z$. Simply consider the map
   $f(x) \mapsto f(a)$, then $\ker(f) = (x - a)$.
 \end{note}
 
@@ -6493,5 +6495,133 @@ Now we have $\Z / (f(a), g(a)) \cong \Z_d$ where $d = \gcd(f(a), g(a))$
 
   Try to simplify the ideal, see his notes.
 \end{example}
+
+\date{Mon. 15 Apr. 2024}
+
+\section{Unique Factorization}
+
+In $\Z$, every $n \in \Z$ can be uniquely factored into a product of primes
+(up to factors of $-1$.) Let's turn this idea into a definition
+
+\begin{definition}[Unique Factorization Domain]
+  An integral domain $R$ is a {\bf unique factorization domain} (UFD) if
+
+  \begin{enumerate}
+    \item Every $a \in R$, non unit, $a \ne 0$, can be written as a finite
+      product of irreducibles.
+    \item If $a_1 a_2 \cdots a_n = b_1 b_2 \cdots b_m$ where $a_i$ and $b_j$ are
+      irreducible, when $m = n$, and after reordering, $a_i = b_i u_i$ for some
+      unit $u_i$, for all $i$.
+  \end{enumerate}
+\end{definition}
+
+\begin{example}
+  $\Z[\sqrt{-5}]$ is {\bf not} a UFD, because $6 = 2 \cdot 3 = (1 + \sqrt{-5})(1
+  - \sqrt{-5})$. So we have two distinct factorizations, where each one is made
+  up of irreducibles.
+\end{example}
+
+\begin{theorem}
+  Every PID is a UFD.
+\end{theorem}
+
+\begin{corollary}
+  $\Z$, $\Z[i]$, $F[x]$ are all UFDs, as they're all EDs, hence, they are PIDs,
+  and so UFDs.
+\end{corollary}
+
+\begin{proof}[Proof of Theorem]
+  We need to show that we can factor, and that the factorization is unique. We
+  can take an element $a$, and start factoring it.
+
+  \[
+    a = b_1 a_1 = b_1 b_2 a_2 = b_1 b_2 b_3 a_3 = \cdots
+  \]
+
+  Assume that $b_1, b_2, b_3, \dots$ are irreducible. Then 
+
+  \[
+    (a) \subsetneq (a_1) \subsetneq (a_2) \subsetneq \cdots
+  \]
+
+  If this process terminates, then eventually, we have $a_n$ is a unit, and so
+  $(a_n) = R$. Let $I = (a) \cup (a_1) \cup \cdots \cup (a_n)$. This is an
+  ideal. To check, consider $u, v \in I$, then $u, v \in (a_i)$ for some $i$,
+  then $u + v \in (a_i) \subseteq I$ and $ru \in (a_i) \subseteq I$ for all $r
+  \in R$.
+
+  Since $R$ is a PID, $I$ is principle and so $I = (c)$ for some $c \in R$.
+  Since $c \in I$, we must have that $c \in (a_n)$ for some $n$, but then $(a_n)
+  = I$. But then, $(a_n) = (a_{n + 1}) = (a_{n + 2}) = \cdots = I$ and so the
+  factoring process terminates.
+\end{proof}
+
+Now, say $a = b_1 \cdots b_n = c_1 \cdots c_m$ where $b_i, c_j$ are
+irreducibles, and say $n \le m$. Then by induction on $m$, if $m = 1$, then $b_1
+= c_1$. If $m > 1$, then $b_1$ irreducible implies that $b_1$ is prime, since
+$R$ is a PID. Since $b_1 \mid b_1 \cdots b_n = c_1 \cdots c_m$, $b_1$ divides
+$c_i$ for some $i$, say $i = 1$. But $c_1$ is irreducible, so $c_1 = b_1 u_1$
+for some unit $u_1$. Then, $b_1(b_2 \cdots b_n) = c_1 (c_2 \cdots c_m) = b_1
+((u_1 c_2) \cdots c_m)$. Since $R$ is an ID, we cancel $b_1$, and we can induct
+on $b_2 \cdots b_n = (u c_2) c_3 \cdots c_n$.
+
+\begin{theorem}
+  In a UFD, irreducible implies prime.
+\end{theorem}
+\begin{proof}
+  If $a$ is irreducible, and $a \mid bc$, then $bc = ax$ for some $x \in R$. If
+  $a \nmid b$ and $a \nmid c$, then after factoring both sides, we have an
+  nonequivalent factorization in $R$.
+\end{proof}
+
+Let's do a useful recap of the types of Rings we've seen so far.
+
+\section{Types of Rings}
+
+\[
+  \text{Fields } \underset{(1)}{\subsetneq} \text{ E.D.s }
+  \underset{(2)}{\subsetneq} \text{ P.I.D.s } \underset{(3)}{\subsetneq} \text{
+  U.F.D.s } \underset{(4)}{\subsetneq} \text{ I.D.s } \underset{(5)}{\subsetneq}
+  \text{ Rings}
+\]
+
+Examples of inequalities include:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\Z$
+  \item $\Z[\frac{1 \pm \sqrt{-19}}{2}]$
+  \item $\Z[x]$
+  \item $\Z[\sqrt{-5}]$
+  \item $\Z[n]$, $n$ composite.
+\end{enumerate}
+
+Our goal will be to show that $Z[x]$ has a unique factorization, and that it is
+a UFD. We already know that it's not a P.I.D: for instance $(2, x)$ is not
+principal.
+
+We know that $\Q$ and $\Z_p$ are fields, so $\Q[x]$, and $\Z_p[x]$ are U.F.D.s.
+We will relate $f \in \Z[x]$ to elements in these rings. For example, $2x + 2
+\in \Z[x]$ factors as $2 (x + 1)$. However $2 \in \Q[x]$ is a unit, and in fact,
+$2x + 2$ is irreducible in $Q[x]$.
+
+Take a map $\psi_p: \Z[x] \to \Z_p[x]$ where $\sum a_k x^k \mapsto \sum \bar a_u
+x^k$.
+
+\begin{definition}
+  $f(x) \in \sum_{k = 0}^n a_k x^k \in \Z[x]$ is called {\bf primitive} if
+
+  \begin{enumerate}
+    \item $\deg(f) > 0$
+    \item $\gcd(a_0, \dots, a_n) = 1$
+    \item $a_n > 0$
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}
+  If $a_n > 0$ and $\deg(f) > 0$, then
+
+  \[
+    f \text{ is primite} \Leftrightarrow p \nmid f \text{ for any prime $p$ } \Leftrightarrow \psi_p(f) \ne 0
+  \]
+\end{remark}
 
 \end{document}
