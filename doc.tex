@@ -6672,4 +6672,190 @@ x^k$.
   \]
 \end{remark}
 
+\date{Wed. 17 Apr 2024}
+
+\TODO
+
+\date{Fri. 19 Apr 2024}
+
+\begin{note}
+  Last day of Rings before we get to the third part of this course: Fields.
+\end{note}
+
+\section{Factoring in $\Z[x]$}
+
+We have $f(x) = a_n x^n + \cdots + a_0 \in \Z[x]$
+
+\subsection{Rational Roots Theorem}
+
+We build up to the rational roots theorem. First, $b_1 x + b_0 \mid f$ if and
+only if $f(-b_0 / b_1) = 0$, which tells us that $b_1 \mid a_n$, and $b_0 \mid
+a_0$. This last implication is worth explaining. If $b_1 x + b_0 \mid f$, then 
+
+\[
+  f = (b_1 x + b_0)(c_{n - 1} x^{n - 1} + \cdots + c_0) = \underbrace{b_1 c_{n - 1}}_{a_n} x^n + \cdots + \underbrace{b_0 c_0}_{a_0}
+\]
+
+Next, recall that $\psi_p: \Z[x] \to \Z_p[x]$ is a ring hom by taking
+coefficients mod $p$. We have a 
+
+\begin{proposition}
+  If $f = a_n x^n + \cdots + a_0 \in \Z[x]$, $p \in \Z[x]$ is a prime, and $p
+  \nmid a_n$, then if $\psi_p (f)$ is irreducible in $\Z_p[x]$, then $f$ is
+  irreducible in $\Q[x]$. (The converse is false.)
+\end{proposition}
+
+\begin{proof}
+  (By contrapositive.) If $f$ is reducible in $\Q[x]$< then $f = gh$ is a
+  non-trivial factorization, and $g, h \in \Q[x]$. We write $f = c_f f_0$, where
+  $f_0$ is primitive. Then, from last time, we have that $f_0 = g_0 h_0$ where
+  $g_0$ and $h_0$ are the primitive parts of $g$ and $h$, so they are integer
+  polynomials. We know that $\deg(f) = \deg(f_0) = \deg(g_0) + \deg(h_0)$, and
+  $\deg(g_0), \deg(h_0) > 0$ (because they're primitive and it's a non-trivial
+  factorization.) Then
+
+  \[
+    \psi_p(f_0) = \psi_p(g_0 h_0) = \psi_p(g_0) \psi_p(h_0)
+  \]
+
+  and $\deg(\psi_p(f_0)) = \deg(\psi_p(g_0)) + \deg(\psi_p(h_0))$. If $p \nmid
+  a_n$, then $\deg(\psi_p(f_0)) = \deg(f_0)$. Since $\deg(\psi_p(g_0)) \le
+  \deg(g_0)$, then $\deg(\psi_p(h_0)) \le \deg(h_0)$, and $\deg(g_0) + \deg(h_0)
+  = \deg(f_0) = \deg(\psi_p(g_0)) + \deg(\psi_p(h_0))$. We know that
+  $\deg(\psi_p(g_0)) = \deg(g_0) > 0$, and $\deg(\psi_p(h_0)) = \deg(h_0) > 0$.
+  So $\psi_p(f_0) = \psi_p(g_0) \psi_p(h_0)$ is a non trivial factorization.
+  
+  What this tells us is that $\psi_p(f) = \bar c_f \psi_p(f_0)$ has a
+  non-trivial factorization and is reducible in $\Z_p[x]$.
+\end{proof}
+
+Now the converse is false: $f = x^4 - 10x^2 + 1$ is irreducible (it has a
+minimal polynomial of $\sqrt{2} + \sqrt{3}$.) However, $\psi_p(f)$ is reducible
+for all $p$.
+
+\begin{note}
+  This is hard to check by hand, unless you have a computer.
+\end{note}
+
+Let's do something that {\it is} easier to compute.
+
+\subsection{Eisenstein Criterion}
+
+\begin{theorem}[Eisenstein Criterion]
+  If $f = a_n x^n + \cdots + a_0 \in \Z[x]$, and $a_n \ne 0$, and $p \in \Z$ is
+  prime such that
+
+  \begin{itemize}
+    \item $p \nmid a_n$
+    \item $p \mid a_0, \dots, p \mid a_{n - 1}$
+    \item $p^2 \nmid a_0$
+  \end{itemize}
+
+  Then $f \in \Q[x]$ is irreducible.
+\end{theorem}
+
+\begin{proof}
+  If $f$ and $p$ are as above, then $\psi_p(f) = \bar a_n x^n \in Z[x]$, since
+  almost all coefficients are divisible by $p$. If $f$ is reducible over
+  $\Q[x]$, then $f = gh$, $\deg(g) > 0, \deg(h) > 0$. If $g = b_m x^m + \cdots +
+  b_0$, and $h = c_l x^l + \cdots + c_0$, then $\psi_p(g) \mid \psi_p(f) = \bar
+  a_n x^n$, and $\psi_p(h) \mid \psi_p(f) = \bar a_n x^n$. Then $\psi_p(g) =
+  \bar b_m x^m$ and $\psi_p(h) \bar c_l x^l$. So $p \mid b_0, \dots, b_{m - 1},
+  c_0, \dots, c_{l - 1}$. But $a_0 = b_0 c_0$, which means that $p^2 \mid a_0$,
+  but we assumed this wasn't the case! So this is a contradiction, and $f \in
+  \Q[x]$ is actually irreducible.
+\end{proof}
+
+This is strictly less powerful than our reduction mod $p$, but much easier to
+check. Let's look at some examples of this.
+
+\begin{example}
+  Let $\phi_p(x) = x^{p - 1} + x^{p - 2} + \cdots + x + 1 = \frac{x^p - 1}{x -
+  1}$, where $p$ is a prime, as usual. The roots of this are the $p$th roots of
+  unity: These are complex numbers whose $p$th power is $1$.
+
+  \begin{claim}
+    $\phi_p(x)$ is irreducible over $\Q[x]$.
+  \end{claim}
+  \begin{proof}
+    Firstly, note that $\psi_p(x)$ is irreducible if and only if $\phi_p(x + 1)$
+    is irreducible. If $\phi_p(x) = g(x)h(x)$, then $\phi_p(x + 1) = g(x + 1)h(x
+    + 1)$. If $\phi_p(x + 1) = g(x)h(x)$, then $\phi_p(x) = g(x - 1)h(x - 1)$.
+
+    We have
+
+    \begin{align*}
+      \phi_p(x + 1) &= \frac{(x + 1)^p - 1}{x} = \frac{(x^p + \binom{p}{1} x^{p - 1} + \cdots + 1) - 1}{x} \\
+                    &= x^{p - 1} + \binom{p}{1}x^{p - 2} + \cdots + \binom{p}{p - 1}
+    \end{align*}
+
+    Then, $p$ does not divide the leading coefficient of $1$, of course $p$
+    divides all $\binom{p}{i}$ for $i = 1, \dots, p - 1$, and $p^2$ does not
+    divide $\binom{p}{p - 1} = p$.
+
+    So, by the Eisenstein Criterion with prime $p$, we conclude that $\phi_p(x +
+    1)$ and hence $\phi_p(x)$ is irreducible over $\Q[x]$.
+  \end{proof}
+\end{example}
+
+\section{Factoring in the Gaussian Integers}
+
+What are the primes? We know that $2 \in \Z$ is prime, but $2 = (1 + i)(1 - 1)
+\in \Z[i]$. Recall that primes and irreducibles mean the same thing in this
+context.
+
+We know that units are $\pm 1, \pm i$. If $n \in \Z$ are composite, then $n \in
+\Z[i]$ is not prime.
+
+To start us off,
+
+\begin{lemma}
+  If $p \in \Z$ is prime, then $p \in \Z[i]$ is prime if and only if $x^2 + 1$
+  is irreducible in $\Z_p[x]$, if and only if $-1$ is not a square in $\Z_p$.
+\end{lemma}
+
+\begin{proof}
+  First, $p \in \Z[i]$ is prime if and only if $p$ is irreducible, if and only
+  if $(p) \subseteq \Z[i]$ is maximal (because this is an I.D.) Now, this is
+  true if and only if $\Z[i] / (p)$ is a field. But what is this field? Well
+
+  \[
+    \Z[i] / (p) \cong \Z[x] / (p, x^2 + 1) \cong \Z_p[x] / (x^2 + 1)
+  \]
+
+  Now this is a field, if and only if $(x^2 + 1) \subseteq \Z_p[x]$ is maximal,
+  which is true if and only if $x^2 + 1 \in \Z_p[x]$ is irreducible. Since this
+  is a quadratic, it is true if and only if $x^2 + 1$ has no roots $\mod p$, and
+  this is true if and only if $-1$ is not a square $\mod p$.
+\end{proof}
+
+\begin{note}
+  Some number theory tells us that $-1$ is not a square $\mod p$ if and only if $p
+  \equiv 3 \mod 4$.
+\end{note}
+
+Hence, $p \in \Z$ is prime $\Z[i]$ if and only if $p$ is prime in $\Z$ and $p
+\equiv 3 \mod 4$.
+
+\subsection{Non-Integers}
+
+First, some facts,
+
+\begin{itemize}
+  \item $a + bi$ is prime if and only if $\pm (a + bi)$ and $\pm (a - bi)$ are
+    prime, since these are units.
+  \item $a + bi$ is prime if and only if $a - bi$ is prime. Why?
+
+    If $a + bi$ is prime and $a - bi \mid \alpha \beta$, then $a + bi \mid \bar
+    \alpha \bar \beta$, which means that either $a + bi \mid \beta \alpha$, or
+    $a + bi \mid \bar \beta$, and similarly for $a - bi$.
+
+  \item If $a, b \ne 0$, then $a + bi$ is prime if and only if $|a + bi|^2 = a^2
+    + b^2 \in \Z$ is prime.
+
+    {\bf Idea}. If $a + bi$ factors, then $|a + bi|^2 = |\alpha|^2 |\beta|^2$,
+    but if $|a + bi|^2$ is prime, one of the right hand side must be $1$, and
+    hence a unit.
+\end{itemize}
+
 \end{document}
