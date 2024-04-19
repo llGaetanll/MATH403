@@ -1,9 +1,9 @@
 \documentclass[12pt]{article}
 \usepackage[
-    % top=10mm,
-    % bottom=10mm,
-    % left=10mm,
-    % right=10mm,
+    top=10mm,
+    bottom=10mm,
+    left=10mm,
+    right=10mm,
     marginparwidth=0mm,
     marginparsep=0mm,
     % headheight=15pt,
@@ -90,6 +90,12 @@
 \newtheorem{definition}{Defn}
 \newtheorem{corollary}{Corollary}
 \newtheorem{lemma}[theorem]{Lemma} % uses the same counter as theorem
+
+\theoremstyle{remark}
+\newtheorem{proposition}{Proposition}
+
+\theoremstyle{remark}
+\newtheorem{claim}{Claim}
 
 \theoremstyle{remark}
 \newtheorem{example}{Example}
@@ -229,27 +235,26 @@ Another example might be $A = \R$, subsets are $\{ x \}$ for each $x \in \R$.
 
 Another, maybe more interesting example might be the following.
 
-\example {
-Fix $n \in \N$, $n \ge 2$. Let
+\begin{example}
+  Fix $n \in \N$, $n \ge 2$. Let
 
-\begin{itemize}
-	\item $\bar 0 = \{x \in \Z \mid x \text{ is divisible by } n \}$.
-	\item $\bar 1 = \{x \in \Z \mid x - 1 \text{ is divisible by } n \}$.
-	\item $\bar 2 = \{x \in \Z \mid x - 2 \text{ is divisible by } n \}$. On and
-	      on until...
-	\item $\overline{n - 1} = \{x \in \Z \mid x - (n - 1) \text{ is divisible by } n
-		      \}$.
-\end{itemize}
+  \begin{itemize}
+    \item $\bar 0 = \{x \in \Z \mid x \text{ is divisible by } n \}$.
+    \item $\bar 1 = \{x \in \Z \mid x - 1 \text{ is divisible by } n \}$.
+    \item $\bar 2 = \{x \in \Z \mid x - 2 \text{ is divisible by } n \}$. On and
+          on until...
+    \item $\overline{n - 1} = \{x \in \Z \mid x - (n - 1) \text{ is divisible by } n
+            \}$.
+  \end{itemize}
 
-{\bf Claim}: This partitions $\Z$ into in $n$ subsets.
-
-}
+  {\bf Claim}: This partitions $\Z$ into in $n$ subsets.
+\end{example}
 
 \date{Fri. 26 Jan 2024}
 
 Let's go back to relations, which we put aside to talk about partitions.
 
-\definition {
+\begin{definition}[Equivalence Relation]
 	A relation $A \subseteq A \times A$ is called an {\bf equivalence relation}
 	if it satisfies 3 properties
 
@@ -258,7 +263,7 @@ Let's go back to relations, which we put aside to talk about partitions.
 		\item {\bf Symmetry}: $aRb$ if and only if $bRa$.
 		\item {\bf Transitivity}: If $aRb$ and $bRc$, then $aRc$.
 	\end{enumerate}
-}
+\end{definition}
 
 The key idea is that equivalence relations on $A$ are {\it the same} as
 partitions of $A$. What's going on here?
@@ -270,10 +275,9 @@ set doesn't matter.
 Conversely, given a partition say $aRb \Leftrightarrow bRa$ are in the same
 subset.
 
-\note {
-	We'll be talking a lot about partitions and equivalence relations in this
-	class.
-}
+\begin{note}
+	We'll be talking a lot about partitions and equivalence relations in this class.
+\end{note}
 
 Now we move on to the next step in our intro: functions.
 
@@ -290,10 +294,10 @@ Effectively, this means that
 
 Which are the properties we expect of functions!
 
-\example {
+\begin{example}
 	Let $f: \R \to \R$, with $R_f = \{(x, x^3) \mid x \in \R \}$. We write $f(a)$
 	for the value $b$ where $(a, b) \in R_f$.
-}
+\end{example}
 
 Given a function $f: A \to B$. We say that
 
@@ -309,15 +313,15 @@ The $+$ operation is a function $+: \R \to \R$, also written as $(a, b)
 also written as $(a, b) \to ab$. These are binary operations, very useful in
 Group Theory.
 
-\definition {
+\begin{definition}
 	A {\bf binary operation} on a set $A$ is a function $f: A \times A \to A$.
 	Its an operation on two inputs that outputs one thing.
-}
+\end{definition}
 
-\note {
+\begin{note}
 	A dot product does not count here! Because the output of the dot
 	product does not come from the same set as the input.
-}
+\end{note}
 
 To do more complicated things in real life (such as $a + b + c$), we must
 parenthesize.
@@ -329,7 +333,7 @@ parenthesize.
 Of course this doesn't matter for addition in particular, but it might for
 other binary operators!
 
-\example {
+\begin{example}
 	Fix $n \ge 2$ and consider $\Z_n = \{\bar 0, \bar 1, \dots, \overline{n - 1}
 		\}$ (Note that this is a set of sets!)
 
@@ -356,11 +360,11 @@ other binary operators!
 		\item Multiplication: $\times: \Z_n \times \Z_n \to \Z_n$, defined as
 		      $(\bar a, \bar b) \mapsto \overline{ab}$
 	\end{enumerate}
-}
+\end{example}
 
-\note {
+\begin{note}
 	We also write $x \equiv y \mod{n} $ if $\bar x = \bar y$.
-}
+\end{note}
 
 Now we're ready to jump in.
 
@@ -394,7 +398,7 @@ Let's look at the properties of $(\R, +)$ and $(\R \setminus \{0\}, \times)$.
 	\end{enumerate}
 \end{multicols}
 
-\definition {
+\begin{definition}[Associativity]
 	We say that a binary operation $p: A \times A \to A$ is {\bf associative} if
 
 	\[
@@ -402,9 +406,9 @@ Let's look at the properties of $(\R, +)$ and $(\R \setminus \{0\}, \times)$.
 	\]
 
 	for any $a, b, c \in A$. In other words, how we parenthesize doesn't matter.
-}
+\end{definition}
 
-\definition {
+\begin{definition}
 	We say that a binary operation $p: A \times A \to A$ has an {\bf identity} if
 
 	\[
@@ -412,9 +416,9 @@ Let's look at the properties of $(\R, +)$ and $(\R \setminus \{0\}, \times)$.
 	\]
 
 	for any $a \in A$.
-}
+\end{definition}
 
-\definition {
+\begin{definition}[Inverses]
 	We say that a binary operation $p: A \times A \to A$ has a {\bf inverses} if
 
 	\begin{enumerate}
@@ -429,9 +433,9 @@ Let's look at the properties of $(\R, +)$ and $(\R \setminus \{0\}, \times)$.
 	\end{enumerate}
 
 	We usually write $b$ as $a^{-1}$.
-}
+\end{definition}
 
-\definition {
+\begin{definition}[Commutativity]
 	We say that a binary operation $p: A \times A \to A$ is {\bf commutative} if
 
 	\[
@@ -439,7 +443,7 @@ Let's look at the properties of $(\R, +)$ and $(\R \setminus \{0\}, \times)$.
 	\]
 
 	for any $a, b \in A$.
-}
+\end{definition}
 
 Let's look at properties of $(\Z_n, +)$ and $(\Z_n, \times)$.
 
@@ -496,40 +500,37 @@ with real entries.
 	\item It {\bf is not} commutative.
 \end{enumerate}
 
-{\bf Proposition}
+\begin{proposition}
+  If $p: A \times A \to A$ is a binary operation with two identities $e, f$,
+  then $e = f$.
+\end{proposition}
+\begin{proof}
+  $e = p(e, f) = f$, so $e = f$.
+\end{proof}
 
-If $p: A \times A \to A$ is a binary operation with two identities $e, f$,
-then $e = f$.
-
-	{\bf Proof}
-
-$e = p(e, f) = f$, so $e = f$.
-
-
-	{\bf Proposition}
-
-If we have two inverses, then they are the same. More formally: if $p(a, b) =
-	p(b, a)= e$, and $p(a, c) = p(c, a) = e$, then $b = c$
-
-{\bf Proof}
-
-$p(c, p(a, b)) = p(c, e) = c$, but we could have also done $p(p(c, a), b) =
+\begin{proposition}
+  If we have two inverses, then they are the same. More formally: if $p(a, b) =
+	p(b, a)= e$, and $p(a, c) = p(c, a) = e$, then $b = c$.
+\end{proposition}
+\begin{proof}
+  $p(c, p(a, b)) = p(c, e) = c$, but we could have also done $p(p(c, a), b) =
 	p(e, b) = b$, so $b = c$.
+\end{proof}
 
 \date{Mon. 29 Jan 2024}
 
-\note {
+\begin{note}
 	Homework 1 is due this Thursday at 11:59PM, on Gradescope. Because this is
 	the first homework, Gradescope will allow late submissions but just submit
 	it on time.
-}
+\end{note}
 
 Last time, we talked about binary operations and their properties. Now, we are
 going to put everything together and talk about Groups!
 
 \section{Groups}
 
-\definition {
+\begin{definition}[Group]
 	A {\bf Group} is a set $G$ with a binary operation $p: G \times G \to G$
 	that
 
@@ -538,7 +539,7 @@ going to put everything together and talk about Groups!
 		\item Has an {\it Identity}.
 		\item Has {\it Inverses}.
 	\end{enumerate}
-}
+\end{definition}
 
 Note that it does {\bf not} have commutatitivity. We'll talk about that
 later.
@@ -547,19 +548,19 @@ Notation-wise, we write $(G, p)$, or just $G$ if the binary operations is
 understood. Additionally, we often write the operation as $a \cdot b$, $a + b$,
 or $ab$ instead of $p(a, b)$.
 
-\definition {
+\begin{definition}[Abelian Group]
 	A Group is {\bf Abelian} if the operation is also {\it commutative}.
-}
+\end{definition}
 
-\note {
+\begin{note}
 	Sometimes, we say that a group is {\it closed} under its operation. However
 	we don't need this because a binary operation, by definition, is necessarily
 	closed.
-}
+\end{note}
 
 Let's look at some examples.
 
-\example {
+\begin{example}[Examples of Groups]
 	These groups are {\bf Abelian}:
 	\begin{enumerate}
 		\item $(\R, +)$
@@ -581,34 +582,33 @@ Let's look at some examples.
 		\item $(\N \cup \{0\}, +)$, has no inverses.
 		\item $\mat_n(\R), \times)$, has no inverses.
 	\end{enumerate}
-}
+\end{example}
 
-\definition {
-	The {\bf Order} of a group, is the {\it cardinality} of the set $G$, denoted
-	$|G|$.
-}
+\begin{definition}[Cardinality]
+	The {\bf Order} of a group, is the {\it cardinality} of the set $G$, denoted $|G|$.
+\end{definition}
 
 \subsection{Cancellation Law}
 
 In a group $G$, if $ab = ac$, then $b = c$.
 
-	{\bf Proof}
+\begin{proof}
+  Since $G$ has inverses, there is an element $a^{-1} \in G$ such that $a a^{-1} =
+    e$. So,
 
-Since $G$ has inverses, there is an element $a^{-1} \in G$ such that $a a^{-1} =
-	e$. So,
-
-\begin{align*}
-	ab          & = ac                                    \\
-	a^{-1} (ab) & = a^{-1} (ac)                           \\
-	(a^{-1}a) b & = (a^{-1}a) c                           \\
-	b           & = c           & \text{Defn of Identity} \\
-\end{align*}
+  \begin{align*}
+    ab          & = ac                                    \\
+    a^{-1} (ab) & = a^{-1} (ac)                           \\
+    (a^{-1}a) b & = (a^{-1}a) c                           \\
+    b           & = c           & \text{Defn of Identity} \\
+  \end{align*}
+\end{proof}
 
 Let's look at some more examples.
 
 \subsection{Groups of Matrices}
 
-\example {
+\begin{example}
 	From the groups of matrices, we can also talk about
 
 	\begin{itemize}
@@ -619,33 +619,30 @@ Let's look at some more examples.
 
 	Which are all groups.
 
-		{\bf Question}: Is $\gl_n(\N)$ a group? What about $\gl_n(\Z)$?
-}
+  {\bf Question}: Is $\gl_n(\N)$ a group? What about $\gl_n(\Z)$?
+\end{example}
 
 Recall that $\gl$ stands for {\it general linear}. There is also the {\it
-		special linear} group $\sl$. This is the set of general linear matrices with
+special linear} group $\sl$. This is the set of general linear matrices with
 determinant $1$. Let's look at some examples
 
-\example {
-	\begin{enumerate}
-		\item $\sl = \{ A \in \gl_n(\R) \mid \det(A) = 1\}$
-
-		      Recall that $\det(AB) = \det(A) \det(B)$, so this is closed.
-	\end{enumerate}
-}
+\begin{example}
+  $\sl = \{ A \in \gl_n(\R) \mid \det(A) = 1\}$. Recall that $\det(AB) = \det(A)
+  \det(B)$, so this is closed.
+\end{example}
 
 \subsection{Symmetric Groups}
 
-\definition {
+\begin{definition}
 	Given the set $\{1, 2, \dots, n\}$, the group of {\it permutations} of this
 	set is the {\bf symmetric group} $S_n$, where the binary operation is {\it
 			function composition}.
 
 	A {\bf permutation} is a bijection $\{1, 2, \dots, n\} \to \{1, 2, \dots, n\}$.
 	A permutation can be described by a list.
-}
+\end{definition}
 
-\example {
+\begin{example}
 	If $n = 3$, we have the permutations
 
 	\[
@@ -654,11 +651,13 @@ determinant $1$. Let's look at some examples
 
 	We say that $\sigma: \{1, 2, \dots, n\} \to \{1, 2, \dots, n\}$ takes an input
 	from the set and defines the shuffle.
-}
+\end{example}
 
 We'll talk more about Symmetric groups later in the semester.
 
-\note {
+\begin{note}
+  Some facts about the Symmetric Group:
+
 	\begin{itemize}
 		\item The Symmetric group is {\bf Non-Abelian}.
 		\item There are $n!$ permutations of $S_n$, so the order of $S_n$ is $|S_n|
@@ -666,11 +665,11 @@ We'll talk more about Symmetric groups later in the semester.
 		\item Why the Symmetric Group is named as it is is a question for another
 		      day.
 	\end{itemize}
-}
+\end{note}
 
 \subsection{Subgroups}
 
-\definition {
+\begin{definition}[Subgroup]
 	A {\bf subgroup} is a subset $H$ of a group $(G, p)$ such that:
 
 	\begin{enumerate}
@@ -703,19 +702,19 @@ We'll talk more about Symmetric groups later in the semester.
 	\end{enumerate}
 
 	So $(H, p)$ is a group!
-}
+\end{definition}
 
 As notation, we say that $H \le G$ if $H$ is a subgroup of $G$.
 
-\example {
+\begin{example}
 	\[
 		\sl_n(\R) \le \gl_n(\R) \le \gl_n(\C)
 	\]
 
 	Notice the direction of ``subset-ness"!
-}
+\end{example}
 
-\example {
+\begin{example}
 	\[
 		\{\bar 0, \bar 2\} \le (\Z_4, +)
 	\]
@@ -746,9 +745,9 @@ As notation, we say that $H \le G$ if $H$ is a subgroup of $G$.
 	\end{enumerate}
 
 	So we have a subgroup!
-}
+\end{example}
 
-\example {
+\begin{example}
 	If $G$ is a group and $a \in G$ is an element, then
 
 	\[
@@ -763,16 +762,16 @@ As notation, we say that $H \le G$ if $H$ is a subgroup of $G$.
 		\item $a^{-3} = a^{-1}a^{-1}a^{-1}$
 		\item $a^2 = aa$
 	\end{itemize}
-}
+\end{example}
 
 Furthermore, sometimes, $a^n = e$ for some finite $n$. The smallest such $n$ is
 called the {\bf order} of $a$.
 
-\example {
+\begin{example}
 	The order of $\bar 2 \in \Z_4$ is $2$.
-}
+\end{example}
 
-\definition {
+\begin{definition}[Trivial Subgroup]
 	We say that a subgroup $H \le G$ is called {\bf trivial} if $|H| = 1$. Or,
 
 	\[
@@ -780,15 +779,15 @@ called the {\bf order} of $a$.
 	\]
 
 	This is a subgroup of {\it every group}.
-}
+\end{definition}
 
-\note {
+\begin{note}
 	$G \le G$ for all groups $G$. In other words, a group is always a subgroup of
 	itself.
 
 	We can say that $H < G$ is a {\bf proper} subgroup if $H \le G$ but $H \ne G$
 	and, additionally for this class, $H$ is non-trivial.
-}
+\end{note}
 
 \date{Wed. 31 Jan 2024}
 
@@ -799,76 +798,76 @@ be useful beyond just this set of groups.
 Let $a \in \Z$, and let $a \Z = \{ ax \mid x \in \Z \}$ be all the multiples of
 $a$ (with $0 \Z = \{ 0 \}$.)
 
-{\bf Claim.}
+\begin{claim}
+  $a \Z$ is a subgroup of $\Z$.
+\end{claim}
 
-$a \Z$ is a subgroup of $\Z$.
+\begin{proof}
+  We need check two properties.
 
-	{\bf Proof.}
+  \begin{enumerate}
+    \item {\bf Closure}: Given $ax, ay \in a \Z$, $ax + ay = a(x + y) \in a\Z$.
+    \item {\bf Inverses}: Given $ax \in a \Z$, $a(-x) \in a\Z$, and $ax + a(-x) =
+            ax - ax = 0 \in a\Z$.
+  \end{enumerate}
+\end{proof}
 
-We need check two properties.
-
-\begin{enumerate}
-	\item {\bf Closure}: Given $ax, ay \in a \Z$, $ax + ay = a(x + y) \in a\Z$.
-	\item {\bf Inverses}: Given $ax \in a \Z$, $a(-x) \in a\Z$, and $ax + a(-x) =
-		      ax - ax = 0 \in a\Z$.
-\end{enumerate}
-
-\note {
+\begin{note}
 	This is how you should prove your questions relating to subgroups on the
 	homework.
-}
+\end{note}
 
-{\bf Claim}.
+\begin{claim}
+  If $H \le \Z$ is a subgroup, then $H = a\Z$ for some $a \in \Z$. In other words,
+  this is it! This is {\it all} the subgroups.
+\end{claim}
 
-If $H \le \Z$ is a subgroup, then $H = a\Z$ for some $a \in \Z$. In other words,
-this is it! This is {\it all} the subgroups.
+\begin{proof}
+  If $H \le \Z$, then $0 \in H$. If $H = \{ 0 \}$. Then $H = 0\Z$ is the trivial
+  subgroup. Otherwise, $H$ contains non-zero integers. Since $H$ contains
+  inverses, it contains positive integers. Let $a$ be the smallest positive
+  integer in $H$. We want to show that $H = a\Z$.
 
-	{\bf Proof}.
+  Given $ax \in a\Z$, we can express $ax$ as follows
 
-If $H \le \Z$, then $0 \in H$. If $H = \{ 0 \}$< then $H = 0\Z$ is the trivial
-subgroup. Otherwise, $H$ contains non-zero integers. Since $H$ contains
-inverses, it contains positive integers. Let $a$ be the smallest positive
-integer in $H$. We want to show that $H = a\Z$.
+  \[
+    ax = \begin{cases}
+      a + \cdots + a       & x > 0 \\
+      0                    & x = 0 \\
+      (-a) + \cdots + (-a) & x < 0 \\
+    \end{cases}
+  \]
 
-Given $ax \in a\Z$, we can express $ax$ as follows
+  In all such cases, $H$ is closed and has inverses/identity, so $ax \in H$ and
+  thus $a\Z \subseteq H$.
 
-\[
-	ax = \begin{cases}
-		a + \cdots + a       & x > 0 \\
-		0                    & x = 0 \\
-		(-a) + \cdots + (-a) & x < 0 \\
-	\end{cases}
-\]
+  The harder way is going backwards.
 
-In all such cases, $H$ is closed and has inverses/identity, so $ax \in H$ and
-thus $a\Z \subseteq H$.
+  Given $h \in H$, and assume $|h| > a$ (We can do this because $a$ is the
+  smallest positive integer in $H$.) Write
 
-The harder way is going backwards.
+  \[
+    h = ax + r
+  \]
 
-Given $h \in H$, and assume $|h| > a$ (We can do this because $a$ is the
-smallest positive integer in $H$.) Write
+  Where $0 \le r < a$. We know that $h \in H$, and $ax \in H$, so
 
-\[
-	h = ax + r
-\]
+  \[
+    r = h - ax \in H
+  \]
 
-Where $0 \le r < a$. We know that $h \in H$, and $ax \in H$, so
+  Because $r$ is a combination of two elements in the subgroup! But recall that
+  $r$ is between $0$ and $a$. But we said before that $a$ is the smallest positive
+  integer in $H$, so $r$ {\it must} be zero! In other words $h = ax$ and $h \in
+    a\Z$. Which proves that $H \subseteq a\Z$.
 
-\[
-	r = h - ax \in H
-\]
+  So $H = a\Z$.
+\end{proof}
 
-Because $r$ is a combination of two elements in the subgroup! But recall that
-$r$ is between $0$ and $a$. But we said before that $a$ is the smallest positive
-integer in $H$, so $r$ {\it must} be zero! In other words $h = ax$ and $h \in
-	a\Z$. Which proves that $H \subseteq a\Z$.
-
-So $H = a\Z$.
-
-\note {
+\begin{note}
 	This proof is very important and the techniques in it come back! Be sure you
 	understand what's going on.
-}
+\end{note}
 
 This is great! We've now categorized every subgroup of the Integers under
 addition!
@@ -879,52 +878,46 @@ Now, given $a\Z$, $b\Z$, form
 	a\Z + b\Z = \{ax + by \mid x, y \in \Z \}
 \]
 
-This is a subgroup of $\Z$. In fact,
+This is a subgroup of $\Z$. In fact, $a\Z + b\Z = d\Z$ for some $d \in \Z$, $d
+\ge 0$. To prove this, we must first introduce some definitions.
 
-{\bf Theorem}
-
-% $a\Z + \b\Z = d\Z$ for some $d \in \Z$, $d \ge 0$. To prove this, we must first
-% introduce some definitions.
-
-\definition {
-	If $a, b \ne 0$, then $d$ is the {\bf greatest common divisor} (gcd), of $a$
+\begin{definition}[Greatest Common Divisor]
+  If $a, b \ne 0$, then $d$ is the {\bf greatest common divisor} (gcd), of $a$
 	and $b$,
 
 	\[
 		d = \gcd(a, b)
 	\]
-}
+\end{definition}
 
 If $a, b = 0$, $d = \gcd(a, b)$, then
 
 \begin{enumerate}
 	\item $d$ divides $a$ and $b$, notated as $d \mid a$ and $d \mid b$.
-
-		      {\bf Proof}.
-
-	      $a \cdot 1 + b \cdot 0 = a \in d\Z$, so $d \mid a$. Similarly for $b$, $a \cdot
-		      0 + b \cdot 1 = b \in d\Z$ so $d \mid b$.
+        
+        \begin{proof}
+          $a \cdot 1 + b \cdot 0 = a \in d\Z$, so $d \mid a$. Similarly for $b$,
+          $a \cdot 0 + b \cdot 1 = b \in d\Z$ so $d \mid b$.
+        \end{proof}
 
 	\item if $e \mid a$ and $e \mid b$, then $e \mid d$
 
-	      {\bf Proof}
-
-	      If $e \mid a$ $e \mid b$, then $e \mid (ax + by) = d$.
+        \begin{proof}
+          If $e \mid a$ $e \mid b$, then $e \mid (ax + by) = d$.
+        \end{proof}
 
 	\item $\exists x, y \in \Z$ such that $d = ax + by$
 
-	      {\bf Proof}.
-
-	      $d \in a\Z + b\Z$, so $d = ax + by$, for some $x, y \in \Z$.
+        \begin{proof}
+          $d \in a\Z + b\Z$, so $d = ax + by$, for some $x, y \in \Z$.
+        \end{proof}
 \end{enumerate}
 
-{\bf Fact}.
-
-$d$ is the smallest positive value of $|ax + by|$.
+{\bf Fact}. $d$ is the smallest positive value of $|ax + by|$.
 
 This is useful, because if $ax + by = 1$ for some $x, y$, then $\gcd(a, b) = 1$.
 
-\definition {
+\begin{definition}
 	$a, b \in \Z$ are {\bf relatively prime} if $\gcd(a, b) = 1$ and
 
 	\[
@@ -932,42 +925,41 @@ This is useful, because if $ax + by = 1$ for some $x, y$, then $\gcd(a, b) = 1$.
 	\]
 
 	for some $x, y \in \Z$.
-}
+\end{definition}
 
-{\bf Proposition}.
+\begin{proposition}
+  Let $p$ be a prime. If $p \mid ab$, then $p \mid a$ or $p \mid b$.
+\end{proposition}
 
-Let $p$ be a prime. If $p \mid ab$, then $p \mid a$ or $p \mid b$.
+\begin{proof}
+  Assume that $p$ is a prime, and $p \mid ab$, but $p \nmid a$.
 
-	{\bf Proof}.
+  We will show that $p \mid b$.
 
-Assume that $p$ is a prime, and $p \mid ab$, but $p \nmid a$.
+  The factors of $p$ are $1$ and $p$, and $p \nmid a$, so $\gcd(p, a) = 1$ (since
+  the $\gcd$ is either $1$ or $p$, but if it was $p$, then $p$ would divide $a$.)
 
-We will show that $p \mid b$.
+  So there must exist $x, y \in \Z$ with $px + ay = 1$. Multiplying by $b$, we
+  have $pxb + aby = b$. Now of course, $p \mid pxb$ and, more importantly, $p \mid aby$
+  since $a$ is a multiple of $p$ so
 
-The factors of $p$ are $1$ and $p$, and $p \nmid a$, so $\gcd(p, a) = 1$ (since
-the $\gcd$ is either $1$ or $p$, but if it was $p$, then $p$ would divide $a$.)
+  \[
+    p \mid (pxb + aby) = b
+  \]
 
-So there must exist $x, y \in \Z$ with $px + ay = 1$. Multiplying by $b$, we
-have $pxb + aby = b$. Now of course, $p \mid pxb$ and, more importantly, $p \mid aby$
-since $a$ is a multiple of $p$ so
+  So $p \mid b$.
+\end{proof}
 
-\[
-	p \mid (pxb + aby) = b
-\]
-
-So $p \mid b$.
-
-	{\bf Similarly}.
-
-$a\Z \cap b\Z$ is also a subgroup of $\Z$, say $m\Z$ and $m = \lcm(a, b)$, the
+{\bf Similarly}. $a\Z \cap b\Z$ is also a subgroup of $\Z$, say $m\Z$ and $m = \lcm(a, b)$, the
 least common multiple of $a$ and $b$: The smallest number which is both a
 multiple of $a$ and $b$.
 
-	{\bf The Euclidean Algorithm}. {\it To find the $\gcd$}
+\section{The Euclidean Algorithm}
+{\it We use this to find the $\gcd$}.
 
 To understand this, let's look at an
 
-\example {
+\begin{example}
 	Suppose we want to find the $\gcd(210, 45)$. Write $210 = 45 \cdot 4 + 30$. If
 	$x \mid 210$ and $x \mid 45$, then $x \mid 30$. Now $x \mid 30$ and $x \mid 45$ implies that
 	$x \mid 210$.
@@ -976,27 +968,26 @@ To understand this, let's look at an
 
 	We can do this trick again!
 
-	$45 = 30 \cdot 1 + 15$, so $\gcd(45, 30) = \gcd(30, 15) = 15$. So $\gcd(210,
-		45) = 15$.
-}
+	$45 = 30 \cdot 1 + 15$, so $\gcd(45, 30) = \gcd(30, 15) = 15$. So $\gcd(210, 45) = 15$.
+\end{example}
 
-{\bf Cyclic Subgroups}.
+\begin{definition}[Cyclic Subgroup]
+  $G$ is a group, and $a \in G$. The set
 
-$G$ is a group, and $a \in G$. The set
+  \[
+    \langle a \rangle = \{\dots, a^{-3}, a^{-2}, a^{-1}, e, a, a^2, a^3, \dots\}
+  \]
 
-\[
-	\langle a \rangle = \{\dots, a^{-3}, a^{-2}, a^{-1}, e, a, a^2, a^3, \dots\}
-\]
+  is called the {\bf cyclic subgroup generated by $a$}.
+\end{definition}
 
-is called the {\bf cyclic subgroup generated by $a$}.
-
-\note {
+\begin{note}
 	$\langle a \rangle$ is the smallest subgroup of $G$ that contains all these
 	powers of $a$.
 
 	$|\langle a \rangle| = |a|$, the smallest positive $n$ such that $a^n = e$, or
 	$\infty$.
-}
+\end{note}
 
 \date{Fri. 2 Feb 2024}
 
@@ -1005,7 +996,7 @@ is called the {\bf cyclic subgroup generated by $a$}.
 We're going to repeat a little bit from last class, just to make sure we're on
 the same page.
 
-\definition {
+\begin{definition}
 	If $G$ is a group and $a \in G$, the set
 
 	\[
@@ -1015,9 +1006,9 @@ the same page.
 	Is the cyclic subgroup generated by $a$.
 
 	If $G = \lr{a}$ for some $a \in G$, we say $G$ is a {\bf cyclic group}.
-}
+\end{definition}
 
-\example {
+\begin{example}
 	$G = \Z$, $a = 2$, We have that
 
 	\[
@@ -1025,58 +1016,58 @@ the same page.
 	\]
 
 	In general, $\lr{a} = a\Z$, and $\lr {1} = \Z$, so $\Z$ is a cyclic group.
-}
+\end{example}
 
-\note {
+\begin{note}
 	$\lr {a}$ is the smallest subgroup of $G$ containing $a$.
-}
+\end{note}
 
 Recall: Let $n \in \N$ be the smallest number such that $a^n = e$ (or $\infty$
 if $a^n \ne e$ for all $n$) we say that $n$ is the order of $a$, or $|a| = n$.
 
-	{\bf Proposition}
+\begin{proposition}
+  Let $|a| = n < \infty$. Then
 
-Let $|a| = n < \infty$. Then
+  \begin{enumerate}
+    \item $a^l = a^m$ if and only if $l - m \equiv 0 \mod n$.
+    \item $\lr {a} = \{e, a, a^2, \dots, a^{n - 1}\}$, and $|\lr{a}| = n$.
+  \end{enumerate}
+\end{proposition}
 
-\begin{enumerate}
-	\item $a^l = a^m$ if and only if $l - m \equiv 0 \mod n$.
-	\item $\lr {a} = \{e, a, a^2, \dots, a^{n - 1}\}$, and $|\lr{a}| = n$.
-\end{enumerate}
+\begin{proof}
+  \begin{enumerate}
+    \item If $a^l = a^m$, then $a^la^{-m} = e$ and so $a^{l - m} = e$. Assume that
+          $l - m \le 0$.
 
-{\bf Proof}
+          If $l - m \not\equiv 0 \mod n$ then $l - m > n$, because $n$ is minimal.
+          Then $l - m = nk + r$, and $r \in \{0, 1, \dots, n - 1\}$.
 
-\begin{enumerate}
-	\item If $a^l = a^m$, then $a^la^{-m} = e$ and so $a^{l - m} = e$. Assume that
-	      $l - m \le 0$.
+          So
 
-	      If $l - m \not\equiv 0 \mod n$ then $l - m > n$, because $n$ is minimal.
-	      Then $l - m = nk + r$, and $r \in \{0, 1, \dots, n - 1\}$.
+          \[
+            a^r = a^{(l - m) - nk} = \underbrace{a^{l - m}}_{e} \underbrace{(a^n)^{-k}}_{e}
+          \]
 
-	      So
+          But $r < n$ so in fact $r = 0$. This contradicts $l - m \not\equiv 0 \mod
+            n$, hence $l - m \equiv 0 \mod n$.
 
-	      \[
-		      a^r = a^{(l - m) - nk} = \underbrace{a^{l - m}}_{e} \underbrace{(a^n)^{-k}}_{e}
-	      \]
+    \item If $l \in \Z$, write $l = nk + r$, $r \in \{0, 1, \dots, n - 1\}$, then
+          $a^l = a^{nk + r} = (a^n)^ka^r = e^ka^r = a^r$. So
 
-	      But $r < n$ so in fact $r = 0$. This contradicts $l - m \not\equiv 0 \mod
-		      n$, hence $l - m \equiv 0 \mod n$.
+          \[
+            \lr{a} = \{e, a, \dots, a^{n - 1}\}
+          \]
 
-	\item If $l \in \Z$, write $l = nk + r$, $r \in \{0, 1, \dots, n - 1\}$, then
-	      $a^l = a^{nk + r} = (a^n)^ka^r = e^ka^r = a^r$. So
-
-	      \[
-		      \lr{a} = \{e, a, \dots, a^{n - 1}\}
-	      \]
-
-	      If $a^l = a^m$ for $l, m \in \{0, 1, \dots, n - 1\}$, then $l - m \equiv 0
-		      \mod n$. This only happens for $l = m$, so $|\lr{a}| = n$.
-\end{enumerate}
+          If $a^l = a^m$ for $l, m \in \{0, 1, \dots, n - 1\}$, then $l - m \equiv 0
+            \mod n$. This only happens for $l = m$, so $|\lr{a}| = n$.
+  \end{enumerate}
+\end{proof}
 
 This answers the question to the overloading of the word ``order" from before.
 The {\it order} of an element is in fact the order of the cyclic subgroup that
 it generates!
 
-\example {
+\begin{example}
 	If $|a| = n$, then
 
 	\[
@@ -1085,18 +1076,17 @@ it generates!
 
 	This is a good exercise for understanding subgroups. If you understand why
 	it's true, you're in good shape.
-}
+\end{example}
 
-\definition {
-	An {\bf infinite cyclic group} is a cyclic group $\lr{a}$ where $|a| =
-		\infty$.
+\begin{definition}[Infinite Cyclic Group]
+	An {\bf infinite cyclic group} is a cyclic group $\lr{a}$ where $|a| = \infty$.
+\end{definition}
 
-	For example, $\Z$.
+\begin{example}
+	$\Z_n = \lr{ \bar 1 }$ is finite, but $\Z$ is infinite.
+\end{example}
 
-		{\bf Finite cyclic groups}, for example $\Z_n = \lr{ \bar 1 }$
-}
-
-\example {
+\begin{example}
 	If $G = \gl_2(\R)$, then
 
 	\[
@@ -1120,7 +1110,7 @@ it generates!
 	\]
 
 	Has order $n$. It's a rotation matrix!
-}
+\end{example}
 
 \subsection{Homomorphisms}
 
@@ -1129,7 +1119,7 @@ statements about the relation between different groups.
 
 We want function between groups that ``respect" the group operation.
 
-\definition {
+\begin{definition}
 	Given groups $(G, p)$ and $(G', p')$. A {\bf Homomorphism} $\varphi: G \to G'$
 	is a function such that
 
@@ -1141,7 +1131,7 @@ We want function between groups that ``respect" the group operation.
 	operations.
 
 	Suppressing $p$ and $p'$, we can write $\varphi(ab) = \varphi(a) \varphi(b)$.
-}
+\end{definition}
 
 Alternatively, we have the following diagram
 
@@ -1158,7 +1148,7 @@ Alternatively, we have the following diagram
 	\end{tikzcd}
 \]
 
-\example {
+\begin{example}
 	We can express the determinant function as
 
 	\[
@@ -1172,11 +1162,11 @@ Alternatively, we have the following diagram
 	\]
 
 	And we can check that $\det(AB) = \det(A)\det(B)$
-}
+\end{example}
 
 Similarly
 
-\example {
+\begin{example}
 	Consider the function $\exp : (\R, +) \to (\R \setminus \{0\}, \times)$
 
 	Or
@@ -1186,11 +1176,11 @@ Similarly
 	\]
 
 	And we can check that $\exp(x + y) = e^x e^y = \exp(x) \exp(y)$
-}
+\end{example}
 
 A more general
 
-\example {
+\begin{example}
 	Given a group $G$, $a \in G$, we have
 
 	\[
@@ -1204,100 +1194,100 @@ A more general
 	\]
 
 	If $|a| = n$, then $\varphi(\Z_n, +) \to G$, or $\bar i \to a^i$.
-}
+\end{example}
 
-\example {
+\begin{example}
 	The {\bf trivial homomorphism} $\phi: G \to G'$ can be defined as $a \to e$
 	for all $a \in G$.
-}
+\end{example}
 
-\note {
-	The difference between an {\it Isomorphism} and a {\it Homomorphism} is {\bf
-			not} necessarily a bijection.
-}
+\begin{note}
+  The difference between an {\it Isomorphism} and a {\it Homomorphism} is {\bf
+  not} necessarily a bijection.
+\end{note}
 
-{\bf Proposition}
+\begin{proposition}
+  If $\varphi: G \to G'$ is a homomorphism, then
 
-If $\varphi: G \to G'$ is a homomorphism, then
+  \begin{enumerate}
+    \item $\varphi(a_1, \dots, a_n) = \varphi(a_1) \cdots \varphi(a_n)$
+    \item $\varphi(e_G) = e_{G'}$
+    \item $\varphi(a^{-1}) = \varphi(a)^{-1}$
+  \end{enumerate}
 
-\begin{enumerate}
-	\item $\varphi(a_1, \dots, a_n) = \varphi(a_1) \cdots \varphi(a_n)$
-	\item $\varphi(e_G) = e_{G'}$
-	\item $\varphi(a^{-1}) = \varphi(a)^{-1}$
-\end{enumerate}
+  It's important to note that these aren't by definition, but {\it derived} from
+  the definition.
+\end{proposition}
 
-It's important to note that these aren't by definition, but {\it derived} from
-the definition.
+\begin{proof}
+  \begin{enumerate}
+    \item This one is by induction, we won't prove it.
+    \item $\varphi(e_{G} e_{G}) = \varphi(e_G) \varphi(e_G)$
 
-	{\bf Proof}.
+          We can can ``cancel" $\varphi(e_G)$ from both sides and get
 
-\begin{enumerate}
-	\item This one is by induction, we won't prove it.
-	\item $\varphi(e_{G} e_{G}) = \varphi(e_G) \varphi(e_G)$
+          \[
+            e_{G'} = \varphi(e_G)
+          \]
 
-	      We can can ``cancel" $\varphi(e_G)$ from both sides and get
-
-	      \[
-		      e_{G'} = \varphi(e_G)
-	      \]
-
-	\item $e_{G'} = \varphi(e_G) = \varphi(a a^{-1}) = \varphi(a) \varphi(a^{-1})$
-	      so $\varphi(a)\varphi(a^{-1}) = e_{G'}$ and so $\varphi(a^{-1}) =
-		      \varphi(a)^{-1}$
-\end{enumerate}
+    \item $e_{G'} = \varphi(e_G) = \varphi(a a^{-1}) = \varphi(a) \varphi(a^{-1})$
+          so $\varphi(a)\varphi(a^{-1}) = e_{G'}$ and so $\varphi(a^{-1}) =
+            \varphi(a)^{-1}$
+  \end{enumerate}
+\end{proof}
 
 \date{Mon. 5 Feb 2024}
 
-Recall: A {\bf Homomorphism} is a function $\phi: G \to G'$ satisfying $\phi(ab)
-	= \phi(a)\phi(b)$.
+{\bf Recall}. A {\bf Homomorphism} is a function $\phi: G \to G'$ satisfying
+$\phi(ab) = \phi(a)\phi(b)$.
 
 When we talk about functions, we like to talk about the {\it image} of that
 function.
 
-\definition {
-	The {\bf image} (or {\bf range}) of $\phi$ is $\phi(G) = \{\phi(a) \mid a \in
-		G \}$ is the set of all outputs of $\phi$ on its domain.
-}
+\begin{definition}
+  The {\bf image} (or {\bf range}) of $\phi$ is $\phi(G) = \{\phi(a) \mid a \in
+  G \}$ is the set of all outputs of $\phi$ on its domain.
+\end{definition}
 
-\definition {
+\begin{definition}
 	The {\bf Kernel} of $\phi$ is $\ker(\phi) = \{a \in G \mid \phi(a) = e_{G'} \}$.
-}
+\end{definition}
 
 A vector space under addition is actually a group!
 
-{\bf Proposition}
+\begin{proposition}
+  \begin{enumerate}
+    \item $\phi(G)$ is a subgroup of $G'$. The image is a subgroup of the
+          codomain.
 
-\begin{enumerate}
-	\item $\phi(G)$ is a subgroup of $G'$. The image is a subgroup of the
-	      codomain.
+            {\bf Closure}
 
-		      {\bf Closure}
+          If $\phi(a), \phi(b) \in \phi(G)$, then $\phi(a) \phi(b) = \phi(ab)$ since
+          $\phi$ is a Homomorphism. But notice that $\phi(ab) \in \phi(G)$, so we have
+          closure.
 
-	      If $\phi(a), \phi(b) \in \phi(G)$, then $\phi(a) \phi(b) = \phi(ab)$ since
-	      $\phi$ is a Homomorphism. But notice that $\phi(ab) \in \phi(G)$, so we have
-	      closure.
+            {\bf Inverses}
 
-		      {\bf Inverses}
+          If $\phi(a) \in \phi(G)$, then $\phi(a)^{-1} = \phi(a^{-1}) \in \phi(G)$, so
+          it's a subgroup.
 
-	      If $\phi(a) \in \phi(G)$, then $\phi(a)^{-1} = \phi(a^{-1}) \in \phi(G)$, so
-	      it's a subgroup.
+    \item $\ker(G)$ is a subgroup of $G$. The kernel is a subgroup of the domain.
 
-	\item $\ker(G)$ is a subgroup of $G$. The kernel is a subgroup of the domain.
+            {\bf Closure}
 
-		      {\bf Closure}
+          If $a, b \in \ker(\phi)$, $\phi(ab) = \phi(a) \phi(b) = e \cdot e = e$, so
+          $\phi(ab) \in \ker(\phi)$.
 
-	      If $a, b \in \ker(\phi)$, $\phi(ab) = \phi(a) \phi(b) = e \cdot e = e$, so
-	      $\phi(ab) \in \ker(\phi)$.
+            {\bf Inverses}
 
-		      {\bf Inverses}
-
-	      If $a \in \ker(\phi)$, then $\phi(a^{-1}) = \phi(a)^{-1} = e^{-1} = e$, so
-	      $a^{-1} \in \ker(\phi)$.
-\end{enumerate}
+          If $a \in \ker(\phi)$, then $\phi(a^{-1}) = \phi(a)^{-1} = e^{-1} = e$, so
+          $a^{-1} \in \ker(\phi)$.
+  \end{enumerate}
+\end{proposition}
 
 Let's look at an
 
-\example {
+\begin{example}
 	Consider the determinant function $\det: \gl_n(\R) \to (\R \setminus \{0\},
 		\times)$, $A \to \det(A)$
 
@@ -1307,42 +1297,42 @@ Let's look at an
 	\[
 		\ker(\det) = \{A \in \gl_n(\R) \min \det(A) = 1 \} = \sl_n(\R)
 	\]
-}
+\end{example}
 
 To prove that something is a subgroup, it's often useful to find a homomorphism
 whose kernel (or image) is a subgroup.
 
 Consider the following
 
-\example {
+\begin{example}
 	$\exp(\R, +) \to (\R \setminus \{0\}, \times)$ is a homomorphism, $x \to e^x$.
 
-	$\exp(\R) = \{x \in \R \mid x > 0\}$, and $\ker(\exp) = \{x \in \R \mid
-		\exp(x) = 1 \} = \{0\}$.
-}
+  $\exp(\R) = \{x \in \R \mid x > 0\}$, and $\ker(\exp) = \{x \in \R \mid
+  \exp(x) = 1 \} = \{0\}$.
+\end{example}
 
-{\bf Proposition}:
+\begin{proposition}
+  $\phi: G \to G'$ is one to one if and only if $\ker(\phi) = \{e\}$.
+\end{proposition}
 
-$\phi: G \to G'$ is one to one if and only if $\ker(\phi) = \{e\}$.
+\begin{proof}
+  ($\Rightarrow$): $\phi(e) = e$, so $e \in \ker(\phi)$.
 
-	{\bf Proof}:
+  If $a \ne e$ and $a \in \ker(\phi)$, then $\phi(a) = \phi(e) = e$ so $\phi$ is
+  not injective, and we have a contradiction. Thus $\ker(\phi) = \{e\}$.
 
-($\Rightarrow$): $\phi(e) = e$, so $e \in \ker(\phi)$.
-
-If $a \ne e$ and $a \in \ker(\phi)$, then $\phi(a) = \phi(e) = e$ so $\phi$ is
-not injective, and we have a contradiction. Thus $\ker(\phi) = \{e\}$.
-
-($\Leftarrow$): If $\phi(a) = \phi(b)$, then $\phi(a) \phi(b)^{-1} = e$, but
-then $\phi(a) \phi(b^{-1}) = \phi(a b^{-1}) = e$ but since only $\phi(e) = e$,
-this means $a b^{-1} = e$ and so $a = b$ and so $\phi$ is injective.
+  ($\Leftarrow$): If $\phi(a) = \phi(b)$, then $\phi(a) \phi(b)^{-1} = e$, but
+  then $\phi(a) \phi(b^{-1}) = \phi(a b^{-1}) = e$ but since only $\phi(e) = e$,
+  this means $a b^{-1} = e$ and so $a = b$ and so $\phi$ is injective.
+\end{proof}
 
 \subsection{Isomorphisms}
 
-\definition {
+\begin{definition}
 	An {\bf Isomorphism} $\phi: G \to G'$ is a bijective homomorphism.
-}
+\end{definition}
 
-\note {
+\begin{note}
 	To check that something is an Isomorphism, you need to check two things:
 
 	\begin{enumerate}
@@ -1353,7 +1343,7 @@ this means $a b^{-1} = e$ and so $a = b$ and so $\phi$ is injective.
 		      one to one-ness or onto-ness and the other should follow. Think about
 		      why!
 	\end{enumerate}
-}
+\end{note}
 
 \subsubsection{Examples}
 
@@ -1398,44 +1388,45 @@ Some examples include:
 	      \end{enumerate}
 \end{itemize}
 
-{\bf Proposition}: If $\phi: G \to G'$ is an isomorphism, then $\phi^{-1}: G'
-	\to G$ is also an isomorphism.
+\begin{proposition}
+  If $\phi: G \to G'$ is an isomorphism, then $\phi^{-1}: G' \to G$ is also an
+  isomorphism.
+\end{proposition}
 
-	{\bf Proof}:
+\begin{proof}
+  Since isomorphisms are bijections, it suffices to show that $\phi^{-1}$ is a homomorphism.
 
-Since isomorphisms are bijections, it suffices to show that $\phi^{-1}$ is a homomorphism.
+  If $x, y \in G'$, we want to show that $\phi^{-1}(xy) = \phi^{-1}(x)
+    \phi^{-1}(y)$.
 
-If $x, y \in G'$, we want to show that $\phi^{-1}(xy) = \phi^{-1}(x)
-	\phi^{-1}(y)$.
+  Say $\phi^{-1}(x) = a$, $\phi^{-1}(y) = b$, and $\phi^{-1}(ab) = c$. Then we
+  want to show that $ab  = c$.
 
-Say $\phi^{-1}(x) = a$, $\phi^{-1}(y) = b$, and $\phi^{-1}(ab) = c$. Then we
-want to show that $ab  = c$.
+  Then $ab = c$ if and only if $\phi(ab) = \phi(c)$ (since $\phi$ is bijective,
+  in fact injectivity is sufficient for this.)
 
-Then $ab = c$ if and only if $\phi(ab) = \phi(c)$ (since $\phi$ is bijective,
-in fact injectivity is sufficient for this.)
+  But then this is true if and only if $\phi(a)\phi(b) = \phi(c)$, if and only if
+  $\phi(\phi^{-1}(x))\phi(\phi^{-1}(y)) = \phi(\phi^{-1}(xy))$, if and only if $xy
+    = xy$. Thus $ab = c$ and $\phi^{-1}$ is a homomorphism.
 
-But then this is true if and only if $\phi(a)\phi(b) = \phi(c)$, if and only if
-$\phi(\phi^{-1}(x))\phi(\phi^{-1}(y)) = \phi(\phi^{-1}(xy))$, if and only if $xy
-	= xy$. Thus $ab = c$ and $\phi^{-1}$ is a homomorphism.
+  \begin{align*}
+    ab = c & \Leftrightarrow \phi(ab) = \phi(c)                                         \\
+           & \Leftrightarrow \phi(a)\phi(b) = \phi(c)                                   \\
+           & \Leftrightarrow \phi(\phi^{-1}(x))\phi(\phi^{-1}(y)) = \phi(\phi^{-1}(xy)) \\
+           & \Leftrightarrow xy = xy
+  \end{align*}
+\end{proof}
 
-\begin{align*}
-	ab = c & \Leftrightarrow \phi(ab) = \phi(c)                                         \\
-	       & \Leftrightarrow \phi(a)\phi(b) = \phi(c)                                   \\
-	       & \Leftrightarrow \phi(\phi^{-1}(x))\phi(\phi^{-1}(y)) = \phi(\phi^{-1}(xy)) \\
-	       & \Leftrightarrow xy = xy
-\end{align*}
-
-\definition {
-	$G$ and $G'$ are {\bf isomorphic} if there exists an isomorphism $\phi: G \to
-		G'$.
-}
+\begin{definition}
+	$G$ and $G'$ are {\bf isomorphic} if there exists an isomorphism $\phi: G \to G'$.
+\end{definition}
 
 Note again that since isomorphisms are bijective, this means that the
 isomorphism goes both ways.
 
 We write $G \cong G'$ or $G \backsimeq G'$, but mostly the former.
 
-\note {
+\begin{note}
 	The goal of this class is to give a good classification to a lot of groups.
 	Note that it's not really possible to completely do this, even for groups of a
 	given order, because we have infinitely many possible groups of order one, but
@@ -1446,7 +1437,7 @@ We write $G \cong G'$ or $G \backsimeq G'$, but mostly the former.
 	What this means is that if we have two groups that are isomorphic, we're going
 	to treat them as the same. When classifying or counting, we can count $G$ and
 	$G'$ are one if $G \cong G'$.
-}
+\end{note}
 
 {\bf Exercise}. There is only one group of order one up to isomorphism.
 
@@ -1469,33 +1460,33 @@ Under $+$.
 
 These are all cyclic, and in fact $\Z_n = \lr {\bar 1}$.
 
-	{\bf Theorem}:
+\begin{theorem}
+  Any cyclic (sub)group is isomorphic to $\Z$ or $\Z_n$, for $n \ge 2$.
+\end{theorem}
 
-Any cyclic (sub)group is isomorphic to $\Z$ or $\Z_n$, for $n \ge 2$.
+\begin{proof}[Proof idea]
+  Write $f: \Z$ or $\Z$ to $\lr {a}$ which takes $k$ or $\bar k$ to $a^k$.
 
-	{\bf Proof Idea}:
+  Chose $n = |a|$ or $\Z$ if $|a| = \infty$.
 
-Write $f: \Z$ or $\Z$ to $\lr {a}$ which takes $k$ or $\bar k$ to $a^k$.
+  We know that subgroups of cyclic groups are cyclic (from Homework 1.) So any
+  subgroup of $\Z_n$ is $H = \lr{\bar m}$ for some $\bar m$.
+\end{proof}
 
-Chose $n = |a|$ or $\Z$ if $|a| = \infty$.
-
-We know that subgroups of cyclic groups are cyclic (from Homework 1.) So any
-subgroup of $\Z_n$ is $H = \lr{\bar m}$ for some $\bar m$.
-
-\example {
+\begin{example}
 	If $f | n$, then there exists some subgroup $H \le \Z_n$ with $|H| = f$.
-}
+\end{example}
 
 \subsection{Multiplicative Groups}
 
-In what context can we define a group under
-multiplication for subsets of the integer $\mod n$?
+In what context can we define a group under multiplication for subsets of the
+integer $\mod n$?
 
 If $\bar a$ is multiplicatively invertible $\mod n$, then there exists a
 $\bar n \in \Z_n$ with $\bar a \cdot \bar b = \bar 1$.
 
-We know that $(\Z_4, \times)$, for example, is not a group. So when {\it is
-		it} a group?
+We know that $(\Z_4, \times)$, for example, is not a group. So when {\it is it}
+a group?
 
 We know that
 
@@ -1511,13 +1502,15 @@ We know that
 Let's define $\Z_n^\times = \{\bar a \in \Z_n \setminus \{\bar 0\} \mid \gcd(a,
 	n) = 1\}$
 
-{\bf Theorem}:
+\begin{theorem}
+  $(\Z_n^\times, \times)$ is a group.
+\end{theorem}
 
-$(\Z_n^\times, \times)$ is a group.
+\begin{proof}
+  Omitted.
+\end{proof}
 
-	{\bf Proof}: Omitted.
-
-\example {
+\begin{example}
 	$\Z_4^\times = \{\bar 1, \bar 3\}$, and looking at the multiplication table
 
 	\begin{itemize}
@@ -1529,9 +1522,9 @@ $(\Z_n^\times, \times)$ is a group.
 
 	And in fact, we see that $\Z_4^\times \cong (\Z_2, +)$, Where $\phi$ takes
 	$\bar 1$ to $\bar 0$, and $\bar 3$ to $\bar 1$.
-}
+\end{example}
 
-\example {
+\begin{example}
 	Let's look at $\Z_8^\times = \{\bar 1, \bar 3, \bar 5, \bar 7\}$.
 
 	In $\Z_8^\times$, every element $\bar a$ satisfies $\bar a^2 = \bar 1$, so
@@ -1542,18 +1535,20 @@ $(\Z_n^\times, \times)$ is a group.
 	surjective, we could pick $\bar a \in \Z_8^\times$ with $f(\bar a) = \bar 1$,
 	then $f(\bar a \cdot \bar a) = f(\bar a) + f(\bar a)$ but this can't be
 	the case.
-}
+\end{example}
 
-{\bf Corollary}: $\Z_n^\times = \Z_n \setminus \{0\}$ if and only if $n$ is prime.
+\begin{corollary}
+  $\Z_n^\times = \Z_n \setminus \{0\}$ if and only if $n$ is prime.
+\end{corollary}
 
 So $\Z_p^\times = \{\bar 1, \dots, \overline{p - 1} \}$ is a group under $\times$
 when $p$ is prime.
 
-\note {
+\begin{note}
   These are {\bf not} subgroups of $Z_n$, they have a {\it different} binary
   operation! These groups are under multiplication while $\Z_n$ is under
   addition.
-}
+\end{note}
 
 \subsection{Symmetric Groups}
 
@@ -1566,7 +1561,7 @@ Recall the definition of $S_n$
 
 Furthermore, recall that $S_n = n!$.
 
-\example {
+\begin{example}
   Consider $S_4$, we say that $\sigma \in S_4$ is a function $\sigma: \{1, 2, 3,
   4\} \to \{1, 2, 3, 4\}$ with
 
@@ -1576,7 +1571,7 @@ Furthermore, recall that $S_n = n!$.
     \item $3 \mapsto 3$
     \item $4 \mapsto 1$
   \end{itemize}
-}
+\end{example}
 
 This is really cumbersome to write so instead, we write
 
@@ -1595,7 +1590,7 @@ This is known as {\it cycle notation}.
 If the group $S_4$ is understood, we can write $(124)(3)$ as $124$. We have a
 tendency to just leave off the 1-cycles.
 
-\example {
+\begin{example}
   Let's do some multiplication.
 
   $\sigma^2 = (124)(124)$. To do this, we first draw the picture.
@@ -1605,9 +1600,9 @@ tendency to just leave off the 1-cycles.
   And to do $\sigma^2$, we follow the arrows twice (we do $\sigma$ twice!)
 
   So $\sigma^2 = (142)$.
-}
+\end{example}
 
-\example {
+\begin{example}
   Let $\sigma = (124)$, and $\tau = (12)(34)$, what is $\tau \sigma$ ?
 
   Again, we can draw the graphs.
@@ -1618,38 +1613,38 @@ tendency to just leave off the 1-cycles.
   equals $\tau \sigma$.
 
   So $\tau \sigma = (12)(34)(124) = (234)$.
-}
+\end{example}
 
 \QUESTION{} How would I simplify $(123)(136)$?
 
-\note {
+\begin{note}
   It should make sense that $(123) = (12)(23)$, and more generally,
 
   \[
     (a_1 a_2 \cdots a_k) = (a_1 a_2) (a_2 a_3) \cdots (a_{k - 1} a_k)
   \]
-}
+\end{note}
 
 A 2-cycle $(a, b)$ is called a {\bf transposition}. Every $\sigma \in S_n$ can
 be written as a product of transpositions.
 
-\definition {
+\begin{definition}
   $\sigma \in S$ is {\bf even} if it's the product of an even number of transpositions.
 
   $\sigma \in S_n$ is {\bf odd} if it's the product of an odd number of transpositions.
-}
+\end{definition}
 
-{\bf Proposition}:
+\begin{proposition}
+  No $\sigma \in S_n$ is both even and odd.
+\end{proposition}
 
-No $\sigma \in S_n$ is both even and odd.
+\begin{proof}
+  (My idea here is that you can probably represent the permutation as a graph and
+  color the vertices and make some statement about where it takes you or something
+  like that.)
 
-{\bf Proof}
-
-(My idea here is that you can probably represent the permutation as a graph and
-color the vertices and make some statement about where it takes you or something
-like that.)
-
-Next time!
+  Next time!
+\end{proof}
 
 What we get out of this is a map $\sgn: S_n \to (\{\pm 1, \times\})$ with
 
@@ -1660,41 +1655,44 @@ What we get out of this is a map $\sgn: S_n \to (\{\pm 1, \times\})$ with
   \end{cases}
 \]
 
-{\bf Claim}: $\sgn$ is a homomorphism called the {\it signature} homomorphism.
+\begin{claim}
+  $\sgn$ is a homomorphism called the {\it signature} homomorphism.
+\end{claim}
 
 \date{Fri. 9 Feb 2024}
 
 Today we keep talking about the symmetric group and introduce the {\it Dyhedral
 Group!}
 
-{\bf Recall}: Last time, we defined $S_n$ is the symmetric group of
+{\bf Recall}. Last time, we defined $S_n$ is the symmetric group of
 permutations. We talked about transpositions, $(ab) \in S_n$ for $a \ne b$ every
 element $\sigma \in S_n$ can be written as a product of transpositions
 
-\example {
+\begin{example}
   We said that $(1234) = (12)(23)(34)$.
-}
+\end{example}
 
 \TODO{} More graphs here. Explain how this works.
 
-{\bf Recall}: Last time, we said that $\sigma \in S_n$ is {\bf even} if it can
+{\bf Recall}. Last time, we said that $\sigma \in S_n$ is {\bf even} if it can
 be written as product of an even number of transpositions, or $\sigma \in S_n$
 is {\bf odd} otherwise. We also claimed that it couldn't be both.
 
 We can consider the following table
 
-  \begin{center}
-    \begin{tabular}[c]{l|l|l}
-      & $\sigma$ even & $\sigma$ odd \\
-      \hline
-      $\tau$ even & even & odd \\
-      $\tau$ odd & odd & even \\
+\begin{center}
+  \begin{tabular}[c]{l|l|l}
+    & $\sigma$ even & $\sigma$ odd \\
+    \hline
+    $\tau$ even & even & odd \\
+    $\tau$ odd & odd & even \\
 
-      \hline
-    \end{tabular}
-  \end{center}
+    \hline
+  \end{tabular}
+\end{center}
 
-  Hence $\sgn: S_n \to (\{ \pm 1\}, \times)$ defined as
+Hence $\sgn: S_n \to (\{ \pm 1\}, \times)$ defined as
+
 \[
   \sgn(\sigma) = \begin{cases}
     1 & \sigma \text{ even} \\
@@ -1718,55 +1716,21 @@ permutations don't map to the identity, what's going on with that?
 
 Let's look at an
 
-\example {
-  \[
-    S_4 = \{
-      e,
-      (12),
-      (13),
-      (14),
-      (23),
-      (24),
-      (34),
-      (123),
-      (132),
-      (124),
-      (142),
-      (134),
-      (143),
-      (234),
-      (243),
-      (12)(34),
-      (13)(24),
-      (14)(23),
-      (1234),
-      (1243),
-      (1324),
-      (1342),
-      (1423),
-      (1432),
-    \}
-  \]
+\begin{example}
+  \begin{align*}
+    S_4 = \{ &e, (12), (13), (14), (23), (24), (34), \\
+             &(123), (132), (124), (142), (134), (143), (234), \\
+             &(243), (12)(34), (13)(24), (14)(23), (1234), \\
+             &(1243), (1324), (1342), (1423), (1432) \}
+  \end{align*}
 
   and
 
-  \[
-    A_4 = \{
-      e,
-      (123),
-      (132),
-      (124),
-      (142),
-      (134),
-      (143),
-      (234),
-      (243),
-      (12)(34),
-      (13)(24),
-      (14)(23),
-    \}
-  \]
-}
+  \begin{align*}
+    A_4 = \{ &e, (123), (132), (124), (142), (134), (143), \\
+             &(234), (243), (12)(34), (13)(24), (14)(23) \}
+  \end{align*}
+\end{example}
 
 {\bf Fact}: $|S_n| = n!$ so $|A_n| = n! / 2$.
 
@@ -1786,7 +1750,7 @@ cycle... Then
 
 Let's look at some
 
-\example {
+\begin{example}
   \begin{itemize}
     \item $|(12)(345)| = \lcm(2, 3) = 6$
     \item $|(12)(34)| = \lcm(2, 2) = 2$
@@ -1795,7 +1759,7 @@ Let's look at some
       This looks like a bunch of 2-cycles, but it's actually a 4-cycle. Be sure
       to use cycle notation to figure this out!
   \end{itemize}
-}
+\end{example}
 
 \section{Symmetry Groups}
 
@@ -1818,7 +1782,7 @@ We have that $D_n$ is generated by $2$ elements, $\rho$, its rotations, and
 $\mu$, its reflections. Furthermore, $\rho^n = e$, $\mu^2 = e$, and $(\mu
 \rho)^2 = e$. We say that $D_n = \lr {\rho, \mu}$.
 
-\example {
+\begin{example}
   $D_6 = \{e, y, y^2, x, yx, y^2x\}$ is the symmetries of a triangle.
 
   \begin{center}
@@ -1833,29 +1797,31 @@ $\mu$, its reflections. Furthermore, $\rho^n = e$, $\mu^2 = e$, and $(\mu
 
   There are only 6 possible symmetries of this group. Symmetries are determined
   by where the labels on the vertices go.
-}
+\end{example}
 
 Consider an $n$-gon and take $A_1$, any vertex of this $n$-gon. You can take
 $A_1$ to any of $n$ vertices, then chose whether to put $A_2$ (a neighbor of
 $A_1$) clockwise or counter-clockwise of $A_1$. Then, everything else is determined!
 
-\note {
+\begin{note}
   $D_{2n}$ is {\bf not} Abelian. Simply convince yourself that rotate then
   reflect is {\it different} from reflect, then rotate. If you're not convinced,
   draw it!
-}
+\end{note}
 
-\example {
+\begin{example}
   In $D_{2n}$, if $x$ is a reflection, $y$ is not counter-clockwise by $2 \pi /
   n$ radians
-}
+\end{example}
 
-{\bf Fact}: $D_{2n} \le S_n$ for $n \ge 3$. Since symmetry in $D_{2n}$ is a
+{\bf Fact}. $D_{2n} \le S_n$ for $n \ge 3$. Since symmetry in $D_{2n}$ is a
 permutation of vertex labels.
 
-{\bf Exercise}: Show that $D_6 \cong S_3$.
+{\bf Exercise}. Show that $D_6 \cong S_3$.
 
-\definition {
+\section{Cosets}
+
+\begin{definition}
   If $H \le G$, define
 
   \[
@@ -1863,42 +1829,42 @@ permutation of vertex labels.
   \]
 
   is called a {\bf left coset} of $H$, with $a \in G$ fixed.
-}
+\end{definition}
 
-{\bf Proposition}: If we have a homomorphism $\phi: G \to G'$, and $a, b \in G$,
-then if $K = \ker(\phi)$ (which remember is a subgroup of $G$), then
+\begin{proposition}
+  If we have a homomorphism $\phi: G \to G'$, and $a, b \in G$,
+  then if $K = \ker(\phi)$ (which remember is a subgroup of $G$), then
 
-\[
-  \phi(a) = \phi(b) \Leftrightarrow a^{-1}b \in K \Leftrightarrow b \in a K
-  \Leftrightarrow a K = b K
-\]
+  \[
+    \phi(a) = \phi(b) \Leftrightarrow a^{-1}b \in K \Leftrightarrow b \in a K
+    \Leftrightarrow a K = b K
+  \]
 
-What we have is that cosets determine when elements map to the same spot under a
-homomorphism.
+  What we have is that cosets determine when elements map to the same spot under a
+  homomorphism.
+\end{proposition}
 
-{\bf Proof}:
+\begin{proof}
+  $\phi(a) = \phi(b) \Leftrightarrow \phi(a)^{-1}\phi(b) = e \Leftrightarrow
+  \phi(a^{-1}b) = e \Leftrightarrow a^{-1}b \in K \Leftrightarrow a^{-1}b = k$ for
+  some $k \in K$, which is true if and only if $b = ak$ for some $k \in K$, again
+  if and only if $b \in a K$.
 
-$\phi(a) = \phi(b) \Leftrightarrow \phi(a)^{-1}\phi(b) = e \Leftrightarrow
-\phi(a^{-1}b) = e \Leftrightarrow a^{-1}b \in K \Leftrightarrow a^{-1}b = k$ for
-some $k \in K$, which is true if and only if $b = ak$ for some $k \in K$, again
-if and only if $b \in a K$
-
-\begin{align*}
-  &\phi(a) = \phi(b) \\
-  \Leftrightarrow &\phi(a)^{-1}\phi(b) = e \\
-  \Leftrightarrow &\phi(a^{-1}b) = e \\
-  \Leftrightarrow &a^{-1}b \in K \\
-  \Leftrightarrow &a^{-1}b = k \\
-  \Leftrightarrow &ab = k
-\end{align*}
-
-\TODO {}
+  \begin{align*}
+    &\phi(a) = \phi(b) \\
+    \Leftrightarrow &\phi(a)^{-1}\phi(b) = e \\
+    \Leftrightarrow &\phi(a^{-1}b) = e \\
+    \Leftrightarrow &a^{-1}b \in K \\
+    \Leftrightarrow &a^{-1}b = k \\
+    \Leftrightarrow &ab = k
+  \end{align*}
+\end{proof}
 
 Similarly, $a \in bK$.
 
-\example {
+\begin{example}
   $a \in bk$ and $b \in ak$ if and only if $aK = bK$.
-}
+\end{example}
 
 In fact, for any subgroup $H \le G$, $a^{-1}b \in H \Leftrightarrow b \in aH
 \Leftrightarrow aH = bH$.
@@ -1918,7 +1884,7 @@ What we get out of this is that
 
 \date{Mon 12 Feb 2024}
 
-\note {
+\begin{note}
   \begin{itemize}
     \item Homework 3 is due Thursday this week
     \item Midterm 1 is two Fridays from today.
@@ -1926,11 +1892,9 @@ What we get out of this is that
       Exam content will be up until Monday, and there will be a review on
       Wednesday.
   \end{itemize}
-}
+\end{note}
 
-\section{Cosets}
-
-{\bf Recall}: If $H \le G$, and $a \in G$, the {\it left coset} $aH = \{ah \mid
+{\bf Recall}. If $H \le G$, and $a \in G$, the {\it left coset} $aH = \{ah \mid
 h \in H \}$.
 
 Last time we saw that $a \in bH$ if and only if $b \in aH$, if and only if $aH =
@@ -1938,31 +1902,34 @@ bH$, which gives us this equivalence relation $a \sim b \Leftrightarrow a \in
 bH$, which means we get a partition on the set $G$ of this group, and it's
 partitioned on the cosets! So the cosets of $H$ partition $G$.
 
-{\bf Lemma}: The size of any coset is the same as the original size of the
-subgroup for any element $a \in G$. In other words, all cosets are the same
-size!
+\begin{lemma}
+  The size of any coset is the same as the original size of the
+  subgroup for any element $a \in G$. In other words, all cosets are the same
+  size!
+\end{lemma}
 
-{\bf Proof}: We can write a map $f: H \to aH$ where $h \mapsto ah$.
+\begin{proof}
+  We can write a map $f: H \to aH$ where $h \mapsto ah$.
 
-Let's prove that this is bijective.
+  Let's prove that this is bijective.
 
-\begin{itemize}
-  \item {\bf Injective}: If $f(h) = f(h')$, then $ah = ah'$, but then because
-    this is a group, we can multiply by $a^{-1}$ on both sides and so $h = h'$.
+  \begin{itemize}
+    \item {\bf Injective}: If $f(h) = f(h')$, then $ah = ah'$, but then because
+      this is a group, we can multiply by $a^{-1}$ on both sides and so $h = h'$.
 
-  \item {\bf Surjective}: Given $ah \in aH$, then $f(h) = ah$.
-\end{itemize}
+    \item {\bf Surjective}: Given $ah \in aH$, then $f(h) = ah$.
+  \end{itemize}
 
-So $f$ is a bijection, so $|H| = |aH|$.
+  So $f$ is a bijection, so $|H| = |aH|$.
+\end{proof}
 
-\note {
+\begin{note}
   We only care about this when our sets are finite! In that case, injectivity
   and surjectivity are the same {\bf as long as the domain and codomain are the same
   size!}
-}
+\end{note}
 
-We finally get to one of the landmars of Group Theory, this is
-
+We finally get to one of the landmarks of Group Theory, this is
 
 \section{Lagrange's Theorem}
 \begin{theorem}[Lagrange's Theorem]
@@ -2019,19 +1986,23 @@ We finally get to one of the landmars of Group Theory, this is
 
 Let's go back and talk about those left cosets.
 
-{\bf Remark}. We can also define {\bf right cosets}
+\begin{remark}
+  We can also define {\bf right cosets}
 
-\[
-  Ha = \{ ha \mid h \in H \}
-\]
+  \[
+    Ha = \{ ha \mid h \in H \}
+  \]
 
-And in fact, everything we proved so far could have worked with right cosets
-too!
+  And in fact, everything we proved so far could have worked with right cosets
+  too!
+\end{remark}
 
 {\it A priori}, the partitions generated by a left and right coset might be
 different.
 
-\definition {
+\section{Normal Subgroups}
+
+\begin{definition}
   A subgroup $H \le G$ is a {\bf normal subgroup} if
 
   \[
@@ -2039,28 +2010,30 @@ different.
   \]
 
   for all $a \in G$. We write $H \trianglelefteq G$.
-}
+\end{definition}
 
-If $\phi: G \to G'$ is a homomorphism, then $K = \ker(\phi)$ is normal. The
-claim here is that kernels are normal subgroups.
+\begin{claim}
+  Kernels of homomorphisms are normal subgroups, in other words, if $\phi: G \to
+  G'$ is a homomorphism, then $K = \ker(\phi)$ is normal.
+\end{claim}
 
-{\bf Proof}:
+\begin{proof}
+  Given $a \in G$, $aK = \phi^{-1}(\phi(a)) = \{b \in G \mid \phi(b) =
+  \phi(a)\}$. Since the inverse function might not exist, we're just looking for
+  the {\it pre-image} here (Recall the proposition from last week.)
+\end{proof}
 
-Given $a \in G$, $aK = \phi^{-1}(\phi(a)) = \{b \in G \mid \phi(b) =
-\phi(a)\}$. Since the inverse function might not exist, we're just looking for
-the {\it pre-image} here (Recall the proposition from last week.)
-
-\note {
+\begin{note}
   We could have redone this proposition with right cosets!
 
   \[
     aK = Ka
   \]
-}
+\end{note}
 
 We have lots of normal subgroups because we have lots of Homomorphisms.
 
-\example {
+\begin{example}
   \begin{itemize}
     \item $\sgn : S_n \to (\{\pm 1\}, \times)$ with
 
@@ -2073,13 +2046,13 @@ We have lots of normal subgroups because we have lots of Homomorphisms.
 
     \item $\ker(\sgn) = An$ implies $An \trianglelefteq S_n$.
   \end{itemize}
-}
+\end{example}
 
 An alternative way to prove that $H \trianglelefteq G$:
 
 $aH = Ha$ if and only if $aHa^{-1} = H$.
 
-\note {
+\begin{note}
   Warning:
 
   \begin{itemize}
@@ -2090,7 +2063,7 @@ $aH = Ha$ if and only if $aHa^{-1} = H$.
 
     \item Similarly, $aha^{-1} = h^{-1}$, not necessarily $h$.
   \end{itemize}
-}
+\end{note}
 
 Normal subgroups are perfectly designed for doing algebra with cosets! $H
 \trianglelefteq G$, then
@@ -2133,86 +2106,92 @@ In order to simplify notation, let $\bar a = a H$, and we let
 
 With binary operation $\bar a \cdot \bar b = \overline{ab}$
 
-{\bf Claim}: $G / H$ is a group, and furthermore, $\pi: G \to G / H$ where $a
-\mapsto \bar a$, is a group homomorphism, with $\ker(\pi) = H$.
+\begin{claim}
+  $G / H$ is a group, and furthermore, $\pi: G \to G / H$ where $a \mapsto \bar
+  a$, is a group homomorphism, with $\ker(\pi) = H$.
+\end{claim}
 
-\definition {
+\begin{definition}
   $G / H$ is called the {\bf quotient group} of $G$ by $H$.
-}
+\end{definition}
 
-{\bf Proof of Claim}:
+\begin{proof}[Proof of Claim]
+  We prove this in several parts.
 
-\begin{itemize}
-  \item {\bf Proof of Group}
+  \begin{itemize}
+    \item {\bf Proof of Group}
 
-    \begin{itemize}
-      \item {\bf Associativity}: $(\bar a \cdot \bar b) \cdot \bar c = \overline
-        {ab} \cdot \bar c = \overline{(ab)c}$. Since $G$ is associative,
-        $\overline{(ab)c} = \overline{a(bc)}$ and furthermore, $\bar a \cdot
-        \overline{bc} = \bar a (\bar b \cdot \bar c)$.
+      \begin{itemize}
+        \item {\bf Associativity}: $(\bar a \cdot \bar b) \cdot \bar c = \overline
+          {ab} \cdot \bar c = \overline{(ab)c}$. Since $G$ is associative,
+          $\overline{(ab)c} = \overline{a(bc)}$ and furthermore, $\bar a \cdot
+          \overline{bc} = \bar a (\bar b \cdot \bar c)$.
 
-      \item {\bf Identity}: $\bar e = eH = H$ is the identity.
-      \item {\bf Inverses}: $\overline{a^{-1}} \cdot \overline{a} =
-        \overline{a^{-1} a} = \overline{e}$. So $\overline{a}^{-1} =
-        \overline{a^{-1}}$.
-    \end{itemize}
+        \item {\bf Identity}: $\bar e = eH = H$ is the identity.
+        \item {\bf Inverses}: $\overline{a^{-1}} \cdot \overline{a} =
+          \overline{a^{-1} a} = \overline{e}$. So $\overline{a}^{-1} =
+          \overline{a^{-1}}$.
+      \end{itemize}
 
-  \item {\bf Group Homomorphism}: $\pi(ab) = \overline{ab} = \bar a \cdot \bar b
-    = \pi(a) \pi(b)$
+    \item {\bf Group Homomorphism}: $\pi(ab) = \overline{ab} = \bar a \cdot \bar b
+      = \pi(a) \pi(b)$
 
-  \item {\bf Kernel}: $\pi(a) = \bar e$ if and only if $aH = eH = H$, if and
-    only if $a \in eH = H$. So $H = \ker(\pi)$
-\end{itemize}
+    \item {\bf Kernel}: $\pi(a) = \bar e$ if and only if $aH = eH = H$, if and
+      only if $a \in eH = H$. So $H = \ker(\pi)$
+  \end{itemize}
+\end{proof}
 
 \date {Wed 14 Feb 2024}
 
-\note {
+\begin{note}
   Recall: the Exam is next Friday, there are 2 practice Midterms. Not
   necessarily from this class, but they are the right material.
 
   Also on there is Exam 1 material not on homework. Homework style questions on
   material that we didn't have a Homework on. Quotient Groups, First Isomorphism
   Theorem, ...
-}
+\end{note}
 
 We are talking about normal subgroups and quotient groups. Let's talk about
 normal subgroups some more before getting into examples.
 
 We saw that a subgroup is normal if $aH = Ha$ for all $a \in G$, $H \le G$.
 
-{\bf Claim}: $H$ is normal if and only if $aHa^{-1} = H$ for all $a \in G$.
-Why is this the same thing?
+\begin{claim}
+  $H$ is normal if and only if $aHa^{-1} = H$ for all $a \in G$.
+  Why is this the same thing?
+\end{claim}
 
-{\bf Proof}
+\begin{proof}
+  $\Rightarrow$
 
-$\Rightarrow$
+  Assume $H$ is normal. Let $a \in G$, then we know that $aH = Ha$ (that's what it
+  means to be normal.) If we want to show that $aHa^{-1} = H$, we must show that
+  these two sets are subsets of each other.
 
-Assume $H$ is normal. Let $a \in G$, then we know that $aH = Ha$ (that's what it
-means to be normal.) If we want to show that $aHa^{-1} = H$, we must show that
-these two sets are subsets of each other.
+  If $aha^{-a} \in aHa^{-1}$, then $ah \in aH$, but since $aH = Ha$, there exists
+  some $h'$ with $ah = h'a$. Hence $aha^{-a} = h'aa^{-1} = h' \in H$. So $aHa^{-1}
+  \subseteq H$. We wanna prove the other direction now.
 
-If $aha^{-a} \in aHa^{-1}$, then $ah \in aH$, but since $aH = Ha$, there exists
-some $h'$ with $ah = h'a$. Hence $aha^{-a} = h'aa^{-1} = h' \in H$. So $aHa^{-1}
-\subseteq H$. We wanna prove the other direction now.
+  If $h \in H$, we want to show that $h \in aHa^{-1}$. We know that $h =
+  haa^{-1}$, but $ha = ah'$ for some $h'$, so $haa^{-1} = ah'a^{-1}$, so $H
+  \subseteq aHa^{-1}$.
 
-If $h \in H$, we want to show that $h \in aHa^{-1}$. We know that $h =
-haa^{-1}$, but $ha = ah'$ for some $h'$, so $haa^{-1} = ah'a^{-1}$, so $H
-\subseteq aHa^{-1}$.
+  So $H = aHa^{-1}$.
 
-So $H = aHa^{-1}$.
+  $\Leftarrow$
 
-$\Leftarrow$
+  Assume $aHa^{-1} = H$ for all $a \in G$. We want to show that $aH = Ha$, let $ah
+  \in aH$, we know that $aha^{-1} \in H$, which means that there exist some
+  element of $H$ with $aha^{-1} = h'$, and so $ah = h'a \in Ha$. So $aH \subseteq
+  Ha$.
 
-Assume $aHa^{-1} = H$ for all $a \in G$. We want to show that $aH = Ha$, let $ah
-\in aH$, we know that $aha^{-1} \in H$, which means that there exist some
-element of $H$ with $aha^{-1} = h'$, and so $ah = h'a \in Ha$. So $aH \subseteq
-Ha$.
-
-The other direction works in the exact same way.
+  The other direction works in the exact same way.
+\end{proof}
 
 --
 
-\example {
+\begin{example}
   If $K = \ker(\phi: G \to G')$, then $K \trianglelefteq G$, because if
   $aka^{-1} \in aKa^{-1}$, then
 
@@ -2224,7 +2203,7 @@ The other direction works in the exact same way.
 
   In fact, $aKa^{-1}$ is the same size as $K$ is conjugation does not change the
   size, so $aKa^{-1} = K$.
-}
+\end{example}
 
 Now let's talk about quotient groups.
 
@@ -2267,7 +2246,7 @@ Assume that $H \trianglelefteq G$. Last time, we defined that
 
 With the binary operation $\bar a \cdot \bar b = \overline{ab}$.
 
-\example {
+\begin{example}
   If $G = S_n$ and $H = A_n$. Since $|S_n| = n!$, $|A_n| = n! / 2$. We know that
 
   \[
@@ -2276,14 +2255,16 @@ With the binary operation $\bar a \cdot \bar b = \overline{ab}$.
 
   and so $|S_n / A_n| = 2$ and thus $S_n / A_n \cong \Z_2$. \QUESTION{} Why is this
   isomorphic?
-}
+\end{example}
 
-{\bf Remark}: ``Identify the quotient group" means ``Find a familiar group to
-which the quotient group is isomorphic."
+\begin{remark}
+  ``Identify the quotient group" means ``Find a familiar group to
+  which the quotient group is isomorphic."
+\end{remark}
 
-\example {
+\begin{example}
   Identify $S_n / A_n$. The answer is $S_n / A_n \cong \Z_2$
-}
+\end{example}
 
 {\bf $S_n / A_n$ in more detail.}
 
@@ -2301,7 +2282,7 @@ So $S_n / A_n = \{ \bar e, \overline{(12)} \}$
 This is clearly isomorphic to $\Z_2$, where we just send $\bar e \to \bar 0$ and
 $\overline{(12)} \to \bar 1$.
 
-\example {
+\begin{example}
   Consider $G = \Z_n$, $H = \lr{\bar m}$ for $\bar m \in \Z_n$.
 
   {\bf Fact}: Any subgroup of an Abelian group is normal. This should make
@@ -2318,7 +2299,7 @@ $\overline{(12)} \to \bar 1$.
   Here, we have the onto homomorphism $\pi: G \to G / H$. Since $G$ is cyclic,
   so is $G / H$, which means $G / H$ is a cyclic group of order $d$, hence $G /
   H \cong \Z_d$.
-}
+\end{example}
 
 Alternatively: Assume that $\bar m$ is the smallest element in $H$ (i.e. $\bar m
 = \bar d$.)
@@ -2335,7 +2316,7 @@ H \cong \Z_d$, where $\phi(\bar k + H) = \bar k$.
 
 Our goal is to prove the 1st Isomorphism Theorem.
 
-\example {
+\begin{example}
   Take $\sgn: S_n \to \Z_2$, but this time with
 
   \[
@@ -2347,19 +2328,19 @@ Our goal is to prove the 1st Isomorphism Theorem.
 
   $\sgn$ is onto, so $\image = \Z_2$. $\ker(\sgn) = A_n$, then $S_n / A_n \cong
   \Z_2$.
-}
+\end{example}
 
-\example {
+\begin{example}
   $\phi: \Z \to \Z_n$ with $k \to \bar k$.
 
   $\phi$ is onto, $\ker \phi = n \Z$, then $\Z / n\Z \cong \Z_n$
-}
+\end{example}
 
 \date{Fri. 16 Feb 2024}
 
 Let's look at some examples of homs
 
-\example {
+\begin{example}
   Consider $\det: \gl_n(\R) \to (\R \setminus \{0\}, \times)$. We know that
   $\ker(\det) = \{ A \in \gl_s(\R) \mid \det(A) = 1 \} = \sl_n(\R)$, and we now
   see that this is a normal subgroup.
@@ -2367,7 +2348,7 @@ Let's look at some examples of homs
   $\sl_n(\R) \trianglelefteq \gl_n(\R)$, as given any $A \in \sl_n(\R)$, $B \in
   \gl_n(\R)$, $BAB^{-1}$ has $\det = 1$, so $BAB^{-1} \in \sl_n(\R)$, so
   $\sl_n(\R)$ is normal.
-}
+\end{example}
 
 Because both of these groups are infinite, and so is the index, we can't just
 cheat like last time and take a look at what this is isomorphic to. We also know
@@ -2376,7 +2357,7 @@ $\gl_n(\R) / \sl_n(\R) \cong \R \setminus \{0\}$.
 
 One more example before the proof.
 
-\example {
+\begin{example}
   Consider $\varphi: \C \setminus \{0\} \to \R \setminus \{0\}$ with $\varphi(z)
   = |z|$, the map which takes a complex number to its modulus (its length.)
 
@@ -2398,7 +2379,7 @@ One more example before the proof.
   \]
 
   What we're left with is just the module information.
-}
+\end{example}
 
 {\bf Question}: Can you quotient out by the real numbers? Well remember that
 complex numbers under multiplication is Abelian, so every subgroup is normal,
@@ -2409,86 +2390,92 @@ Ok! Time for the theorem.
 
 \section{1st Isomorphism Theorem}
 
-Given a homomorphism $\varphi: G \to G'$, we have that
+\begin{theorem}[1st Isomorphism Theorem]
+  Given a homomorphism $\varphi: G \to G'$, we have that
 
-\[
-  G / \ker(\varphi) \cong \image(\varphi)
-\]
+  \[
+    G / \ker(\varphi) \cong \image(\varphi)
+  \]
+\end{theorem}
 
-{\bf Proof}
+\begin{proof}
+  We have a hom $\varphi: G \to G'$. Let's assume that it's onto. If it's not,
+  replace $G'$ to $\image(\varphi)$ (Basically, we just change the codomain to
+  make it onto.)
 
-We have a hom $\varphi: G \to G'$. Let's assume that it's onto. If it's not,
-replace $G'$ to $\image(\varphi)$ (Basically, we just change the codomain to
-make it onto.)
+  Let $K = \ker(\varphi)$, and we want to show that $G / K \cong G'$. Let $\pi:
+  G \to G / K$ (since $K$ is normal, we can do this!) This is the map $\pi(a) =
+  \bar a$.
 
-Let $K = \ker(\varphi)$, and we want to show that $G / K \cong G'$. Let $\pi:
-G \to G / K$ (since $K$ is normal, we can do this!) This is the map $\pi(a) =
-\bar a$.
-
-We define $\bar \varphi: G / K \to G'$, which takes $\bar \varphi(\bar a) =
-\varphi(a)$
-
-
-Here's a picture.
-
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJHIl0sWzIsMCwiRyciXSxbMSwxLCJHL0siXSxbMCwxLCJcXHZhcnBoaSJdLFswLDIsIlxccGkiLDJdLFsyLDEsIlxcYmFyIFxcdmFycGhpIiwyXV0=
-\begin{center}
-  \begin{tikzcd}
-    G && {G'} \\
-    & {G/K}
-    \arrow["\varphi", from=1-1, to=1-3]
-    \arrow["\pi"', from=1-1, to=2-2]
-    \arrow["{\bar \varphi}"', from=2-2, to=1-3]
-  \end{tikzcd}
-\end{center}
+  We define $\bar \varphi: G / K \to G'$, which takes $\bar \varphi(\bar a) =
+  \varphi(a)$
 
 
-We check that $\bar \varphi$ is well-defined, i.e. if $\bar a = \bar b$, check
-that $\bar \varphi(\bar a) = \bar \varphi(\bar b)$
+  Here's a picture.
 
-\begin{align*}
-  \bar a = \bar b &\Leftrightarrow aK = bK \\
-                  &\Leftrightarrow \varphi(a) = \varphi(b) \\
-                  &\Leftrightarrow \bar \varphi(\bar a) = \bar \varphi(\bar b)
-\end{align*}
-
-So $\bar \varphi$ is a function.
-
-{\bf Claim}: $\bar \varphi$ is an isomorphism.
-
-\begin{itemize}
-  \item {\bf Homomorphism}:
-
-    $\bar \varphi(\bar a \cdot \bar b) = \bar \varphi(\overline{ab}) =
-    \varphi(ab) = \varphi(a) \varphi(b) = \bar \varphi(\bar a) \bar
-    \varphi(\bar b)$.
-
-  \item {\bf One to one}:
-
-    We'll show that $\ker(\bar \varphi) = \{ \bar e \}$ (usefull trick btw, if you have a hom, you only need to check this)
-
-    if $\bar \varphi(\bar a) = e$, then $\varphi(a) = e$, but then $a \in
-    \ker(\varphi) = K$, so $\bar a = aK = K = \bar e$.
-
-  \item {\bf Onto}:
-
-    if $b \in G'$, then there exists $a \in G$ with $\varphi(a) = b$
-    (remember, since we assumed $\varphi$ to be onto!)
-
-    So we get $\bar \varphi(\bar a) = \varphi(a) = b$.
-\end{itemize}
-
-Hence $\bar \varphi: G / K \to G'$ is an isomorphism, which concludes the
-proof.
+  % https://q.uiver.app/#q=WzAsMyxbMCwwLCJHIl0sWzIsMCwiRyciXSxbMSwxLCJHL0siXSxbMCwxLCJcXHZhcnBoaSJdLFswLDIsIlxccGkiLDJdLFsyLDEsIlxcYmFyIFxcdmFycGhpIiwyXV0=
+  \begin{center}
+    \begin{tikzcd}
+      G && {G'} \\
+      & {G/K}
+      \arrow["\varphi", from=1-1, to=1-3]
+      \arrow["\pi"', from=1-1, to=2-2]
+      \arrow["{\bar \varphi}"', from=2-2, to=1-3]
+    \end{tikzcd}
+  \end{center}
 
 
-\note {
+  We check that $\bar \varphi$ is well-defined, i.e. if $\bar a = \bar b$, check
+  that $\bar \varphi(\bar a) = \bar \varphi(\bar b)$
+
+  \begin{align*}
+    \bar a = \bar b &\Leftrightarrow aK = bK \\
+                    &\Leftrightarrow \varphi(a) = \varphi(b) \\
+                    &\Leftrightarrow \bar \varphi(\bar a) = \bar \varphi(\bar b)
+  \end{align*}
+
+  So $\bar \varphi$ is a function.
+
+  \begin{claim}
+    $\bar \varphi$ is an isomorphism.
+  \end{claim}
+
+  \begin{proof}[Proof of Claim]
+    We show this in multiple parts,
+    \begin{itemize}
+      \item {\bf Homomorphism}:
+
+        $\bar \varphi(\bar a \cdot \bar b) = \bar \varphi(\overline{ab}) =
+        \varphi(ab) = \varphi(a) \varphi(b) = \bar \varphi(\bar a) \bar
+        \varphi(\bar b)$.
+
+      \item {\bf One to one}:
+
+        We'll show that $\ker(\bar \varphi) = \{ \bar e \}$ (usefull trick btw, if you have a hom, you only need to check this)
+
+        if $\bar \varphi(\bar a) = e$, then $\varphi(a) = e$, but then $a \in
+        \ker(\varphi) = K$, so $\bar a = aK = K = \bar e$.
+
+      \item {\bf Onto}:
+
+        if $b \in G'$, then there exists $a \in G$ with $\varphi(a) = b$
+        (remember, since we assumed $\varphi$ to be onto!)
+
+        So we get $\bar \varphi(\bar a) = \varphi(a) = b$.
+    \end{itemize}
+  \end{proof}
+
+  Hence $\bar \varphi: G / K \to G'$ is an isomorphism, which concludes the
+  proof.
+\end{proof}
+
+\begin{note}
   For the exam, don't worry about being able to prove, this. You should be able
   to {\it use} these techniques. You should be able to use the tools and
   techniques from class.
 
   The techniques that go into proofs are good to understand though!
-}
+\end{note}
 
 \TODO{} draw tetrahedron with colors. Oh god
 
@@ -2544,9 +2531,9 @@ $\Z_4 / H \cong \Z_2$.
 Why is this a warning? Because we {\bf cannot} reconstruct the original group
 from $H$ and $G / H$.
 
-\note {
+\begin{note}
   We'll do product groups on Monday, which is testable. The rest will not be.
-}
+\end{note}
 
 \date{Mon. 19 Feb 2024}
 
@@ -2573,21 +2560,25 @@ Can be given a binary operation
 
 Basically, you do the operations component-wise.
 
-{\bf Claim}: This is a group!
+\begin{claim}
+  This is a group!
+\end{claim}
 
-\begin{enumerate}
-  \item {\bf Identity}: $(e_G, e_{G'})$
-  \item {\bf Inverses}: $(g, g')^{-1} = (g^{-1}, (g')^{-1})$
-\end{enumerate}
+\begin{proof}
+  \begin{enumerate}
+    \item {\bf Identity}: $(e_G, e_{G'})$
+    \item {\bf Inverses}: $(g, g')^{-1} = (g^{-1}, (g')^{-1})$
+  \end{enumerate}
+\end{proof}
 
-\definition {
+\begin{definition}
   $G \times G'$ is the {\bf product} of $G$ and $G'$. It's also known as the
   {\bf direct product}.
-}
+\end{definition}
 
-\note {
+\begin{note}
   $|G \times G'| = |G| \cdot |G'|$
-}
+\end{note}
 
 From this we can get special Homomorphisms. Quite a few in fact.
 
@@ -2633,12 +2624,12 @@ This is fairly inline with how we expect the quotient group to behave.
 
 Let's look at an
 
-\example {
+\begin{example}
   \[
     \Z_2 \times \Z_3 = \{ (\bar 0, \bar 0), (\bar 1, \bar 0), (\bar 0, \bar 1),
     (\bar 0, \bar 2), (\bar 1, \bar 2) \}
   \]
-}
+\end{example}
 
 Let's turn our attention to $\lr { (\bar 1, \bar 1) }$. We have that
 
@@ -2651,81 +2642,91 @@ So in fact $(\bar 1, \bar 1)$ is a generator of $\Z_2 \times \Z_3$. This means
 that $\Z_2 \times \Z_6$ is not a new group, it's isomorphic to $\Z_6$ ! In fact,
 this is generalizable.
 
-{\bf Proposition}
+\begin{proposition}
+  $\Z_m \times \Z_n \cong \Z_{mn}$ if and only if $\gcd(m, n) = 1$.
+\end{proposition}
 
-$\Z_m \times \Z_n \cong \Z_{mn}$ if and only if $\gcd(m, n) = 1$.
+\begin{proof}
+  All we have to do is figure out when the group on the left is cyclic.
+\end{proof}
 
-{\bf Proof}
+\begin{lemma}
+  The order of $(g, g') \in G \times G'$ is the $\lcm(|g|, |g'|)$.
+\end{lemma}
 
-All we have to do is figure out when the group on the left is cyclic.
+\begin{proof}[Proof of Lemma]
+  If $\gcd(m, n) = 1$, then the $\lcm(|\bar 1|, |\bar 1|) = \lcm(m, n)$. Moreover,
 
-{\bf Lemma}:
+  \[
+    \lcm(m, n) = \frac{mn}{\gcd(m, n)}
+  \]
 
-The order of $(g, g') \in G \times G'$ is the $\lcm(|g|, |g'|)$.
+  This means that $(\bar 1, \bar 1)$ generates $\Z_m \times \Z_n$, so it is
+  cyclic, and so it is isomorphic to $\Z_{mn}$.
 
-{\bf Proof of Lemma}
-
-If $\gcd(m, n) = 1$, then the $\lcm(|\bar 1|, |\bar 1|) = \lcm(m, n)$. Moreover,
-
-\[
-  \lcm(m, n) = \frac{mn}{\gcd(m, n)}
-\]
-
-This means that $(\bar 1, \bar 1)$ generates $\Z_m \times \Z_n$, so it is
-cyclic, and so it is isomorphic to $\Z_{mn}$
-
-On the other hand, if $\gcd(m, n) \ne 1$, then for any $(\bar a, \bar b) \in
-\Z_m \times \Z_n$, then $|(\bar a, \bar b)| = \lcm(|\bar a|, |\bar b|) \le
-\lcm(m, n) < mn$, in which case $\Z_m \times \Z_n$ cannot be cyclic! And so it
-is {\bf not} isomorphic to $\Z_{mn}$
+  On the other hand, if $\gcd(m, n) \ne 1$, then for any $(\bar a, \bar b) \in
+  \Z_m \times \Z_n$, then $|(\bar a, \bar b)| = \lcm(|\bar a|, |\bar b|) \le
+  \lcm(m, n) < mn$, in which case $\Z_m \times \Z_n$ cannot be cyclic! And so it
+  is {\bf not} isomorphic to $\Z_{mn}$.
+\end{proof}
 
 For instance, $\Z_2 \times \Z_2 \not\cong \Z_4$.
 
-{\bf Proposition}: There are two groups of order $4$, up to isomorphism.
+\begin{proposition}
+  There are two groups of order $4$, up to isomorphism.
 
-\[
-  \Z_4 \text{ or } \Z_2 \times \Z_2
-\]
+  \[
+    \Z_4 \text{ or } \Z_2 \times \Z_2
+  \]
+\end{proposition}
 
-{\bf Proof}: Let $G$ be a group of order $4$. If $G$ is cyclic, then $G \cong
-\Z_4$. If not, then $|a| = 2$ for all non-trivial elements in our group. Pick $a
-\in G$, and $b \in G$ with $b \ne e$ and $b \ne a$. Then
+\begin{proof}
+  Let $G$ be a group of order $4$. If $G$ is cyclic, then $G \cong
+  \Z_4$. If not, then $|a| = 2$ for all non-trivial elements in our group. Pick $a
+  \in G$, and $b \in G$ with $b \ne e$ and $b \ne a$. Then
 
-\[
-  ab \ne \begin{cases}
-    e & \text{ as } b \ne a^{-1} = a \\
-    a & \text{ as } b \ne e \\
-    b & \text{ as } a \ne e
-  \end{cases}
-\]
+  \[
+    ab \ne \begin{cases}
+      e & \text{ as } b \ne a^{-1} = a \\
+      a & \text{ as } b \ne e \\
+      b & \text{ as } a \ne e
+    \end{cases}
+  \]
 
-So $ab$ is the $4$ element of $G$, and thus $G = \{e, a, b, ab\}$. Then we have
-that $\varphi: \Z_2 \times \Z_2 \to G$ with
+  So $ab$ is the $4$ element of $G$, and thus $G = \{e, a, b, ab\}$. Then we have
+  that $\varphi: \Z_2 \times \Z_2 \to G$ with
 
-\begin{itemize}
-  \item $(\bar 0, \bar 0) \mapsto e$
-  \item $(\bar 1, \bar 0) \mapsto a$
-  \item $(\bar 0, \bar 1) \mapsto b$
-  \item $(\bar 1, \bar 1) \mapsto ab$
-\end{itemize}
+  \begin{itemize}
+    \item $(\bar 0, \bar 0) \mapsto e$
+    \item $(\bar 1, \bar 0) \mapsto a$
+    \item $(\bar 0, \bar 1) \mapsto b$
+    \item $(\bar 1, \bar 1) \mapsto ab$
+  \end{itemize}
 
-Is an isomorphism.
+  Is an isomorphism.
+\end{proof}
 
-{\bf Structure Theorem for Finitely Generated Abelian Groups}
+\section{Structure Theorem for Finitely Generated Abelian Groups}
 
-If $G$ is finitely generated, (i.e. there is a finite set $S \subseteq G$ such
-that all elements of $G$ are products of elements of $S$ and their inverses) and
-$G$ is Abelian, then
+\begin{theorem}
+  If $G$ is finitely generated, (i.e. there is a finite set $S \subseteq G$ such
+  that all elements of $G$ are products of elements of $S$ and their inverses) and
+  $G$ is Abelian, then
 
-\[
-  G \cong \Z \times \cdots \times \Z \times \Z_{m_1} \times \cdots \times \Z_{m_k}
-\]
+  \[
+    G \cong \Z \times \cdots \times \Z \times \Z_{m_1} \times \cdots \times \Z_{m_k}
+  \]
 
-Moreover, if $G$ is finite and Abelian, then
+  Moreover, if $G$ is finite and Abelian, then
 
-\[
-  G \cong \Z_{m_1} \times \cdots \times \Z_{m_k}
-\]
+  \[
+    G \cong \Z_{m_1} \times \cdots \times \Z_{m_k}
+  \]
+\end{theorem}
+
+\begin{proof}
+  Omitted.
+\end{proof}
 
 \begin{note}
   This is all the material you need to know for this Exam. From this point
@@ -2737,7 +2738,7 @@ Moreover, if $G$ is finite and Abelian, then
 Given a group $G$, the set $\Aut(G)$ of {\bf automorphisms} of $G$ (i.e.
 isomorphisms $G \to G$) is a group under composition.
 
-\definition {
+\begin{definition}
   Let $G, H$ be groups, $\varphi: H \to \Aut(G)$ be a homomorphism with
   $\varphi(h) = \varphi_h$. Then the group
 
@@ -2751,7 +2752,7 @@ isomorphisms $G \to G$) is a group under composition.
   \[
     (g, h)(g', h') = (g \cdot (\varphi_h(g')), hh')
   \]
-}
+\end{definition}
 
 The set is the same! But the binary operation is different, so we have a new
 group structure.
@@ -2760,7 +2761,7 @@ The identity: $(g, h)(e, e) = (g \varphi_h(e), he) = (ge, he) = (g, h)$.
 On the other side: $(e, e)(g, h) = (e \varphi_e(g), eh) = (eg, eh) = (g, h)$,
 since $\varphi_e = \varphi(e) = e_{\Aut(G)}$ so $\varphi_e(g) = g$.
 
-\example {
+\begin{example}
   If $\varphi: H \to \Aut(G)$ is the identity, then
 
   \[
@@ -2772,9 +2773,9 @@ since $\varphi_e = \varphi(e) = e_{\Aut(G)}$ so $\varphi_e(g) = g$.
   \[
     G \times_\varphi H = G \times H
   \]
-}
+\end{example}
 
-\example {
+\begin{example}
   Let $G = \Z_n$ and $H = \Z_2$ with $\varphi: \Z_2 \to \Aut(\Z_n)$ with $\bar 0
   \mapsto e$ and $\bar 1 \mapsto f$. $f: \Z_n \to \Z_n$ is determined by $f(\bar
   1)$.
@@ -2784,7 +2785,7 @@ since $\varphi_e = \varphi(e) = e_{\Aut(G)}$ so $\varphi_e(g) = g$.
 
   With the former, $\Z_n \times_\varphi Z_2 \cong \Z_n \times \Z_2$. With the
   latter, $\Z_n \times_\varphi \Z_2 \cong D_{2n}$.
-}
+\end{example}
 
 \date{Wed. 21 Feb 2024}
 
@@ -2796,8 +2797,6 @@ Structure of the Exam:
   \item First question is short answer. Similar to the 2019 Midterm
   \item 3 Longer questions, similar to the 2019 midterm.
 \end{itemize}
-
-{\bf Exam Questions}
 
 \section{Exam 1 Review}
 
@@ -2907,7 +2906,7 @@ Useful for having a repertoire of questions.
 
 $Z_2$ Can be written a number of different ways.
 
-\example {
+\begin{example}
   Groups of order $30$.
 
   We know that $30 = 3 \cdot 5 \cdot 2$.
@@ -2954,7 +2953,7 @@ $Z_2$ Can be written a number of different ways.
 
       \TODO{} finish. So they cannot be isomorphic.
   \end{enumerate}
-}
+\end{example}
 
 \begin{itemize}
   \item $\Z_2 \cong (\{\bar 0, \bar 1\}, +) \cong (\{\pm 1\}, \times)$
@@ -3010,7 +3009,7 @@ There are several ways. Two big ones:
     This one is less applicable, but useful!
 \end{enumerate}
 
-\example {
+\begin{example}
   {\bf 2019, number 4}
 
   If $G$ is a group and $Z(G) = \{a \in G \mid ab = ba \forall b \in G \}$ is
@@ -3033,7 +3032,7 @@ There are several ways. Two big ones:
 
   {\bf Normal}: To show that it's normal, if $z \in Z, a \in G$ then $aza^{-1} =
   aa^{-1}z = z \in Z$ so $Z \trianglelefteq G$.
-}
+\end{example}
 
 {\bf What's an example of a Bijection that's not a Homomorphism?}
 
@@ -3092,7 +3091,7 @@ whose elements are special examples of bijections of the regular $n$-gon itself.
 
 These are examples of group actions.
 
-\definition {
+\begin{definition}[Group Action]
   If $S$ is a set and $G$ is a group. We say that $G$ {\bf acts} on $S$ (notated
   as $G \acts S$) if there is a map $\alpha: G \times S \to S$ satisfying two
   properties.
@@ -3115,34 +3114,34 @@ These are examples of group actions.
     \item $e * s = s$ for all $s \in S$
     \item $(ab) * s = a * (b * s)$ for all $s \in S$ and for all $a, b \in G$.
   \end{enumerate}
-}
+\end{definition}
 
-Let's look at an example
+Let's look at an
 
-\example {
+\begin{example}
   $S = \{1, 2, \dots, n\}, G = S_n$, then $\alpha(\sigma, i) = \sigma(i)$.
 
   Here, $\sigma$ is a bijection from $S$ to $S$.
 
   In our other notation, $\sigma * i = \sigma(i)$.
-}
+\end{example}
 
-\example {
+\begin{example}
   $S$ is a regular $n$-gon. Let $G = D_{2n}$, then $a * s = a(s)$, so here,
   symmetry is a function from $S$ to $S$
-}
+\end{example}
 
-\note {
+\begin{note}
   Group actions are just functions on the sets! Nothing crazy is happening
   here, we're just formalizing some natural ideas.
-}
+\end{note}
 
-\example {
+\begin{example}
   $S = \R^n$, $G = \gl_n(\R)$ and $A * \bar v = A \bar v$ where $A \in
   \gl_n(\R)$, $\bar v \in \R^n$.
-}
+\end{example}
 
-\example {
+\begin{example}
   if $G = \text{Mat}_n(\R)$, the set of all matrices under addition, then
 
   \[
@@ -3156,9 +3155,9 @@ Let's look at an example
   \]
 
   which are not equal, so this doesn't work.
-}
+\end{example}
 
-\example {
+\begin{example}
   Let $S = G$ and $G = G$, any group $G$. Then what's the action? Well, it's
   just the group operation.
 
@@ -3167,9 +3166,9 @@ Let's look at an example
   \]
 
   Left multiplication by our group element is a group action!
-}
+\end{example}
 
-\note {
+\begin{note}
   It's worth noting that all these things are happening on the left! If you
   multiplied on the right, that would not be a group action!
 
@@ -3184,13 +3183,13 @@ Let's look at an example
   \[
     (ab) * s = s(ab) \ne s (ba) = a * (sb) = a * (b * s)
   \]
-}
+\end{note}
 
-\example {
+\begin{example}
   Let $G = \gl_n(\R)$, and let $S$ be the set of ordered bases for $\R^n$.
-}
+\end{example}
 
-\definition {
+\begin{definition}
   If $s \in S$, then the {\bf orbit} of $s$ is
 
   \[
@@ -3199,9 +3198,9 @@ Let's look at an example
 
   It's all the images of $s$ from $G$, the set of all things that can happen to
   it. The collection of all those images is the orbit.
-}
+\end{definition}
 
-\example {
+\begin{example}
   If $S$ is the triangle, and $G$ is $D_6$, then if $s$ is a vertex, $O_s$ is
   {\it all} the vertices. If $s$ is the midpoint of a line segment of the
   triangle, then $O_s$ is the set of all such midpoints.
@@ -3211,11 +3210,11 @@ Let's look at an example
   triangle or flipping it around.
 
   The orbit of the center is just itself.
-}
+\end{example}
 
-\note {
+\begin{note}
   We always have that $s \in O_s$.
-}
+\end{note}
 
 If $s' \in O_s$, then $s' = a * s$ for some $a \in G$. Then
 
@@ -3231,12 +3230,12 @@ What we get here is an equivalence relation! $s \sim s'$ if $s \in O_{s'}$. What
 we get out of this is that {\bf the orbits partition $S$.} It follows that if
 $O_s \cap O_{s'} \ne \varnothing$, then $O_s = O_{s'}$.
 
-\definition {
+\begin{definition}
   A group action is called {\bf transitive} if there is only one orbit. In other
   words, $O_s = S$ for any $s \in S$.
-}
+\end{definition}
 
-\example {
+\begin{example}
   Let $O(n) \acts \R^n$ (where $O(n)$ is the orthogonal group. This is a
   subset of $\gl_n(\R)$ where the columns form an orthonormal basis.)
 
@@ -3246,24 +3245,24 @@ $O_s \cap O_{s'} \ne \varnothing$, then $O_s = O_{s'}$.
 
   In fact $||A \bar v|| = \bar v$ for any $\bar v$. So orbits of this group
   action are $n$ dimensional spheres centered at the origin!
-}
+\end{example}
 
-\note {
+\begin{note}
   You will never get a transitive group action from a matrix group since the
   origin is alone.
 
   \TODO{} what????
-}
+\end{note}
 
-\example {
+\begin{example}
   $S_n \acts \{1, \dots, n\}$ is transitive. If $s = 1$, then if $\sigma = (1
   k)$, then $\sigma * 1 = \sigma(1) = k$. So $k \in O_1$ for all $k = 1, \dots,
   n$. So $O_1 = \{1, \dots, n\}$.
-}
+\end{example}
 
 \subsection{Stabilizers}
 
-\definition {
+\begin{definition}
   If $s \in S$, the {\bf stabilizer} of $s$ is
 
   \[
@@ -3272,18 +3271,20 @@ $O_s \cap O_{s'} \ne \varnothing$, then $O_s = O_{s'}$.
 
   It's all the group elements that don't do anything to $s$. They {\it
   stabilize} $s$.
-}
+\end{definition}
 
 To bring it back, we pick an element of a set $s$, and using this element, we
 can look at its orbit: the set of places it will go under every possible group
 action, or we can look at its stabilizer, the set of elements of $G$ that keep
 it as it is.
 
-\note {
+\begin{note}
   The Stabilizer is elements of $G$, but the orbit is elements of $S$.
-}
+\end{note}
 
-{\bf Claim}: The stabilizer is a subgroup of $G$.
+\begin{claim}
+  The stabilizer is a subgroup of $G$.
+\end{claim}
 
 {\bf Check}:
 \begin{enumerate}
@@ -3311,7 +3312,7 @@ it as it is.
 
 Hence $G_s \le G$.
 
-\example {
+\begin{example}
   If $S_n \acts \{1, \dots, n\}$, let $s = n$, then
 
   \[
@@ -3320,9 +3321,9 @@ Hence $G_s \le G$.
 
   This is all the permutations where $n$ does not appear in the cycle notation!
   This is all the permutations that use $1$ to $n - 1$.
-}
+\end{example}
 
-\example {
+\begin{example}
   $\gl_n(\R) \acts \R^n$. If $\bar v = \bar 0$, then
 
   \[
@@ -3332,108 +3333,111 @@ Hence $G_s \le G$.
   So the stabilizer can be the whole group.
 
   Note that if $\bar v \ne 0$, then $G_{\bar v} < \gl_n(\R)$.
-}
+\end{example}
 
-\example{
+\begin{example}
   $\Isom(\R^n) \acts \R^n$, then $G_{\bar 0} \cong O(n)$.
 
   \TODO{} what?????
-}
+\end{example}
 
 \date{Wed. 28 Feb 2024}
 
-\note {
+\begin{note}
   Most questions on the homework are on actions. By the end of this class you
   should be able to do all questions up to 4.
-}
+\end{note}
 
-{\bf Recall}: $G \acts S$ is a group action. Given $s \in S$, we have
+{\bf Recall}. $G \acts S$ is a group action. Given $s \in S$, we have
 
 \begin{enumerate}
   \item {\bf Orbit} $O_s = \{a * s \mid a \in G\} = \{s' \in S \mid s' = a * s\text{ for some } a \in G\} \subseteq S$
   \item {\bf Stabilizer} $\Stab(s) = G_s = \{a \in G \mid a * s = s \} \le G$.
 \end{enumerate}
 
-{\bf Proposition}:
+\begin{proposition}
+  If $G \acts S$ and $s \in S$. Then
 
-If $G \acts S$ and $s \in S$. Then
+  \begin{enumerate}
+    \item $a, b \in G$, then $a * s = b * s$ if and only if $a^{-1} b \in G_s$
+    \item If $a * s = s'$, then $G_{s'} = a G_{s} a^{-1} = \{aga^{-1} \mid g \in
+      G_s\}$ is the conjugate subgroup!
 
-\begin{enumerate}
-  \item $a, b \in G$, then $a * s = b * s$ if and only if $a^{-1} b \in G_s$
-  \item If $a * s = s'$, then $G_{s'} = a G_{s} a^{-1} = \{aga^{-1} \mid g \in
-    G_s\}$ is the conjugate subgroup!
+      So the stabilizers are related, they are conjugate subgroups.
 
-    So the stabilizers are related, they are conjugate subgroups.
+      {\bf Corollary}: If $G$ is finite, and $a * s = s'$, then $|G_s| = |G_{s'}|$
+      because conjugation is a bijection so they must have the same size.
+  \end{enumerate}
+\end{proposition}
 
-    {\bf Corollary}: If $G$ is finite, and $a * s = s'$, then $|G_s| = |G_{s'}|$
-    because conjugation is a bijection so they must have the same size.
-\end{enumerate}
-
-\note {
+\begin{note}
   Compare (a) to: If $\phi: G \to G'$ is a hom, $\phi(a) = \phi(b)$ if and only
   if $a^{-1} b \in \ker(\phi)$.
-}
+\end{note}
 
-{\bf Proof of Proposition}.
+\begin{proof}[Proof of Proposition]
+  \begin{enumerate}
+    \item $a * s = b * s$ if and only if $a^{-1} (a * s) = a^{-1} * (b * s)$, if
+      and
 
-\begin{enumerate}
-  \item $a * s = b * s$ if and only if $a^{-1} (a * s) = a^{-1} * (b * s)$, if
-    and
+      \begin{align*}
+        a * s = b * s &\Leftrightarrow a^{-1} (a * s) = a^{-1} * (b * s) \\
+                      &\Leftrightarrow (a^{-1} a) * s = (a^{-1} b) * s \\
+                      &\Leftrightarrow s = (a^{-1} b) * s \\
+                      &\Leftrightarrow (a^{-1} b) \in G_s
+      \end{align*}
 
-    \begin{align*}
-      a * s = b * s &\Leftrightarrow a^{-1} (a * s) = a^{-1} * (b * s) \\
-                    &\Leftrightarrow (a^{-1} a) * s = (a^{-1} b) * s \\
-                    &\Leftrightarrow s = (a^{-1} b) * s \\
-                    &\Leftrightarrow (a^{-1} b) \in G_s
-    \end{align*}
+    \item Let $a * s = s'$. (this implies that $s = a^{-1} * s'$)
 
-  \item Let $a * s = s'$. (this implies that $s = a^{-1} * s'$)
+      If $aga^{-1} \in a G_s a^{-1}$, then $(aga^{-1}) * s'$.
 
-    If $aga^{-1} \in a G_s a^{-1}$, then $(aga^{-1}) * s'$.
+      \begin{align*}
+        (aga^{-1}) * s' &= a * (g * (a^{-1} * a')) \\
+                        &= a * (g * s) = a * s = s' &\text{since $g \in G_s$} \\
+      \end{align*}
 
-    \begin{align*}
-      (aga^{-1}) * s' &= a * (g * (a^{-1} * a')) \\
-                      &= a * (g * s) = a * s = s' &\text{since $g \in G_s$} \\
-    \end{align*}
+      So $aga^{-1} \in G_{s'}$. Hence $a G a^{-1} \subseteq G_{s'}$.
 
-    So $aga^{-1} \in G_{s'}$. Hence $a G a^{-1} \subseteq G_{s'}$.
+      Similarly, $(a^{-1}) G_{s'}(a^{-1})^{-1} \subseteq G_s$, since $a^{-1} *  s'
+      = s$. Since conjugation is a bijection, can conjugate by $a$:
 
-    Similarly, $(a^{-1}) G_{s'}(a^{-1})^{-1} \subseteq G_s$, since $a^{-1} *  s'
-    = s$. Since conjugation is a bijection, can conjugate by $a$:
+      \[
+        a(a^{-1}) G_{s'}(a^{-1})^{-1}a^{-1} \subseteq a G_s a^{-1}
+      \]
 
-    \[
-      a(a^{-1}) G_{s'}(a^{-1})^{-1}a^{-1} \subseteq a G_s a^{-1}
-    \]
+      So $G_{s'} \subseteq a G_s a^{-1}$.
 
-    So $G_{s'} \subseteq a G_s a^{-1}$.
+      Hence $a G_s a^{-1} = G_{s'}$
+  \end{enumerate}
+\end{proof}
 
-    Hence $a G_s a^{-1} = G_{s'}$
-\end{enumerate}
+\section{Orbit Stabilizer Theorem}
 
-\section {Orbit Stabilizer Theorem}
+\begin{theorem}[Orbit Stabilizer Theorem]
+  If $G \acts S$ and $s \in S$, then there is a bijection $f: \{aG_s\} \to O_s$
+  with $aG_s \mapsto a * s$.
+\end{theorem}
 
-If $G \acts S$ and $s \in S$, then there is a bijection $f: \{aG_s\} \to O_s$
-with $aG_s \mapsto a * s$.
+\begin{proof}
+  We prove that the function is well-defined and bijective.
+  \begin{enumerate}
+    \item {\bf $f$ is  well-defined}.
 
-{\bf Proof}:
+      If $aG_s = b G_s$, then $a^{-1} b \in G_s$. Which implies that $a * s = b *
+      s$ by the Proposition. So if the input cosets are the same, then the output
+      is consistent, and $f$ is well-defined.
 
-\begin{enumerate}
-  \item {\bf $f$ is  well-defined}.
+    \item {\bf $f$ is injective}.
 
-    If $aG_s = b G_s$, then $a^{-1} b \in G_s$. Which implies that $a * s = b *
-    s$ by the Proposition. So if the input cosets are the same, then the output
-    is consistent, and $f$ is well-defined.
+      If $f(aG_s) = f(b G_s)$, then $a * s = b * s$, which implies that $a^{-1}b
+      \in G_s$ by the Proposition. But this implies that $aG_s = b G_s$.
 
-  \item {\bf $f$ is injective}.
+    \item {\bf $f$ is surjective}.
 
-    If $f(aG_s) = f(b G_s)$, then $a * s = b * s$, which implies that $a^{-1}b
-    \in G_s$ by the Proposition. But this implies that $aG_s = b G_s$.
-
-  \item {\bf $f$ is surjective}.
-
-    If $s' \in O_s$, then $a' = a * s$ for some $a \in G$. then $f(a G_s) = a *
-    s = s'$.
-\end{enumerate}
+      If $s' \in O_s$, then $a' = a * s$ for some $a \in G$. then $f(a G_s) = a *
+      s = s'$.
+  \end{enumerate}
+\end{proof}
 
 \subsection{Counting via Orbit Stabilizer}
 
@@ -3460,7 +3464,7 @@ We can get the size of $S$ be adding up the sizes of the orbits.
 
 Let's do some counting
 
-\example {
+\begin{example}
   Let $G$ be the rotational symmetries of a cube. If $s$ is a vertex, then the
   orbit by rotation is the set of all 8 vertices. So $|O_s| = 8$, since $G$ acts
   transitively on all the vertices of the cube. Every vertex can be taken to
@@ -3473,9 +3477,9 @@ Let's do some counting
 
   This tells us that $|G| = |O_s| |G_s| = 8 \cdot 3 = 24$, so there are $24$
   symmetries of a cube.
-}
+\end{example}
 
-\example {
+\begin{example}
   If $s$ is the middle of an edge, we want to know $|G_s|$ ? We know that the
   orbits of $s$ is the middle of all edges, so $|O_s| = 2$. Since we know now
   that the size of the group of symmetries is $24$, we have that
@@ -3487,41 +3491,45 @@ Let's do some counting
   But what is $G_s$ ? One of them is always the identity, and the other is just
   to rotate about that edge. Then you can rotate $180$ degrees, which is its own
   inverse.
-}
+\end{example}
 
-\definition {
+\begin{definition}
   The {\bf center} of a group $G$ is $Z(G) = \{a \in G \mid ab = ba \text{ for
   all } b \in G \}$
 
   And in fact, $Z(G) \le G$.
-}
+\end{definition}
 
-\definition {
+\begin{definition}
   If $p$ is prime and $|G| = p^k$ for some $k \ge 1$, then $G$ is called a
   $p$-group.
-}
+\end{definition}
 
-{\bf Proposition}: If $G$ is a $p$-group, then $|Z(G)| > 1$.
+\begin{proposition}
+  If $G$ is a $p$-group, then $|Z(G)| > 1$.
+\end{proposition}
 
-{\bf Proof}: Let $G \acts G$ by conjugation (i.e. $a * b = a b a^{-1}$.) An
-element $a \in Z(G)$ if and only if $ab = ba$ for all $b \in G$, if and only if
-$a = b ab^{-1}$ for all $b \in G$, if and only if $a = b * a$, if and only if
-$O_a = \{a\}$.
+\begin{proof}
+  Let $G \acts G$ by conjugation (i.e. $a * b = a b a^{-1}$.) An
+  element $a \in Z(G)$ if and only if $ab = ba$ for all $b \in G$, if and only if
+  $a = b ab^{-1}$ for all $b \in G$, if and only if $a = b * a$, if and only if
+  $O_a = \{a\}$.
 
-So being in the center means that you are in an orbit of size
-$1$. \QUESTION{} What? Make more sense of this?
+  So being in the center means that you are in an orbit of size
+  $1$. \QUESTION{} What? Make more sense of this?
 
-Given any $a \in G$, then $|O_a|$ divides $|G| = p^k$, so $|O_a| = p^m$ for some
-$m$, for each $a \in G$. Note that each orbit might have a different power $m$.
+  Given any $a \in G$, then $|O_a|$ divides $|G| = p^k$, so $|O_a| = p^m$ for some
+  $m$, for each $a \in G$. Note that each orbit might have a different power $m$.
 
-The orbits partition $G$, so $|G| = \sum|O_i|$, and since $p$ divides $|G|$, we
-know that $p \mid \sum|O_i|$. Since $e \in Z(G)$, $O_e = \{e\}$, then $\sum
-|O_i| = 1 + \sum_{O_i \ne O_e} |O_i|$ (where the 1 here is the orbit of $e$.)
+  The orbits partition $G$, so $|G| = \sum|O_i|$, and since $p$ divides $|G|$, we
+  know that $p \mid \sum|O_i|$. Since $e \in Z(G)$, $O_e = \{e\}$, then $\sum
+  |O_i| = 1 + \sum_{O_i \ne O_e} |O_i|$ (where the 1 here is the orbit of $e$.)
 
-If $Z(G) = \{e\}$, then $|O_i| > 1$ for every $O_i \ne O_e$ (otherwise, it would
-be in the center.) But then $\sum |O_i| = 1 + p^{m_1} + \cdot p^{m_k}$, which is
-not divisible by $p$, but we showed that it is, so in fact, the center is {\bf
-not} just the identity. $Z(G) = \{e\}$, and $|Z(G)| > 1$.
+  If $Z(G) = \{e\}$, then $|O_i| > 1$ for every $O_i \ne O_e$ (otherwise, it would
+  be in the center.) But then $\sum |O_i| = 1 + p^{m_1} + \cdot p^{m_k}$, which is
+  not divisible by $p$, but we showed that it is, so in fact, the center is {\bf
+  not} just the identity. $Z(G) = \{e\}$, and $|Z(G)| > 1$.
+\end{proof}
 
 \date{Fri. 1 March 2024}
 
@@ -3530,7 +3538,7 @@ not} just the identity. $Z(G) = \{e\}$, and $|Z(G)| > 1$.
 We have the conjugation action of $G \acts G$, with $a * b = a b a^{-1}$. This
 is so important that we have names for it: orbits and stabilizers.
 
-\definition {
+\begin{definition}
   The orbit of $b \in G$ is called the {\bf conjugacy class} of $b$, written as
 
   \[
@@ -3538,9 +3546,9 @@ is so important that we have names for it: orbits and stabilizers.
   \]
 
   This is all the things that are conjugates of $b$.
-}
+\end{definition}
 
-\definition {
+\begin{definition}
   The stabilizer of $b \in G$ is called the {\bf centralizer} of $b$, written as
 
   \[
@@ -3548,54 +3556,54 @@ is so important that we have names for it: orbits and stabilizers.
   \]
 
   This is the set of group elements that commute!
-}
+\end{definition}
 
 But the Orbit Stabilizer Theorem from last class tells us that $|G| =
 |C(b)||Z(b)|$ for all $b \in G$. This isn't a new definition, we just have new
 names for things.
 
-There's a couple things to note.
+\begin{remark}
+  There's a couple things to note.
 
-{\bf Remarks}
+  \begin{itemize}
+    \item $Z(a)$ contains $Z(G)$, the center of the group, as a subgroup.
 
-\begin{itemize}
-  \item $Z(a)$ contains $Z(G)$, the center of the group, as a subgroup.
+      Remember, the center of the group $Z(G)$ is the set of elements that commute
+      with everything, so certainly, they commute with $a$.
 
-    Remember, the center of the group $Z(G)$ is the set of elements that commute
-    with everything, so certainly, they commute with $a$.
+      \[
+        Z(G) \le Z(a)
+      \]
 
-    \[
-      Z(G) \le Z(a)
-    \]
+    \item $Z(a)$ contains $\lr {a}$ as a subgroup.
 
-  \item $Z(a)$ contains $\lr {a}$ as a subgroup.
+      For this one, just think about the fact that $Z(a)$ is the set of all things
+      that commute with $a$, then certainly, they'll commute with $a^4$, or
+      $a^7$...
 
-    For this one, just think about the fact that $Z(a)$ is the set of all things
-    that commute with $a$, then certainly, they'll commute with $a^4$, or
-    $a^7$...
+      Another note here is the direction of size. The center of $G$ might be small
+      or trivial, but $Z(a)$ might be rather large if $|a|$ is large.
 
-    Another note here is the direction of size. The center of $G$ might be small
-    or trivial, but $Z(a)$ might be rather large if $|a|$ is large.
+    \item $a \in Z(G)$ if and only if $Z(a) = G$.
 
-  \item $a \in Z(G)$ if and only if $Z(a) = G$.
+      $a$ being in the center means that it commutes with everything. So
+      certainly, the set of things that commute with {\it it} is {\it everything!}
 
-    $a$ being in the center means that it commutes with everything. So
-    certainly, the set of things that commute with {\it it} is {\it everything!}
+      If it commutes with everything, then it's in the center!
 
-    If it commutes with everything, then it's in the center!
+      Moreover, every conjugate of every element in the center is itself, so we
+      have
 
-    Moreover, every conjugate of every element in the center is itself, so we
-    have
+      \[
+        a \in Z(G) \Leftrightarrow Z(a) = G \Leftrightarrow C(a) = \{ a \}
+      \]
 
-    \[
-      a \in Z(G) \Leftrightarrow Z(a) = G \Leftrightarrow C(a) = \{ a \}
-    \]
+      Being in the center means that you have the largest possible centralizer,
+      $G$, and the smallest possible conjugacy class, $C(a)$.
+  \end{itemize}
+\end{remark}
 
-    Being in the center means that you have the largest possible centralizer,
-    $G$, and the smallest possible conjugacy class, $C(a)$.
-\end{itemize}
-
-{\bf Recall}: The orbits of a group action $G \acts S$ partition $S$. This means
+{\bf Recall}. The orbits of a group action $G \acts S$ partition $S$. This means
 that the conjugacy classes partition $G$.
 
 If $G$ is finite, then that means that we have finitely many conjugacy classes,
@@ -3614,7 +3622,7 @@ Also, by the Orbit Stabilizer Theorem, each $|C_1|$ must divide $|G|$
 
 Let's look at some examples.
 
-\example {
+\begin{example}
   Let $G$ be an Abelian group of order $n$.
 
   Here, $Z(G) = G$, so $C(a) = \{a\}$ for all $a \in G$, every conjugacy class
@@ -3629,9 +3637,9 @@ Let's look at some examples.
 
   {\bf Fact}: The class equation of $G$ is $n = 1 + \cdots + 1$ if and only if $G$
   is Abelian.
-}
+\end{example}
 
-\example {
+\begin{example}
   Let $G = S_3$ is the first non Abelian group. Here,
 
   \begin{itemize}
@@ -3678,9 +3686,9 @@ Let's look at some examples.
           Similarly, $3$ means that $G$ has a subgroup of order $2$.
       \end{enumerate}
   \end{itemize}
-}
+\end{example}
 
-\subsection{Normal Subgroups}
+\subsection{Normal Subgroups in Conjugacy Classes}
 
 If $H \trianglelefteq G$, then this means that $aHa^{-1} = H$. If $h \in H$,
 then $aha^{-1} \in G$ for all $a \in G$, but this means that the entire
@@ -3698,44 +3706,49 @@ In $S_3$, $\lr {(123)}$ is normal, since it's $C(e) \cup C((123))$. We can also
 see that $\lr {(12)}$ isn't normal, as it doesn't contain $C((12))$.
 
 {\bf More Remarks}:
+\begin{remark}
+  When we have a class equation $n = \underbrace{1 + \cdots + 1}_{m} + a + b +
+  \cdots$.
 
-When we have a class equation $n = \underbrace{1 + \cdots + 1}_{m} + a + b +
-\cdots$.
+  This implies that
 
-This implies that
+  \begin{itemize}
+    \item $|Z(G)| = m$
+    \item $a$ tells us that there exists an element whose centralizer $Z(a)$ is
+      such that
 
-\begin{itemize}
-  \item $|Z(G)| = m$
-  \item $a$ tells us that there exists an element whose centralizer $Z(a)$ is
-    such that
+      \[
+        |Z(a)| = \frac{n}{|C(a)|} = \frac{n}{a}
+      \]
 
-    \[
-      |Z(a)| = \frac{n}{|C(a)|} = \frac{n}{a}
-    \]
+      Since $Z(G) \le Z(a)$, we can additionally say that $m$ divides $\frac{n}{a}$.
+  \end{itemize}
+\end{remark}
 
-    Since $Z(G) \le Z(a)$, we can additionally say that $m$ divides $\frac{n}{a}$.
-\end{itemize}
+\begin{proposition}
+  If $|G| = p^2$, with $p$ is prime, then $G$ is Abelian.
+\end{proposition}
 
-{\bf Proposition}: If $|G| = p^2$, with $p$ is prime, then $G$ is Abelian.
+\begin{proof}
+  We already shows that $|Z(G)| > 1$, so it's $p$ or $p^2$.
 
-{\bf Proof}: We already shows that $|Z(G)| > 1$, so it's $p$ or $p^2$.
+  If it's $p^2$, then $G = Z(G)$, and we have an Abelian group.
 
-If it's $p^2$, then $G = Z(G)$, and we have an Abelian group.
+  If it's $p$, consider $a \not\in Z(G)$. Then $Z(a)$ contains $Z(G)$ and it
+  contains $a$, which means that $|Z(a)| \ge p + 1$, but $|Z(a)|$ divides $p^2$,
+  so $|Z(a)| = p^2$, which means in fact $a \in Z(G)$. Contradiction!
 
-If it's $p$, consider $a \not\in Z(G)$. Then $Z(a)$ contains $Z(G)$ and it
-contains $a$, which means that $|Z(a)| \ge p + 1$, but $|Z(a)|$ divides $p^2$,
-so $|Z(a)| = p^2$, which means in fact $a \in Z(G)$. Contradiction!
+  This means that $|Z(G)| = p^2$, and $G$ is Abelian.
+\end{proof}
 
-This means that $|Z(G)| = p^2$, and $G$ is Abelian.
-
-\note {
+\begin{note}
   If you have a centralizer of an element that's not in the center, it must be
   at least one larger than the center.
-}
+\end{note}
 
 \date {Mon. 4 March 2024}
 
-{\bf Recall}: A $p$-group $G$ is a group with order $p^k$, where $k \ge 1$ and
+{\bf Recall}. A $p$-group $G$ is a group with order $p^k$, where $k \ge 1$ and
 $p$ is prime. We've shown the following things:
 
 \begin{enumerate}
@@ -3743,32 +3756,35 @@ $p$ is prime. We've shown the following things:
   \item If $|G| = p^2$, then $G$ is Abelian.
 \end{enumerate}
 
-{\bf Corrolary}: If $|G| = p^2$, then $G \cong \Z_{p^2}$ or $G \cong \Z_p \times
-\Z_p$.
+\begin{corollary}
+  If $|G| = p^2$, then $G \cong \Z_{p^2}$ or $G \cong \Z_p \times \Z_p$.
+\end{corollary}
 
-{\bf Proof}: We could use the Theorem of finite Abelian Groups, but that's kind
-of cheating, but we can do this directly!
+\begin{proof}
+  We could use the Theorem of finite Abelian Groups, but that's kind
+  of cheating, but we can do this directly!
 
-(Not using the structure theorem) If $\exists a \in G$ with $|a| = p^2$, then
-$G$ is cyclic so $G \cong Z_{p^2}$. If not, then every non-trivial element has
-order $p$ by Langrange's Theorem.
+  (Not using the structure theorem) If $\exists a \in G$ with $|a| = p^2$, then
+  $G$ is cyclic so $G \cong Z_{p^2}$. If not, then every non-trivial element has
+  order $p$ by Langrange's Theorem.
 
-Pick $a \in G$ with $|a| = p$, and $b \not\in \lr{a}$ also with $|b| = p$. Then
-$\lr {a} \cap \lr{b} = \{e\}$.
+  Pick $a \in G$ with $|a| = p$, and $b \not\in \lr{a}$ also with $|b| = p$. Then
+  $\lr {a} \cap \lr{b} = \{e\}$.
 
-We know that $\lr{a} \cap \lr{b} \le \lr{b}$, so $|\lr{a} \cap \lr{b}| \in \{1,
-p\}$. If its order is $p$, then $b \in \lr{a} \cap \lr{b}$, so $b \in \lr{a}$
-which is a contradiction.
+  We know that $\lr{a} \cap \lr{b} \le \lr{b}$, so $|\lr{a} \cap \lr{b}| \in \{1,
+  p\}$. If its order is $p$, then $b \in \lr{a} \cap \lr{b}$, so $b \in \lr{a}$
+  which is a contradiction.
 
-We know that $G$ is Abelian, then $a^i b^j$ for $i = 0, \dots, p - 1$, and $j =
-0, \dots, p - 1$ are $p^2$ elements of $G$ and the subgroup they generate is
-isomorphic to $\Z_p \times \Z_p$, where $a^i, b^j \mapsto (\bar i, \bar j)$. So
+  We know that $G$ is Abelian, then $a^i b^j$ for $i = 0, \dots, p - 1$, and $j =
+  0, \dots, p - 1$ are $p^2$ elements of $G$ and the subgroup they generate is
+  isomorphic to $\Z_p \times \Z_p$, where $a^i, b^j \mapsto (\bar i, \bar j)$. So
 
-\[
-  G \cong \Z_p \times \Z_p
-\]
+  \[
+    G \cong \Z_p \times \Z_p
+  \]
+\end{proof}
 
-{\bf Group Actions on Subsets}
+\subsection{Group Actions on Subsets}
 
 If $G \acts S$, and $U \subseteq S$ is any subset, then we can define
 
@@ -3778,27 +3794,31 @@ If $G \acts S$, and $U \subseteq S$ is any subset, then we can define
 
 So here, we take subsets to other subsets.
 
-{\bf Claim}: $|U| = |a * U|$
+\begin{claim}
+  $|U| = |a * U|$
+\end{claim}
 
-{\bf Proof}: Let $f: U \to a * U$ defined as $u \mapsto a * u$. There's many
-ways to show that this is surjective, but perhaps more interestingly, let's
-instead define an inverse function.
+\begin{proof}
+  Let $f: U \to a * U$ defined as $u \mapsto a * u$. There's many
+  ways to show that this is surjective, but perhaps more interestingly, let's
+  instead define an inverse function.
 
-Let $g: a * U \to U$ defined as $x \mapsto a^{-1} * x$. First, we check that
-$\im(g) \subseteq U$. If $x \in a * U$, then $x = a * u$, for some $u \in U$.
-Then $g(x) = a^{-1} * x = a^{-1} * (a * u) = (a^{-1}a) * u = e * u = u \in U$.
+  Let $g: a * U \to U$ defined as $x \mapsto a^{-1} * x$. First, we check that
+  $\im(g) \subseteq U$. If $x \in a * U$, then $x = a * u$, for some $u \in U$.
+  Then $g(x) = a^{-1} * x = a^{-1} * (a * u) = (a^{-1}a) * u = e * u = u \in U$.
 
-Now we check that, in fact, $g = f^{-1}$,
+  Now we check that, in fact, $g = f^{-1}$,
 
-\[
-  g(f(u)) = g(a * u) = a^{-1} * (a * u) = u
-\]
+  \[
+    g(f(u)) = g(a * u) = a^{-1} * (a * u) = u
+  \]
 
-Similarly, $f(g(x)) = x$, so $f$ and $g$ are bijections.
+  Similarly, $f(g(x)) = x$, so $f$ and $g$ are bijections.
+\end{proof}
 
-\note {
+\begin{note}
   So group actions on subsets take subsets to other subsets of the same size!
-}
+\end{note}
 
 So $G$ acts on the subsets of order $n$ for any $n \le |S|$ by $G \acts \{U
 \subseteq S \mid |U| = n \}$ with
@@ -3809,7 +3829,7 @@ So $G$ acts on the subsets of order $n$ for any $n \le |S|$ by $G \acts \{U
 
 Let's look at an
 
-\example {
+\begin{example}
   $S_3 \acts \{1, 2, 3\}$ by permutation. Also $S_3 \acts \{\{1, 2\}, \{1, 3\},
   \{2, 3\},\}$. For example
 
@@ -3818,44 +3838,48 @@ Let's look at an
     \item $(123) * \{1, 3\} = \{2, 1\}$
     \item $(123) * \{2, 3\} = \{3, 1\}$
   \end{itemize}
-}
+\end{example}
 
 \section{Permutation Representation}
 
-\definition {
+\begin{definition}
   A {\bf permutation representation} of $G$ is a homomorphism $\varphi: G \to
   S_n$ for some $n$.
-}
+\end{definition}
 
 let $S = \{1, \dots, n\}$
 
-{\bf Proposition}: There is a bijection
+\begin{proposition}
+  There is a bijection
 
-\[
-  \{\text{actions } G \acts S\} \leftrightarrow \{\text{permutation
-  representations } \varphi: G \to S_n \}
-\]
+  \[
+    \{\text{actions } G \acts S\} \leftrightarrow \{\text{permutation
+    representations } \varphi: G \to S_n \}
+  \]
+\end{proposition}
 
-{\bf Proof}: Given an action $G \acts S$ we want a hom $\varphi: G \to S_n$.
-Given $a \in G$, let $\varphi(a) = \sigma_a \in S_n$, where $\sigma_a: S \to S$
-is the bijection $\sigma_a(i) = a * i$.
+\begin{proof}
+  Given an action $G \acts S$ we want a hom $\varphi: G \to S_n$.
+  Given $a \in G$, let $\varphi(a) = \sigma_a \in S_n$, where $\sigma_a: S \to S$
+  is the bijection $\sigma_a(i) = a * i$.
 
-We can check that $\varphi$ is a hom:
+  We can check that $\varphi$ is a hom:
 
-\begin{align*}
-  \varphi(ab)(i) &= \sigma_{ab}(i) = (ab) * i \\
-                 &= a * (b * i) = \sigma_a(\sigma_b(i)) \\
-                 &= (\varphi(a) \circ \varphi(b))(i)
-\end{align*}
+  \begin{align*}
+    \varphi(ab)(i) &= \sigma_{ab}(i) = (ab) * i \\
+                   &= a * (b * i) = \sigma_a(\sigma_b(i)) \\
+                   &= (\varphi(a) \circ \varphi(b))(i)
+  \end{align*}
 
-So $\sigma_{ab} = \sigma_a \sigma_b$ so $\varphi$ is a homomorphism.
+  So $\sigma_{ab} = \sigma_a \sigma_b$ so $\varphi$ is a homomorphism.
 
-Conversely, given $\varphi: G \to S_n$ a hom, define an action $G \acts S$ by $a
-* i = \varphi(a) (i)$
+  Conversely, given $\varphi: G \to S_n$ a hom, define an action $G \acts S$ by $a
+  * i = \varphi(a) (i)$
 
-(i.e. check that this is a group action.)
+  (i.e. check that this is a group action.)
 
-These correspondences are inverses, so we have a bijection.
+  These correspondences are inverses, so we have a bijection.
+\end{proof}
 
 {\bf Similarly}: If $S$ is any set, we have a group $\Perm(S)$, the group of
 permutations of $S$, the set of bijections $S \to S$.
@@ -3865,40 +3889,44 @@ is one to one.
 
 So group actions are really just homomorphisms in disguise!
 
-{\bf Recall}: If $\varphi: G \to G'$ is injective, then $\ker \phi$ is trivial,
+{\bf Recall}. If $\varphi: G \to G'$ is injective, then $\ker \phi$ is trivial,
 and so the first isomorphism theorem tells us that $G \cong \im(G)$, and
 furthermore, $G \cong \text{subgroup of } G'$
 
-\definition {
+\begin{definition}
   A permutation representation $\varphi: G \to \Perm(S)$ is called {\bf
   faithful} if it's injective.
 
   An action $G \acts S$ is {\bf faithful} if the only $a \in G$ with $a * s = s$
   for all $s \in S$ is $a = e$.
-}
+\end{definition}
 
-{\bf Note}: $a * s = s$ for all $s \in S$ if and only if $\varphi(a) = e \in
-\Perm(S)$ if and only if $a \in \ker(\phi)$
+\begin{note}
+  $a * s = s$ for all $s \in S$ if and only if $\varphi(a) = e \in
+  \Perm(S)$ if and only if $a \in \ker(\phi)$
 
-So $\varphi: G \to \Perm(S)$ is faithful if and only if $G \acts S$ is faithful.
+  So $\varphi: G \to \Perm(S)$ is faithful if and only if $G \acts S$ is faithful.
+\end{note}
 
 \section{Cailey's Theorem}
 
 Every group is isomorphic to a subgroup of some (potentially infinite)
 permutation group.
 
-{\bf Proof}: Our goal is to find a faithful permutation representation $\varphi:
-G \to \Perm(S)$, then $G$ is isomorphic to a subgroup of $\Perm(S)$.
+\begin{proof}
+  Our goal is to find a faithful permutation representation $\varphi:
+  G \to \Perm(S)$, then $G$ is isomorphic to a subgroup of $\Perm(S)$.
 
-So let $G \acts G$ by $a * g = ag$. If $a * g = g$ for all $g \in G$, then $a *
-e = e$, which tells us that $a = e$, so this is a faithful action. Hence the
-corresponding permutation representation $\varphi: G \to \Perm(S)$ is faithful.
+  So let $G \acts G$ by $a * g = ag$. If $a * g = g$ for all $g \in G$, then $a *
+  e = e$, which tells us that $a = e$, so this is a faithful action. Hence the
+  corresponding permutation representation $\varphi: G \to \Perm(S)$ is faithful.
 
-In particular, if $|G| = n$, then $\Perm(G) \cong S_n$, so $G \cong H \le S_n$.
+  In particular, if $|G| = n$, then $\Perm(G) \cong S_n$, so $G \cong H \le S_n$.
+\end{proof}
 
-\note {
+\begin{note}
   All of finite Group Theory is isomorphic to subgroups of the symmetric group.
-}
+\end{note}
 
 \date{Wed. Mar 6 2024}
 
@@ -3931,152 +3959,165 @@ In particular, if $|G| = n$, then $\Perm(G) \cong S_n$, so $G \cong H \le S_n$.
 
 {\it This is the last topic in Group Theory for this class.}
 
-{\bf Recall}: We know from Lagrange's Theorem that if $H \le G$, then $|H|$
+{\bf Recall}. We know from Lagrange's Theorem that if $H \le G$, then $|H|$
 divides $|G|$, but in general, the converse is false.
 
 Our goal is to come up with the best converse that we can, in generality.
 
-\definition {
+\begin{definition}[Sylow $p$ Subgroups]
   If $|G| = p^e m$ where $p$ is prime, $e > 0$ and $p \nmid m$, then $H \le G$
   is a {\bf Sylow $p$ subgroup of $G$} if $|H| = p^e$, in other words, it's the
   highest power of $p$ possible.
 
   The set of Sylow $p$ subgroups of $G$ is denoted by $\Syl_p(G)$.
-}
+\end{definition}
 
 \subsection{First Sylow Theorem}
 
-If $p$ divides $|G|$, then there exists a Sylow $p$ subgroup of $G$.
+\begin{theorem}[1st Sylow Theorem]
+  If $p$ divides $|G|$, then there exists a Sylow $p$ subgroup of $G$.
+\end{theorem}
 
-{\bf Proof}: Say $|G| = n = p^e m$ where $p \nmid m$.
+\begin{proof}
+  Say $|G| = n = p^e m$ where $p \nmid m$. Let $S = \{U \subseteq G \mid |U| =
+  p^e \}$ (our hope is that one of these is actually a subgroup, if so great!)
+  Immediately, we know that $|S| = \binom{n}{p^e} = \frac{n!}{p^e! (n - p^e)!}$.
 
-Let $S = \{U \subseteq G \mid |U| = p^e \}$ (our hope is that one
-of these is actually a subgroup, if so great!) Immediately, we know that $|S| =
-\binom{n}{p^e} = \frac{n!}{p^e! (n - p^e)!}$.
+  {\bf Lemma}: $|S|$ is not divisible by $p$. This is just a counting question, if
+  you're not convinced, just expand the form above and see for yourself.
 
-{\bf Lemma}: $|S|$ is not divisible by $p$. This is just a counting question, if
-you're not convinced, just expand the form above and see for yourself.
+  Consider $G \acts S$ by left multiplication. We know that the orbits partition
+  $S$, so
 
-Consider $G \acts S$ by left multiplication. We know that the orbits partition
-$S$, so
+  \[
+    |S| = \sum_{\text{orbits}} |\text{orbits}|
+  \]
 
-\[
-  |S| = \sum_{\text{orbits}} |\text{orbits}|
-\]
+  By our lemma, the left hand side is not divisible by $p$, which means that there
+  exists at least one orbit $O_u$ with $|O_u|$ not divisible by $p$.
 
-By our lemma, the left hand side is not divisible by $p$, which means that there
-exists at least one orbit $O_u$ with $|O_u|$ not divisible by $p$.
+  Let $H = \Stab(U) = \{a \in G \mid aU = U\}$. Then elements of $H$ permute the
+  elements of $U$. Consider $H \acts U$, where $h * u = hu$ by left multiplication
+  (same action as above.) The orbit of $u \in U$, is $Hu$, which is a right coset
+  of $H$, which means that the orbit of $U$ has the same size as the coset, in
+  other words
 
-Let $H = \Stab(U) = \{a \in G \mid aU = U\}$. Then elements of $H$ permute the
-elements of $U$. Consider $H \acts U$, where $h * u = hu$ by left multiplication
-(same action as above.) The orbit of $u \in U$, is $Hu$, which is a right coset
-of $H$, which means that the orbit of $U$ has the same size as the coset, in
-other words
+  \[
+    |O_u| = |Hu| = |H|
+  \]
 
-\[
-  |O_u| = |Hu| = |H|
-\]
+  Just like before, the orbits partition $U$, so we know that $|U| =
+  \sum_{\text{orbits}} |\text{orbit}|$, but then $p^e = \sum_{\text{orbits}}
+  |H|$, which means that $p^e = |H| * (\text{number of orbits})$, so then $|H|$
+  must be a power of $p$.
 
-Just like before, the orbits partition $U$, so we know that $|U| =
-\sum_{\text{orbits}} |\text{orbit}|$, but then $p^e = \sum_{\text{orbits}}
-|H|$, which means that $p^e = |H| * (\text{number of orbits})$, so then $|H|$
-must be a power of $p$.
+  \[
+    H = p^i
+  \]
 
-\[
-  H = p^i
-\]
+  So we have a subgroup, and it's a $p$ group! But now we need to figure out what
+  power it is.
 
-So we have a subgroup, and it's a $p$ group! But now we need to figure out what
-power it is.
+  Going back to our group action, by the Orbit Stabilizer Theorem,
 
-Going back to our group action, by the Orbit Stabilizer Theorem,
+  \[
+    |G| = |H| |O_u| = |\Stab(U)| \cdot |O_u|
+  \]
 
-\[
-  |G| = |H| |O_u| = |\Stab(U)| \cdot |O_u|
-\]
+  But recall that $|O_u|$ is not divisible by $p$, in other words, $p^em = p^i k$,
+  where $k$ is not divisible by $p$, so in fact, $i = e$ and $|O_u| = m$, and $H$
+  in fact, is a Sylow $p$ subgroup.
+\end{proof}
 
-But recall that $|O_u|$ is not divisible by $p$, in other words, $p^em = p^i k$,
-where $k$ is not divisible by $p$, so in fact, $i = e$ and $|O_u| = m$, and $H$
-in fact, is a Sylow $p$ subgroup.
+\subsection{Cauchy's Theorem}
+\begin{corollary}[Cauchy's Theorem]
+  If $p$ is prime and $p$ divides $|G|$, then $G$ contains an element of order $p$.
+\end{corollary}
 
-{\bf Corollary}: (Cauchy's Theorem)
-
-If $p$ is prime and $p$ divides $|G|$, then $G$ contains an element of order
-$p$.
-
-{\bf Proof}: Let $H$ be a Sylow $p$ subgroup of $G$, and let $a \in H$ be
-non-trivial. Then $|a|$ divides $|H|$ meaning that $|a| = p^i$ for some $i \ge
-1$. Then $a^{p^{i - 1}}$ has order $p$ (as an example, consider $p = 2$ and $i =
-3$).
+\begin{proof}
+  Let $H$ be a Sylow $p$ subgroup of $G$, and let $a \in H$ be non-trivial. Then
+  $|a|$ divides $|H|$ meaning that $|a| = p^i$ for some $i \ge 1$. Then $a^{p^{i
+  - 1}}$ has order $p$ (as an example, consider $p = 2$ and $i = 3$).
+\end{proof}
 
 \subsection{Second Sylow Theorem}
 
-\begin{enumerate}
-  \item All Sylow $p$ subgroups are conjugate
+\begin{theorem}
+  \begin{enumerate}
+    \item All Sylow $p$ subgroups are conjugate
 
-    i.e. if $H$ and $H'$ are Sylow $p$ subgroups, then, there's an element $a
-    \in G$ such that $aHa^{-1} = H'$.
+      i.e. if $H$ and $H'$ are Sylow $p$ subgroups, then, there's an element $a
+      \in G$ such that $aHa^{-1} = H'$.
 
-    This means that you can get from any $H$ to $H'$ on some element $a \in G$,
-    where $H, H' \in \Syl_p(G)$
+      This means that you can get from any $H$ to $H'$ on some element $a \in G$,
+      where $H, H' \in \Syl_p(G)$
 
-  \item If $K \le G$, and $|K| = p^i$, then there exists a group $H \in
-    \Syl_p(G)$ such that $K \le H \le G$.
+    \item If $K \le G$, and $|K| = p^i$, then there exists a group $H \in
+      \Syl_p(G)$ such that $K \le H \le G$.
 
-    Every $p$ group sits inside a Sylow $p$ subgroup.
-\end{enumerate}
+      Every $p$ group sits inside a Sylow $p$ subgroup.
+  \end{enumerate}
+\end{theorem}
 
-{\bf Corollary}:
+\begin{corollary}
+  \[
+    \Syl_p(G) = \{H\} \Leftrightarrow H \trianglelefteq G
+  \]
 
-\[
-  \Syl_p(G) = \{H\} \Leftrightarrow H \trianglelefteq G
-\]
+  Having only a single Sylow $p$ subgroup means that it is normal!
+  \end{corollary}
 
-Having only a single Sylow $p$ subgroup means that it is normal!
-
-{\bf Proof}: $\Syl_p(G) = \{H\}$ if and only if $aHa^{-1} = H$ for all $a \in G$,
-and this means that $H$ is normal.
+\begin{proof}
+  $\Syl_p(G) = \{H\}$ if and only if $aHa^{-1} = H$ for all $a \in G$,
+  and this means that $H$ is normal.
+\end{proof}
 
 \subsection{Third Sylow Theorem}
 
-Let $n_p = |\Syl_p(G)|$ and let $|G| = p^e m$, $e \ge 1$, $p$ is prime, and $p$
-does not divide $m$. Then
+\begin{theorem}
+  Let $n_p = |\Syl_p(G)|$ and let $|G| = p^e m$, $e \ge 1$, $p$ is prime, and $p$
+  does not divide $m$. Then
 
-\begin{itemize}
-  \item $n_p | m$
+  \begin{itemize}
+    \item $n_p | m$
 
-    The number of Sylow $p$ subgroups divides $m$.
+      The number of Sylow $p$ subgroups divides $m$.
 
-  \item $n_p \equiv 1 \mod p$
+    \item $n_p \equiv 1 \mod p$
 
-    The number of Sylow $p$ subgroups is one more than a multiple of $p$.
+      The number of Sylow $p$ subgroups is one more than a multiple of $p$.
 
-  \item $n_p = [G : N_G(H)]$, where $N_G(H)$ is the normalizer, defined as
+    \item $n_p = [G : N_G(H)]$, where $N_G(H)$ is the normalizer, defined as
 
-    \[
-      N_G(H) = \{a \in G \mid aHa^{-1} = H \}
-    \]
+      \[
+        N_G(H) = \{a \in G \mid aHa^{-1} = H \}
+      \]
 
-    Even if $H$ is not normal, the normalizer is the things in $G$ that make $H$
-    look normal.
+      Even if $H$ is not normal, the normalizer is the things in $G$ that make $H$
+      look normal.
 
-    \QUESTION{} Does that mean the center is the normalizer of $G$?
-\end{itemize}
+      \QUESTION{} Does that mean the center is the normalizer of $G$?
+  \end{itemize}
+\end{theorem}
 
-{\bf Theorem}: If $|G| = 35$, then $G \cong \Z_{35}$
+\begin{example}
+  If $|G| = 35$, then $G \cong \Z_{35}$
 
-{\bf Proof}: $35 = 5 \cdot 7$, let $H \in \text{Syl}_5(G)$, $K \in
-\text{Syl}_7(G)$. Then $n_5 \mid 7$ and $n_5 \equiv 1 \mod 5$, which means that
-$n_5 = 1$ and $H$ is normal.
+  \begin{proof}
+    $35 = 5 \cdot 7$, let $H \in \text{Syl}_5(G)$, $K \in
+    \text{Syl}_7(G)$. Then $n_5 \mid 7$ and $n_5 \equiv 1 \mod 5$, which means that
+    $n_5 = 1$ and $H$ is normal.
 
-$n_7 \mid 5$ and $n_7 \equiv 1 \mod 7$, which means $n_7 = 1$  and $K$ is
-normal.
+    $n_7 \mid 5$ and $n_7 \equiv 1 \mod 7$, which means $n_7 = 1$  and $K$ is
+    normal.
 
-We have that $H = \lr{h}$ and $K = \lr{k}$, and $H \cap K = \{e\}$, so we can
-write the isomorphism $\Z_5 \times \Z_7 \to G$, defined as $(i, j) \mapsto h^i
-k^j$
+    We have that $H = \lr{h}$ and $K = \lr{k}$, and $H \cap K = \{e\}$, so we can
+    write the isomorphism $\Z_5 \times \Z_7 \to G$, defined as $(i, j) \mapsto h^i
+    k^j$
 
-{\bf Check}: $hk = kh$, so it's Abelian!
+    {\bf Check}: $hk = kh$, so it's Abelian!
+  \end{proof}
+\end{example}
 
 \date{Fri. 8 Mar 2024}
 
@@ -4086,43 +4127,45 @@ We've been using a Theorem without stating it this whole time!
 
 {\bf How to recognize your group is a product?}
 
-\theorem {
+\begin{theorem}
   If $H, K \trianglelefteq G$, with $H \cap K = \{e\}$ and $G = \{hk \mid h \in
   H, k \in K \}$, then
 
   \[
     G \cong H \times K
   \]
-}
+\end{theorem}
 
-{\bf Proof}: Let $\varphi: H \times K \to G$ for which $(h, k) \mapsto hk$.
-Since $HK = G$, we automatically know that $\varphi$ is surjective. Since $G$
-might not be finite, we still need to show injectivity.
+\begin{proof}
+  Let $\varphi: H \times K \to G$ for which $(h, k) \mapsto hk$.
+  Since $HK = G$, we automatically know that $\varphi$ is surjective. Since $G$
+  might not be finite, we still need to show injectivity.
 
-If $\varphi(h, k) = \varphi(h', k')$, then $hk = h'k'$, which means $(h')^{-1}h
-= k'k^{-1}$, which are both in $H \cap K = \{e\}$, so in fact $h = h'$ and $k =
-k'$ and $\varphi$ is injective.
+  If $\varphi(h, k) = \varphi(h', k')$, then $hk = h'k'$, which means $(h')^{-1}h
+  = k'k^{-1}$, which are both in $H \cap K = \{e\}$, so in fact $h = h'$ and $k =
+  k'$ and $\varphi$ is injective.
 
-To show that $\varphi$ is a hom, simply notice that $\varphi(hh', kk') =
-hh'kk'$. This is equal to $hkh'k' = \varphi(h, k)\varphi(h', k')$ if $H$ and $K$
-commute.
+  To show that $\varphi$ is a hom, simply notice that $\varphi(hh', kk') =
+  hh'kk'$. This is equal to $hkh'k' = \varphi(h, k)\varphi(h', k')$ if $H$ and $K$
+  commute.
 
-So given $h \in H$ and $k \in K$, consider $(hkh^{-1})k^{-1}$. Notice that,
-since $K$ is normal, $(hkh^{-1}) \in K$, and so in fact, $(hkh^{-1})k^{-1} \in
-K$. However notice that $(hkh^{-1})k^{-1} = h(kh^{-1}k^{-1}) \in H$ since $H$ is
-normal, so $hkh^{-1}k^{-1} \in H \cap K = \{e\}$ so $hkh^{-1}k^{-1} = e$ and so
-$hk = kh$.
+  So given $h \in H$ and $k \in K$, consider $(hkh^{-1})k^{-1}$. Notice that,
+  since $K$ is normal, $(hkh^{-1}) \in K$, and so in fact, $(hkh^{-1})k^{-1} \in
+  K$. However notice that $(hkh^{-1})k^{-1} = h(kh^{-1}k^{-1}) \in H$ since $H$ is
+  normal, so $hkh^{-1}k^{-1} \in H \cap K = \{e\}$ so $hkh^{-1}k^{-1} = e$ and so
+  $hk = kh$.
+\end{proof}
 
 Let's take this for a spin in another
 
-{\bf Theorem}:
+\begin{theorem}
+  If $|G| = pq$, where $p$ and $q$ are prime with $p > q$ and $q \equiv 1 \mod
+  p$, then
 
-If $|G| = pq$, where $p$ and $q$ are prime with $p > q$ and $q \equiv 1 \mod
-p$, then
-
-\[
-  G \cong \Z_{pq}
-\]
+  \[
+    G \cong \Z_{pq}
+  \]
+\end{theorem}
 
 \begin{proof}
   We know that $n_p = |\Syl_p(G)|$ satisfies $n_p \mid q$ and $n_p \equiv 1 \mod
@@ -4145,7 +4188,7 @@ p$, then
 
 \section{Group Presentations}
 
-{\bf Recall}: Every element of $D_{2n}$ is a product of $x$ and $y$ where $x^2 =
+{\bf Recall}. Every element of $D_{2n}$ is a product of $x$ and $y$ where $x^2 =
 e$, $y^n = e$, and $xyx = y^{-1}$. Then, we can write the group as follows
 
 
@@ -4160,23 +4203,23 @@ Similarly, we could say that
     0$
 \end{itemize}
 
-\definition {
+\begin{definition}
   A set $\{x_1, \dots, x_n\} \subseteq G$ {\bf generates} $G$ if every element
   in $G$ is a product of the $x_i$ and their inverses.
-}
+\end{definition}
 
-\definition {
+\begin{definition}
   A {\bf relation} in the generators is a product of $x_i$ and their inverses
   that is $e \in G$.
 
   For example $x^2, y^n, xyxy \in D_{2n}$.
-}
+\end{definition}
 
-\definition {
+\begin{definition}
   A {\bf word} in the generators is any product of $x_i$ and their inverses.
-}
+\end{definition}
 
-\definition {
+\begin{definition}
   The {\bf free group} on $n$ generators is 
 
   \[
@@ -4189,14 +4232,14 @@ Similarly, we could say that
   \[
     x_1 x_2 x_3  x_3^{-1} x_2^{-1} x_1^{-1} = e
   \]
-}
+\end{definition}
 
-\example {
+\begin{example}
   $F_1 = \lr{ x } \cong (\Z, +)$ by $\varphi: \Z \to F_1$ for which $n \mapsto
   x^n$.
-}
+\end{example}
 
-\example {
+\begin{example}
   $F_2 = \lr {x, y}$ has elements
 
   \[
@@ -4204,7 +4247,7 @@ Similarly, we could say that
     y^{-2}, \dots, xy, xy^2, \dots, xy^{-1}, x^{-1}y, \dots, xyx^{-2}y^3x^{-7},
     \dots, yx, \dots\}
   \]
-}
+\end{example}
 
 Let $R \subseteq F_n$ be some subset. For example $R = \{x^2, y^n, xyxy\}
 \subseteq F_2$. We define $N_R \trianglelefteq F_2$ to be the smallest normal
@@ -4212,27 +4255,27 @@ subgroup of $F_n$ that contains $R$.
 
 What does this look like? Well
 
-{\bf Lemma}:
+\begin{lemma}
+  An element $g \in N_R$ if and only if $g$ can be attained by a finite sequence
+  of
 
-An element $g \in N_R$ if and only if $g$ can be attained by a finite sequence
-of
-
-\begin{enumerate}
-  \item products by elements in $R$
-  \item inversions
-  \item conjugation by elements of $F_n$
-\end{enumerate}
+  \begin{enumerate}
+    \item products by elements in $R$
+    \item inversions
+    \item conjugation by elements of $F_n$
+  \end{enumerate}
+\end{lemma}
 
 Let's look at an
 
-\example {
+\begin{example}
   $R = \{x^2, y^n, xyxy \} \subseteq F_2$. Then $N_R$ contains $(xy)(y^n
   xyxy)(xy)^{-1}(yx^2) (x^2)^{-1}(yx^2)^{-1}$.
 
   We have a product of conjugates of elements inside $R$.
-}
+\end{example}
 
-\definition {
+\begin{definition}
   The group $\lr {x_1, \dots, x_n \mid R }$ is $F_n / N_R$. In fact we write it
   as
 
@@ -4241,28 +4284,28 @@ Let's look at an
   \]
 
   Where $R = \{r_1, \dots\}$
-}
+\end{definition}
 
-\example {
+\begin{example}
   We know that $\Z_n \cong \Z / \lr{n} \cong F_1 / \lr{x^n} = \lr{x | x^n}$.
-}
+\end{example}
 
-\example {
+\begin{example}
   The product group $\Z \times \Z \cong \lr {x, y \mid xyx^{-1}y^{-1}}$, or in
   other words $xy = yx$ (it commutes).
-}
+\end{example}
 
 We can do a little more!
 
-\example {
+\begin{example}
   Say we have $\Z_n \times \Z_m \cong \lr{x, y \mid x^n, y^n, xyx^{-1}y^{-1} }$
-}
+\end{example}
 
 Unsurprisingly,
 
-\example {
+\begin{example}
   $D_{2n} \cong \lr {x, y \mid x^2, y^n, xyxy }$
-}
+\end{example}
 
 These are called {\bf group presentations}, $G$ is called finitely generated if
 it has a finite generating set.
@@ -4277,7 +4320,7 @@ $G$ is {\bf finitely presented} if it has presentation
 
 \section{Rings}
 
-\definition {
+\begin{definition}[Ring]
   A {\bf ring} is a set $R$ with binary operations $+$ and $\times$ satisfying:
   \begin{enumerate}
     \item $(R, +)$ is an Abelian group. We denote its identity by $0$.
@@ -4294,33 +4337,33 @@ $G$ is {\bf finitely presented} if it has presentation
 
       For all $a, b, c \in R$
   \end{enumerate}
-}
+\end{definition}
 
-\definition {
+\begin{definition}[Commutative Ring]
   A {\bf commutative ring} has commutative multiplication.
 
   i.e. $ab = ba$ for all $a, b \in R$
-}
+\end{definition}
 
-\note {
+\begin{note}
   In fact, for us, ``ring" really means ``commutative ring" unless otherwise
   stated.
-}
+\end{note}
 
-\example {
+\begin{example}
   A basic example is $\Z$, but we also have $\Q, \R, \C$ under the regular
   addition and multiplication.
-}
+\end{example}
 
-\example {
+\begin{example}
   A {\bf non-commuting} example: $\mat_n(\R)$, the set of $n \times n$ matrices
   with entries in $\R$.
 
   non-commuting here meaning multiplication of course. Addition is still
   Abelian. This is still a Ring, just not a commutative one.
-}
+\end{example}
 
-\definition {
+\begin{definition}[Subring]
   A {\bf subring} of a ring is a subset that
 
   \begin{enumerate}
@@ -4330,13 +4373,13 @@ $G$ is {\bf finitely presented} if it has presentation
   \end{enumerate}
 
   There is no notation for subrings!
-}
+\end{definition}
 
-\example {
+\begin{example}
   $Z \subseteq \Q \subseteq \R \subseteq \C$ is a list of subrings.
-}
+\end{example}
 
-\example {
+\begin{example}
   $\Z[i]$ (pronounced $\Z$ adjoin $i$, or in this very particular case, the
   Gaussian integers)
 
@@ -4349,9 +4392,9 @@ $G$ is {\bf finitely presented} if it has presentation
     \item $(a + bi) + (c + di) = (a + c) + (b + d)i$
     \item $(a + bi)(c + di) = (ac - bd)(ad + bc)i$
   \end{enumerate}
-}
+\end{example}
 
-\example {
+\begin{example}
   If $\alpha \in \C$, $\Z[\alpha]$ ($Z$ adjoin $\alpha$) is the subring of $\C$
   generated by $\alpha$.
 
@@ -4369,17 +4412,17 @@ $G$ is {\bf finitely presented} if it has presentation
 
       for $a_i \in Z$
   \end{enumerate}
-}
+\end{example}
 
-\example {
+\begin{example}
   What about $\Z[1/2]$. This contains all powers of $1/2$, and hence any
   $\frac{x}{2^n}$ for $x \in \Z$.
-}
+\end{example}
 
-\example {
+\begin{example}
   Let's look at $\Z[\sqrt[3]{2}] = \{a + b \sqrt[3]{2} + c \sqrt[3]{2} \mid a,
   b, c \in Z \}$
-}
+\end{example}
 
 Similarly, we can look at $\Q[\alpha]$, or $\R[\alpha]$. These are the smallest
 subrings of the complex numbers containing $\Q$ (or $\R$) and $\alpha$.
@@ -4391,17 +4434,17 @@ $\alpha$ with the coefficients in $\Q$, i.e.
   \beta = a_0 + a_1 \alpha + a_2 \alpha^2 + \cdots a_n \alpha^n
 \]
 
-\example {
+\begin{example}
   $\Z_n$ with operations $+ \mod n$ and $\times \mod n$ is a ring. However this
   is not a subring $\C$
-}
+\end{example}
 
-\definition {
+\begin{definition}[Unit]
   A {\bf unit} in $R$ is a $r \in R$ that has a multiplicative inverse, i.e. $r'
   \in R$ with $rr' = r'r = 1$.
-}
+\end{definition}
 
-\example {
+\begin{example}
   \begin{enumerate}
     \item In $\Z$, our units are $\pm 1$.
     \item In $\Q, \R, \C$, our units are any non-zero elements.
@@ -4422,20 +4465,20 @@ $\alpha$ with the coefficients in $\Q$, i.e.
       work. So in fact, one of these absolute values must be zero. So in fact,
       $\pm 1$ and $\pm i$ are the only possible units.
   \end{enumerate}
-}
+\end{example}
 
-\example {
+\begin{example}
   Exactly from this work, we get that in $\Q[i]$, units are all non-zero
   elements.
 
   In $\Z[\sqrt{2}]$, units are... \TODO{} too lazy to write this!
-}
+\end{example}
 
-\definition {
+\begin{definition}[Field]
   A {\bf field} is a commutative ring where every non-zero element is a unit.
 
   i.e. $\Q, \R, \C, \Z_p, \Q[i], \Q[\sqrt{2}]$
-}
+\end{definition}
 
 \date{Wed 13 Mar 2024}
 
@@ -4454,13 +4497,12 @@ If $x$ is a variable (i.e. not a specific element of $\C$) then
 
 Is the polynomial ring with variable $x$ and coefficients in $\Z$.
 
-\example {
+\begin{example}
   If $R$ is any ring, then $R[x]$ is the ring of polynomials in variable $x$
   with coefficients in $R$.
-}
+\end{example}
 
 If we have $f(x) = a_0 + a_1 x + \cdots a_n x^n \in R[x]$ and $a_n \ne 0$, then
-
 
 \begin{enumerate}
   \item the {\bf degree} of $f(x)$ is $n$
@@ -4469,9 +4511,9 @@ If we have $f(x) = a_0 + a_1 x + \cdots a_n x^n \in R[x]$ and $a_n \ne 0$, then
   \item $f$ is {\bf constant} if $\deg f = 0$ or $f = 0$
 \end{enumerate}
 
-\note {
+\begin{note}
   Convention says that the degree of $f(x) = 0$ is undefined.
-}
+\end{note}
 
 Let's define addition and multiplication. If $f(x) = a_0 + a_1 x + \cdots a_n
 x^n$ and $g(x) = b_0 + b_1 x + \cdots b_m x^m$ and assume that $n \ge m$. Then 
@@ -4520,7 +4562,7 @@ polynomials of degree $1$ multiply to a polynomial of undefined degree.
 The point is that if the leading coefficient of one of them is 1, then the
 degree does not increase.
 
-\example {
+\begin{example}
   In $\Z_4[x]$, let's take $g = \bar 2 x^2 + \bar 1 x + \bar 3 = \bar 2 x^2 + x
   + \bar 3$, and $f = x + \bar 2$.
 
@@ -4529,7 +4571,7 @@ degree does not increase.
   \TODO{} See picture for Mar 13 2024
 
   So $q = \bar 2 x + \bar 1$, $r = \bar 1$, and $g = fq + r$.
-}
+\end{example}
 
 Similarly, if the leading coefficient of $f$ is a unit $u \in R$, then we can
 write $f = f \cdot \bar f$, where $\bar f$ is a monic, where $\bar f$ is
@@ -4547,10 +4589,10 @@ dividing $f$ by $x - \alpha$ is $f(\alpha)$
 Plug in $\alpha$, then $f(\alpha) = r(\alpha)$, but $r$ is constant, so $r(x) =
 f(\alpha)$.
 
-\note {
+\begin{note}
   This is the same as saying that you can factor out a root out of your
   polynomial, which should make sense!
-}
+\end{note}
 
 If we work with more than one variable, we can make the polynomial ring
 
@@ -4558,7 +4600,7 @@ If we work with more than one variable, we can make the polynomial ring
   R[x_1, \dots, x_n] = \text{polynomials in $x_i$ with coefficients in $R$}
 \]
 
-\definition {
+\begin{definition}
   The characteristic of $R$ is the smallest $n \in \N$ such that 
 
   \[
@@ -4566,19 +4608,21 @@ If we work with more than one variable, we can make the polynomial ring
   \]
 
   And $\char R = 0$ if no such $n$ exists.
-}
+\end{definition}
 
-\example {
+\begin{example}
+  Example of characteristics
+
   \begin{enumerate}
     \item $\char \Z = 0$
     \item $\char \Z_n = n$
     \item $\char R[x] = \char R$
   \end{enumerate}
-}
+\end{example}
 
 \subsection{Homomorphisms}
 
-\definition {
+\begin{definition}[Ring Homomorphism]
   $\varphi: R \to R'$ is a {\bf ring homomorphism} if 3 properties hold.
 
   \begin{enumerate}
@@ -4586,16 +4630,16 @@ If we work with more than one variable, we can make the polynomial ring
     \item $\varphi(ab) = \varphi(a)\varphi(b)$
     \item $\varphi(1_R) = 1_{R'}$ (The multiplicative identity is preserved)
   \end{enumerate}
-}
+\end{definition}
 
-\definition {
+\begin{definition}[Ring Isomorphism]
   We say that $\varphi$ is a {\bf ring isomorphism} if it's a bijective ring
   homomorphism.
-}
+\end{definition}
 
 Let's look at some
 
-\example {
+\begin{example}
   $\varphi_k: \Z \to \Z$ is the map that takes $n \mapsto kn$ for some fixed $k
   \in \Z$. And
 
@@ -4617,7 +4661,7 @@ Let's look at some
 
   But now, the identity rule tells us that $\varphi_k(1)_k = k = 1$, so in fact,
   $id_\Z : \Z \to \Z$ with $n \mapsto n$ is the only ring homomorphism $\Z \to \Z$
-}
+\end{example}
 
 \date{Fri. 15 March 2024}
 
@@ -4632,11 +4676,11 @@ conditions:
 
 Let's look at some more examples
 
-\example {
+\begin{example}
   $\varphi: \Z \to \Z_n$ is a ring homomorphism which maps $x \mapsto \bar x$
-}
+\end{example}
 
-\example {
+\begin{example}
   If $R$ is any ring, there is a {\bf unique} hom $\varphi: \Z \to R$ and the
   map is $\varphi(1) = 1_R$ and 
 
@@ -4650,11 +4694,11 @@ Let's look at some more examples
 
   This is the only map from the integers to a ring that satisfies the conditions
   of ring homomorphisms.
-}
+\end{example}
 
 On the other hand, 
 
-\example {
+\begin{example}
   There is {\bf no} ring hom $\varphi: \Z_n \to \Z_n$. If
   $\varphi(\bar 1) = x$, then 
 
@@ -4666,18 +4710,18 @@ On the other hand,
   that ring homs must take the multiplicative identity of the input to the
   multiplicative identity of the output. So we need $\varphi(\bar 1) = 1$, so no
   such $\varphi$ exists.
-}
+\end{example}
 
-\example {
+\begin{example}
   If $R$ is a ring, with $r \in R$ any element, there is a hom $\text{eval}_r:
   R[x] \to R$ with $f(x) \mapsto f(r)$. It takes a polynomial and plugs in $r$
   instead of $x$.
 
   This is a hom since plugging in before you add an multiply in a polynomial is
   the same thing as plugging in after you add and multiply the polynomial.
-}
+\end{example}
 
-\example {
+\begin{example}
   If $R \subseteq R'$ is a subring, and $\alpha \in R'$, then there is a hom
   $\text{eval}_\alpha: R[x] \to R'$ where $f(x) = f(\alpha)$.
 
@@ -4692,9 +4736,9 @@ On the other hand,
 
   \QUESTION{} We keep saying that $R[\alpha]$ is the smallest subring which
   contains $R$ and $\alpha$ but never proved it. Why not?
-}
+\end{example}
 
-\example {
+\begin{example}
   If we have any $\varphi: R \to R'$ a hom, we can get another homomorphism
 
   \[
@@ -4703,33 +4747,33 @@ On the other hand,
 
   Where $\sum a_i x^i \mapsto \sum \varphi(a_i) x^i$. In other words, we apply
   $\varphi$ to all the coefficients
-}
+\end{example}
 
 We can actually use these last two examples to create different polynomial rings
 and evaluate them.
 
 Let's look at one more
 
-\example {
+\begin{example}
   For any ring $R$, $\varphi: R \to R[x]$ with $r \mapsto f(x) = r$ is a ring
   hom.
 
   In other words, we take a number and map it to the constant polynomial of that
   number. Exhilarating.
-}
+\end{example}
 
 Now we get to talk about Kernels.
 
-\definition {
+\begin{definition}
   If $\varphi: R \to R'$ is a ring homomorphism, the {\bf kernel} of $\varphi$
   is 
 
   \[
     \ker(\phi) = \{ r \in R \mid \varphi(r) = 0 \}
   \]
-}
 
-{\bf Note}: Not $1$!
+  {\bf Note}: Not $1$!
+\end{definition}
 
 Under every ring homomorphism is a group homomorphism, if we just {\it forget}
 about multiplication in $R$ and $R'$, we're left with Abelian groups.
@@ -4740,23 +4784,25 @@ the group homomorphism.
 So in fact $\ker(\phi)$ is still a subgroup! Moreover, its a normal subgroup
 since $R$ and $R'$ are Abelian groups.
 
-{\bf Remark}: If $s \in \ker(\varphi)$ and $r \in R$, then $\varphi(rs) =
-\varphi(r) \varphi(s) = \varphi(r) \cdot 0 = 0$, which means that $rs \in
-\ker(\varphi)$.
+\begin{remark}
+  If $s \in \ker(\varphi)$ and $r \in R$, then $\varphi(rs) =
+  \varphi(r) \varphi(s) = \varphi(r) \cdot 0 = 0$, which means that $rs \in
+  \ker(\varphi)$.
+\end{remark}
 
 This is interesting because, we already knew that $\ker(\varphi)$ is a subgroup,
 but now we also see that it has multiplicative properties. If you take anything
 in this kernel, and {\it scale it} by any element of your ring, it stays in the
 kernel!
 
-\note {
+\begin{note}
   $\ker(\varphi)$ is {\bf not necessarily} a ring, as it does not necessarily
   contain $1$.
-}
+\end{note}
 
 This is motivation for our next
 
-\definition {
+\begin{definition}
   An {\bf Ideal} $I$ of a ring $R$ is a non-empty subset $I \subseteq R$ that
   satisfies
 
@@ -4769,17 +4815,17 @@ This is motivation for our next
 
     \item If $s \in I$ and $r \in R$, then $rs \in I$
   \end{enumerate}
-}
+\end{definition}
 
 This captures what our kernel is!
 
-\note {
+\begin{note}
   If you don't have commutative multiplication, you can talk about {\it left
   ideals} and {\it right ideals} based on which side you multiply from.
 
   For the kernel, this doesn't make any difference between you're multiplying by
   zero, so it's always both a left and right ideal.
-}
+\end{note}
 
 Equivalently, $I \ne \varnothing$, and for any $s_1, \dots, s_n \in I$, 
 
@@ -4787,7 +4833,7 @@ Equivalently, $I \ne \varnothing$, and for any $s_1, \dots, s_n \in I$,
   r_1 s_1 + \cdots + r_n s_n \in I \text{ for all $r_i \in R$}
 \]
 
-\example {
+\begin{definition}[Principal Ideal]
   The {\bf principal ideal} generated by $a \in R$ is 
 
   \[
@@ -4795,17 +4841,17 @@ Equivalently, $I \ne \varnothing$, and for any $s_1, \dots, s_n \in I$,
   \]
 
   Also sometimes denoted $aR$ or $Ra$
+\end{definition}
 
-  {\bf Check}: $(a) \ne \varnothing$ as $0, a \in (a)$
+{\bf Check}: $(a) \ne \varnothing$ as $0, a \in (a)$
 
-  If $r_1 a, r_2 a, \dots, r_n a \in (a)$ and $r_1' \dots, r_n' \in R$, then 
+If $r_1 a, r_2 a, \dots, r_n a \in (a)$ and $r_1' \dots, r_n' \in R$, then 
 
-  \[
-    r_1' (r_1 a) + \cdots + r_n' (r_n a) = (r_1' r_1 + \cdots + r_n' r_n)a \in (a)
-  \]
+\[
+  r_1' (r_1 a) + \cdots + r_n' (r_n a) = (r_1' r_1 + \cdots + r_n' r_n)a \in (a)
+\]
 
-  So it's closed under linear combinations in $R$, and non-empty.
-}
+So it's closed under linear combinations in $R$, and non-empty.
 
 We have two principal ideals:
 
@@ -4819,7 +4865,7 @@ We have two principal ideals:
 
 Any other ideal is called a {\bf proper ideal}.
 
-\note {
+\begin{note}
   Ideals are {\it almost} subrings, except they don't contain $1$ unless your
   ideal is the entire ring.
 
@@ -4827,9 +4873,9 @@ Any other ideal is called a {\bf proper ideal}.
   ring.
 
   Besides that, it satisfies all the properties of a subring!
-}
+\end{note}
 
-\example {
+\begin{example}
   $\text{eval}_2: \R[x] \to R$ which maps $f(x) \mapsto f(2)$, now
 
   \begin{align*}
@@ -4846,18 +4892,18 @@ Any other ideal is called a {\bf proper ideal}.
   \end{align*}
 
   So this is an ideal generated by $(x - 2)$
-}
+\end{example}
 
-\example {
+\begin{example}
   Similarly, if $\text{eval}_r: R[x] \to R$ and $r \in R$ for which $f(x) \mapsto
   f(r)$, then
 
   \[
     \ker(\text{eval}_r) = (x - r)
   \]
-}
+\end{example}
 
-\definition {
+\begin{definition}
   The ideal generated by $a_1, \dots, a_n \in R$ is 
 
   \[
@@ -4865,11 +4911,11 @@ Any other ideal is called a {\bf proper ideal}.
   \]
   
   So by design, satisfies the properties of an ideal.
-}
+\end{definition}
 
 This gives us interesting examples.
 
-\example {
+\begin{example}
   Look at $(2, x) \subseteq \Z[x]$. This contains all polynomials with an even
   constant term. Why? Well, when you take multiples of $x$, you get polynomials
   with no constant terms. But then, we can start adding multiples of $2$ and get
@@ -4877,7 +4923,7 @@ This gives us interesting examples.
 
   This ideal cannot be written as a principal ideal, which is generated by a
   single element.
-}
+\end{example}
 
 {\bf Proposition}: If $F$ is a field, $I \subseteq F$ is an ideal, then $I =
 (0)$ or $I = (1) = F$.
@@ -5084,6 +5130,8 @@ $\varphi: R \to R'$ is a ring hom, then $R / \ker(\varphi) \cong \im(\varphi)$
   (even if of course, we know that we can't mod out by a number, only by an
   ideal.) \QUESTION{} Why can we only mod out by ideals?
 }
+
+\subsection{Evaluation Map}
 
 \example {
   Consider the evaluation map $\varphi_i: \Z[x] \to \C$ defined as $f(x) \mapsto
