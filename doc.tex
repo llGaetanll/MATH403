@@ -6858,4 +6858,144 @@ First, some facts,
     hence a unit.
 \end{itemize}
 
+\date{Mon. 22 Apr 2024}
+
+\begin{note}
+  Remember, Wednesday we are not meeting. There are about 2 20 minute videos to
+  watch instead.
+
+  The Final grade can replace a midterm grade. Conway is writing the Final.
+\end{note}
+
+\section{Fields}
+
+\begin{note}
+  From now on, everything is Abelian, and every non-zero element has inverses.
+\end{note}
+
+\begin{definition}[Field Extension]
+  If $F \subseteq K$, and $F$ and $K$ are fields, then $K$ is called a {\bf
+  field extension} of $F$.
+
+  We write $K / F$.
+\end{definition}
+
+\begin{note}
+  Remember, if $F$ is a field, the only ideals are $(0)$ and $F$ itself.
+\end{note}
+
+We have different types of fields that we will care about.
+
+\begin{definition}[Number Field]
+  $F \subseteq \C$ is called a {\bf number field}.
+\end{definition}
+
+\begin{example}
+  $F \subseteq F(x)$ where $F(x)$ is called the {\bf function field}.
+  \QUESTION What's in $F(x)$?
+\end{example}
+
+\begin{example}
+  If $|F| < \infty$ is a {\bf finite field}. For instance, $\Z_p$.
+\end{example}
+
+\begin{definition}
+  If $K / F$ is a field extension and $\alpha \in K$, then we say that $\alpha$
+  is {\bf algebraic over $F$} if $\alpha$ is the root of a polynomial $f \in
+  F[x]$. Otherwise, we say that $\alpha$ is {\bf transcendental over $F$}.
+\end{definition}
+
+\begin{example}
+  $\pi$ is transcendental over $\Q$. It is not the root of any polynomial in
+  $\Q$. However, $\pi$ is algebraic over $\R$, because its the root of some
+  polynomials, for instance $f(x) = x - \pi$.
+\end{example}
+
+\begin{example}
+  $\sqrt{2}$ is algebraic over $\Q$. It is the root of $x^2 - 2$, but of course,
+  $\sqrt{2} \not\in \Q$.
+\end{example}
+
+\begin{example}
+  If $\alpha \in F$, then of course, $\alpha$ is algebraic over $F$, since it's
+  the root of $x - \alpha \in F[x]$.
+
+  Conversely, any root of $ax + b \in F[x]$ is in $F$.
+\end{example}
+
+Consider $\varphi_{\alpha} : F[x] \to K$, the evaluation map at $x = \alpha$,
+for which $f(x) \mapsto f(\alpha)$.
+
+\begin{claim}
+  $\alpha$ is algebraic if and only if $\varphi_{\alpha}$ is not injective.
+\end{claim}
+
+\begin{proof}
+  Exercise! This is not too hard.
+\end{proof}
+
+Hence, $\alpha$ is transcendental over $F$ if and only if $\varphi_{\alpha}$ is
+injective.
+
+If $\alpha$ is algebraic, then $\ker(\varphi_{\alpha}) \subseteq F[x]$ is an
+ideal, this is because it's the kernel of a field (or ring) homomorphism. We
+know that $F[x]$ is a PID, so $\ker(\varphi_{\alpha}) = (f)$, and we can choose
+$f$ to be monic.
+
+\begin{definition}[Minimal Polynomial]
+  If $K / F$ is a field extension, and $\alpha \in K$ is algebraic over $F$,
+  then the monic generator of $\ker(\varphi_{\alpha})$ is called the {\bf
+  minimal polynomial} (or {\bf irreducible polynomial}) for $\alpha$ over $F$.
+\end{definition}
+
+{\bf Equivalently}: 
+\begin{itemize}
+  \item $f(\alpha) = 0$, $f$ is monic, and $f$ has minimal degree over such polynomials.
+  \item $f(\alpha) = 0$, $f$ is monic, and $(f)$ is maximal.
+\end{itemize}
+
+\begin{example}
+  The minimal polynomial for $\sqrt{2}$ over $\Q$ is $x^2 - 2$. However in $\R$,
+  it is $x - \sqrt{2}$.
+\end{example}
+
+\begin{definition}
+  The {\bf degree of $\alpha$ over $F$} is $\deg(\text{min. poly.})$.
+\end{definition}
+
+\begin{example}
+  Let $\alpha = \sqrt{i} = e^{i \pi / 4} = \sqrt{2} / 2 + i \sqrt{2} / 2$. Here,
+  $\alpha$ has degree $4$ over $\Q$, and the minimal polynomial is $x^4 + 1$.
+
+  How do we know that $x^4 + 1$ is irreducible?
+  \begin{enumerate}
+    \item Look at $A + B \alpha + C \alpha^2 + D \alpha^3$, and show it's never
+      $0$.
+    \item Reduce $\mod 3$.
+
+      Consider $x^4 + \bar 1 \Z_3[x]$. You can check that this has no root.
+      Check that $x^4 + \bar 1$ has no quadratic factor. Then, if it's
+      irreducible over $\Z_3$, it's irreducible over $\Q$.
+
+    \item Eisenstein's Critetion. $x^4 + 1$ is irreducible if and only if $(x +
+      1)^4 + 1$ is irreducible. We have
+
+      \begin{align*}
+        (x + 1)^4 + 1 &= (x^4 + 4x^3 + 6x^2 + 4x + 1) + 1 \\
+                      &= x^4 + 4x^3 + 6x^2 + 4x + 2
+      \end{align*}
+
+      Now, $p = 2$ divides all except the leading term, and $p^2 = 4$ does not
+      divide the constant term. So by Eisenstein's Critetion, $(x + 1)^4 + 1$ is
+      irreducible, so $x^4 + 1$ is irreducible.
+  \end{enumerate}
+
+  However, $\alpha = \sqrt{i}$ has degree $2$ over $\Q(i)$, and the minimal
+  polynomial is $x^2 - 1$.
+\end{example}
+
+\begin{definition}
+  $F(\alpha)$ is the smallest subfield of $K$ containing both $F$ and $\alpha$.
+\end{definition}
+
 \end{document}
