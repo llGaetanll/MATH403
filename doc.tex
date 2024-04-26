@@ -6706,7 +6706,7 @@ coefficients mod $p$. We have a
 \end{proposition}
 
 \begin{proof}
-  (By contrapositive.) If $f$ is reducible in $\Q[x]$< then $f = gh$ is a
+  (By contrapositive.) If $f$ is reducible in $\Q[x]$, then $f = gh$ is a
   non-trivial factorization, and $g, h \in \Q[x]$. We write $f = c_f f_0$, where
   $f_0$ is primitive. Then, from last time, we have that $f_0 = g_0 h_0$ where
   $g_0$ and $h_0$ are the primitive parts of $g$ and $h$, so they are integer
@@ -6747,7 +6747,7 @@ Let's do something that {\it is} easier to compute.
 
   \begin{itemize}
     \item $p \nmid a_n$
-    \item $p \mid a_0, \dots, p \mid a_{n - 1}$
+    \item $p \mid a_1, \dots, p \mid a_{n - 1}$
     \item $p^2 \nmid a_0$
   \end{itemize}
 
@@ -6997,5 +6997,175 @@ $f$ to be monic.
 \begin{definition}
   $F(\alpha)$ is the smallest subfield of $K$ containing both $F$ and $\alpha$.
 \end{definition}
+
+\date{Wed. 24 Apr 2024}
+
+\TODO
+
+\date{Fri. 26 Apr 2024}
+
+{\bf Recall}. We looked at algebraic elements.
+
+\begin{definition}[Vector Space]
+  A {\bf vector space} $V$ over a field $F$ is a set with binary operation
+
+  \begin{enumerate}
+    \item $+: V \times V \to V$, written $v + w$
+    \item $\times: V \times V \to V$, scalar multiplication, written $av$
+  \end{enumerate}
+
+  Satisfying,
+
+  \begin{enumerate}
+    \item $(V, +)$ is Abelian, inverses are $-v$, identity is $0$.
+    \item $a(bv) = (ab)v$
+    \item $1 \cdot v = v$
+    \item $a(u + v) = au + av$
+    \item $(a + b)v = av + bv$
+  \end{enumerate}
+\end{definition}
+
+It's important to point out that there is no multiplication {\bf in} the vector
+space. The multiplication is only between vectors and scalar elements of the
+field.
+
+\begin{example}
+  $V = \R^n$, $F = \R$, is a vector space.
+\end{example}
+
+\begin{example}
+  If $K / F$ is a field extension, then we can think of $V = K$ is a vector
+  space over $F$.
+\end{example}
+
+\begin{example}
+  $\C / \R$, with elements of the form $a + bi \in \C$, multiplied by any real
+  scalars.
+\end{example}
+
+\begin{note}
+  Every field extension can be thought of as a vector space!
+\end{note}
+
+\begin{definition}
+  The {\bf degree} of the extension is written $[K : F]$ is the dimension of $K$
+  as a vector space over $F$. Equivalently, the size of a basis for $K$ over
+  $F$.
+\end{definition}
+
+\begin{note}
+  Ones that are simple to understand are degree one extensions: $[K : F] = 1$.
+  This happens if and only if the fields are equal.
+\end{note}
+
+\begin{proof}
+  ($\Rightarrow$) If $[K : F] = 1$, then any set $\{v\}$, where $v \ne 0$, is
+  a basis for $K$ over $F$. This tells us that, for example $\{1\}$ is a basis,
+  and so $K = \{ a \cdot 1 \mid a \in F \} = F$.
+
+  ($\Leftarrow$) If the fields are equal, then $\{1\}$ is a basis, then $[K : F]
+  = 1$.
+\end{proof}
+
+\begin{theorem}
+  If $\char(F) \ne 2$, and $K / F$ is a field extension, then $[K : F] = 2$ if
+  and only if $K \cong F(\delta)$, where $\delta^2 = d \in F$ and $d$ has no
+  square root in $F$.
+\end{theorem}
+
+\begin{proof}
+  ($\Leftarrow$). If $K \cong F(\delta)$ and $\delta^2 \in F$, and $\delta^2$
+  has no square root in $F$, then a basis for $F$ is $\{1, \delta\}$, since
+  $\delta$ is the root of $x^2 - \delta^2 \in F[x]$. $x^2 - \delta^2$ is
+  irreducible, and $F(\delta) \cong F[x] / (x^2 - \delta^2)$. We have a basis of
+  size $2$, then $[F(\delta) : F] = 2$.
+
+  ($\Rightarrow$). If $[K : F] = 2$, choose $\alpha \in K$ with $\alpha \not\in
+  F$. Then $\{1, \alpha\}$ is linearly independent over $F$, since if it were
+  not, we could write $a \cdot 1 + b \cdot \alpha = 0$, and $\alpha = ab^{-1}
+  \in F$, which is a contradiction. Therefore $\{1, \alpha\}$ is a basis for $K$
+  over $F$. Then, $\alpha^2 = a \cdot 1 + b \cdot \alpha$ for some $a, b \in F$.
+  So $\alpha^2 - b \alpha - a = 0$, and so $\alpha$ is the root of $x^2 - bx - a
+  \in F[x]$. Since $\alpha \not\in F$, this is irreducible over $F$. Use the
+  quadratic formula: $\alpha = (b \pm \sqrt{b^2 + 4a}) / 2$. This is why we
+  needed $\char(F) \ne 2$.
+
+  Let $\delta = \sqrt{b^2 + 4a}$, i.e. $\delta$ is a root of $x^2 - (b^2 + 4a)$.
+  Firstly, $\delta \in K$, since $\delta = \pm (2\alpha - b)$. This means that
+  $F(\delta) \subseteq K$. Now notice that $\delta \in K$, but $\delta \not\in
+  F$ (since $\alpha \not\in F$), so $\{1, \delta \}$ is a basis for $K / F$, so
+  $K = F(\delta)$.
+\end{proof}
+
+{\bf What happens if $\char(F) = 2$?}
+
+Let $F = \Z_2$, and $K = \Z_2[x] / (x^2 + x + 1)$. The issue is that everything
+in $\Z_2$ has a square root. For instance, $0^2 = 0$, and $1^2 = 1$. So $K \ne
+F(\delta)$ for $\delta^2 \in F$. However, $[K : F] = 2$, as $x^2 + x + 1$ is
+degree $2$.
+
+\begin{theorem}
+  $\alpha$ is algebraic over $F$ of degree $n$ if and only if $[F(\alpha) : F] =
+  n$. Similarly, $\alpha$ is transcendental over $F$ if and only if $[F(\alpha)
+  : F] = \infty$.
+\end{theorem}
+
+\begin{proof}
+  $\alpha$ is algebraic over $F$ of degree $n$ if and only if these is a minimal
+  polynomial $f \in F[x]$ for $\alpha$ of degree $n$, if and only if $F(\alpha)
+  \cong F[x] / (f)$ (keeping in mind that $f$ is monic, and has degree $n$.)
+  This implies that $F(\alpha)$ has a basis $\{1, \alpha, \dots, \alpha^{n -
+  1}\}$ of size $n$, so $[F(\alpha) : F] = n$.
+
+  If $\alpha$ is transcendental, then $\{1, \alpha, \alpha^2, \dots\}$ is
+  linearly independent (otherwise a polynomial would have it as a root.) Meaning
+  that a basis for $F(\alpha) / F$ is infinite, so $[F(\alpha) : F] = \infty$.
+\end{proof}
+
+\section{The Tower Law}
+
+\begin{theorem}[Tower Law]
+  If $F \subseteq K \subseteq L$ are fields, then 
+
+  \[
+    [L : F] = [L : K][K : F]
+  \]
+\end{theorem}
+
+\begin{corollary}
+  If $K / F$ is an extension field $[K : F] = n$, and $\alpha \in K$, then
+  $[F(\alpha) : F] \le n$.
+\end{corollary}
+
+\begin{proof}[Proof of Corollary]
+  We have $F \subseteq F(\alpha) \subseteq K$, so
+
+  \[
+    [K : F] = [K : F(\alpha)][F(\alpha) : F]
+  \]
+
+  So $[F(\alpha) : F] \le n$ (and in fact divides $n$)
+\end{proof}
+
+\begin{example}
+  Consider $[\C : \R] = 2$, as a basis, we can take $\{1, i\}$. For any $\alpha
+  \in \C$, $[\R(\alpha) : \R] = 1$ or $2$. It is $1$ if and only if $\R(\alpha)
+  = \R$, if and only if $a \in \R$. It is $2$ if and only if $\alpha \not\in
+  \R$. But then, the tower law says that $[\C : \R(\alpha)] = 1$, then
+  $\R(\alpha) = \C$
+\end{example}
+
+\begin{proof}[Proof of the Tower Law]
+  (Sketch for finite dimensional extensions.)
+
+  If $\{ \alpha_1, \dots, \alpha_n \}$ is a basis for $K / F$, and $\{\beta_1,
+  \dots, \beta_m\}$ is a basis for $L / K$, then we want show that 
+
+  \[
+    \{\alpha_1 \beta_1 \dots, \alpha_1 \beta_m, \alpha_2 \beta_1, \dots, \alpha_n \beta_m \}
+  \]
+
+  Is a basis for $L / F$, so $[L : F] = nm$.
+\end{proof}
 
 \end{document}
