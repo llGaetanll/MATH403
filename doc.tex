@@ -6987,9 +6987,11 @@ $f$ to be monic.
       $0$.
     \item Reduce $\mod 3$.
 
-      Consider $x^4 + \bar 1 \Z_3[x]$. You can check that this has no root.
+      Consider $x^4 + \bar 1 \in \Z_3[x]$. You can check that this has no root.
       Check that $x^4 + \bar 1$ has no quadratic factor. Then, if it's
       irreducible over $\Z_3$, it's irreducible over $\Q$.
+
+      \QUESTION Why does this work?
 
     \item Eisenstein's Critetion. $x^4 + 1$ is irreducible if and only if $(x +
       1)^4 + 1$ is irreducible. We have
@@ -7002,6 +7004,10 @@ $f$ to be monic.
       Now, $p = 2$ divides all except the leading term, and $p^2 = 4$ does not
       divide the constant term. So by Eisenstein's Critetion, $(x + 1)^4 + 1$ is
       irreducible, so $x^4 + 1$ is irreducible.
+
+      \QUESTION What's the deal with evaluating the polynomial at $x + 1$, and
+      if it's irreducible, the polynomial at $x$ is irreducible? Why is that
+      true?
   \end{enumerate}
 
   However, $\alpha = \sqrt{i}$ has degree $2$ over $\Q(i)$, and the minimal
@@ -7011,6 +7017,8 @@ $f$ to be monic.
 \begin{definition}
   $F(\alpha)$ is the smallest subfield of $K$ containing both $F$ and $\alpha$.
 \end{definition}
+
+\TODO{} Maybe move this definition
 
 \date{Wed. 24 Apr 2024}
 
@@ -7173,7 +7181,8 @@ field.
 \end{example}
 
 \begin{note}
-  Every field extension can be thought of as a vector space!
+  Every field extension can be thought of as a vector space! \QUESTION What???
+  Is this not extremely surprising?
 \end{note}
 
 \begin{definition}
@@ -7399,6 +7408,260 @@ If $\alpha, \beta, \gamma$ are already constructed, we may construct
 
 \date{Wed. 1 May 2024}
 
+Today was a lot of constructions and pictures, I can't tex that.
 
+\date{Fri. 3 May 2024}
+
+Next week, two review days:
+\begin{itemize}
+  \item Monday: Group Theory Questions
+  \item Wednesday: Ring Theory and Field Theory Questions
+\end{itemize}
+
+\begin{theorem}
+  If $\alpha \in \C$ is constructible, then $[\Q(\alpha) : \Q] = 2^m$ for some
+  $m$
+\end{theorem}
+
+\begin{note}
+  This is not an if and only if.
+\end{note}
+
+
+\begin{corollary}
+  $\sqrt[3]{2}$ is not constructible.
+\end{corollary}
+
+\begin{proof}[Proof of Corollary]
+  The minimal polynomial for $\sqrt[3]{2}$ is $f = x^3 - 2$, and $f$ is
+  irreducible over $\Q$ by the Eisenstein Criterion with $p = 2$. This means
+  that $[\Q(\sqrt[3]{2}) : \Q] = 3 \ne 2^m$
+\end{proof}
+
+\begin{corollary}
+  We cannot ``double the cube", i.e. construct a side length of a cube with
+  volume $2$.
+\end{corollary}
+
+\begin{corollary}
+  There is no algorithm to do angle trisection algorithms with straightedge and
+  compass.
+\end{corollary}
+
+\begin{proof}[Proof of Corollary]
+  We can construct a $60$ degree angle, because we can construct a regular
+  triangle. If we could trisect, we could construct a $20$ angle.
+
+  {\bf Fact}. Constructing $\theta$ is equivalent to constructing $\cos \theta$.
+  Why? Constructing $\theta$ is equivalent to constructing $e^{i \theta}$, and
+  the $x$ axis distance is $\cos \theta$.
+
+  Let $\alpha = \cos 20$. We'll show that $\alpha$ is not constructible.
+  Firstly, constructing $\alpha$ is equivalent to constructing $2\alpha$. We'll
+  use $\cos(3 \theta) = 4 \cos^3 (\theta) - 3 \cos(\theta)$, this means that
+  $\cos(60) = 4 \cos^3(20) - 3 \cos(20)$, so we get $1/2 = 4 \alpha^3 - 3
+  \alpha$, and so $(2 \alpha)^3 - 3 (2\alpha) - 1 = 0$.
+
+  This tells us that $2 \alpha$ is a root of $x^3 - 3x - 1 \in \Q[x]$. This is
+  degree $3$, and so factors if and only if it has a rational root. Our rational
+  root theorem tells us that the possible rational roots are $\pm 1$, but
+  $f(\pm 1) \ne 0$. So $f$ is irreducible, which tells us that $[\Q(2\alpha) :
+  \Q] = 3 \ne 2^m$, so $2\alpha$ is not constructible, and neither is $\alpha$.
+  Therefore, $20$ degree angles are not constructible and angle trisection is
+  impossible.
+\end{proof}
+
+\begin{proof}[Proof of Theorem]
+  Say $\alpha \in \C$, a point, is constructible, and $p_1, p_2, \dots, p_n =
+  \alpha$ are the points constructed in a construction of $\alpha$. Consider 
+
+  \[
+    F_0 = \Q \subseteq F_1 = \Q(p_1) \subseteq F_2 = \Q(p_1, p_2) \subseteq \cdots \subseteq F_n = \Q(p1, p2, \dots, p_n)
+  \]
+
+  and we know that $\Q \subseteq \Q(\alpha) \subseteq F_n$, since $\alpha = p_n
+  \in F_n$. We'll prove by induction that $[F_n : \Q] = 2^m$ by induction.
+
+  {\bf Base}. $[F_0 : \Q] = [\Q : \Q] = 1 = 2^0$
+
+  {\bf Inductive Step}. Assume that $[F_i : \Q] = 2^m$, then $F_{i + 1} =
+  F_i(p_{i + 1})$. The point $p_{i + 1}$ is constructed in one of three ways:
+
+  \begin{enumerate}
+    \item it is the intersection of two line segments.
+    \item it is (one of) the intersections of a line and a circle
+    \item it is (one of) the intersections of two circles.
+  \end{enumerate}
+
+  What we know here is that the points used to make these lines and circles are
+  already in $F_i$. So finding $p_{i + 1}$ is solving a system of equations with
+  coefficients in $F_i$, built of linear (for the lines) and quadratic (for the
+  circles) equations. What you get out of this is that $p_{i + 1}$ is the root
+  of a linear or quadratic polynomial in $F_i[x]$. This gives us that $[F_i(p_{i
+  + 1}) : F_i] \in \{1, 2\}$. Then, $[F_{i + 1} : \Q] = [F_{i + 1} : F_i][F_i :
+  \Q] = 2^m$ or $2^{m + 1}$. So by induction, $[F_n : \Q] = 2^m$ for some $m$.
+  Since $\Q \subseteq \Q(\alpha) \subseteq F_n$, we have
+
+  \[
+    [F_n : \Q] = [F_n : \Q(\alpha)][\Q(\alpha) : \Q]
+  \]
+
+  So $[\Q(\alpha) : \Q] = 2^k$ for some $k$.
+\end{proof}
+
+Of course, this is not an if and only if, there are things which are powers of
+two but not built up this way. Here is a better theorem
+
+\begin{theorem}
+  $\alpha \in \C$ is constructible if and only if there exists a sequence of
+  extensions $\Q = F_0 \subseteq F_1 \subseteq \cdots \subseteq F_n$ such that
+  $\alpha \in F_n$, and $[F_i : F_{i - 1}] = 2$ for all $i = 1, \dots, n$.
+\end{theorem}
+
+\section{Constructing Regular n-gons}
+
+Imagine a regular $n$-gon with its center at $0$ and a vertex at $1$. Then, the
+other vertices are at the $n$th roots of unity.
+
+A regular $n$-gon is then constructible if and only if $\zeta_n = e^{i 2 \pi /
+n}$ is constructible.
+
+\begin{theorem}[Gauss-Wantzel Theorem]
+  A regular $n$-gon is constructible if and only if $n = 2^k p_1 p_2 \cdots p_n
+  \ge 3$ where $k \ge 0$, and $p_i$ are distinct Fermat Primes, where a Fermat
+  Prime is a prime of the form $p_i = 2^{2^m} + 1$ for some $m$ and $p_i$ prime.
+\end{theorem}
+
+The only known format primes are $m = 0, 1, 2, 3, 4$ which yield $p = 3, 5, 17,
+257, 65537$
+
+---
+
+\date{Mon. 6 May 2024}
+
+\section{Final Review}
+
+\begin{note}
+  For the final, expect it to be similar to the exams.
+\end{note}
+
+{\bf Fall 23, Gholampour}
+
+\begin{enumerate}
+  \item $S_{10}$, and $A_{10} < S_{10}$
+
+    \begin{enumerate}
+      \item We have $\sigma = (1237)(1578)(269(10))$, rewrite $\sigma$ as union of
+        disjoint cycles. We have
+
+        \[
+          \sigma = (15)(269(10)378)(4)
+        \]
+
+        What is the order of this? Remember, it's the least common multiple of the
+        lengths of the disjoint cycles, so we have $|\sigma| = \lcm(2, 7) = 14$
+      \item Is $\sigma \in A_{10}$ ?
+
+        We know that 
+
+        \[
+          \sigma = (15)(26)(29)(9(10))((10)3)(37)(78)
+        \]
+
+        Since the number of doubles is odd, it's not in $A_{10}$
+
+        $\tau = (123)(456789(10)) \in A_{10}$. This is a $3$ cycle and a $7$ cycle, so
+        $|\tau| = \lcm(3, 7) = 21$
+
+      \item If $\sigma$ is as above, find the order of the conjugacy class of
+        $\sigma$
+
+        {\bf Fact}. All permutations with the same disjoint cycle lengths are
+        conjugates of each other.
+
+        Using this fact, it suffices to count how many $2-7-1$ cycles there are,
+        and that's the size of the conjugacy class! On with the next question.
+
+      \item How many $2-7-1$ permutations are in $S_{10}$?
+
+        Well, for the $2$-cycle, we pick $2$ elements, so this is
+        $\binom{10}{2}$.
+
+        For the $7$-cycle, there are $8$ numbers left, so this is just like
+        Not picking one element, so this is $8 \cdot 7! / 7$, divide by seven
+        because of duplicate shifting.
+
+        So this is $45 \cdot 8 \cdot6! = |C(\sigma)|$. What does this tell us about
+        $|Z(\sigma)|$? Well we know that $|Z(\sigma)| = |S_{10}| / |C(\sigma)|$
+    \end{enumerate}
+\end{enumerate}
+
+{\bf Fall 23, Zickert}
+
+\begin{enumerate}
+  \item[7.] We have $G = \Z_{10} \times \Z_{10}$, and $H = \lr{(2, 8)}$.
+    Identify $G / H$, and find all elements of order $2$
+
+    Firstly, we know that $|G| = 10 \cdot 10 = 100$, and $|H| = |(2, 8)| =
+    \lcm(|2|, |8|) = \lcm(5, 5) = 5$.
+
+    This means that $|G / H| = |G| / |H| = 20$. What could $G / H$ possibly be?
+    The only possibilities are $Z_{20}$ or $Z_{2} \times \Z_{10}$.
+
+    Let's look at $H$, we have that $H = \{(0, 0), (2, 8), (4, 6), (6, 4), (8, 2)\}$
+
+    There are no elements of $20$ in $\Z_{10} \times \Z_{10}$. We have that
+    $|(a, b)| = \lcm(|a|, |b|)$, and we need $5 \cdot 4$, but there are no
+    elements of order $4$ in $\Z_{10}$ as $4 \nmid 10$. So $G / H \cong \Z_2
+    \times \Z_{10}$.
+
+    If you want to write down all elements of order $2$, there are only $3$.
+\end{enumerate}
+
+{\bf Spring 18, Manning}
+
+\begin{enumerate}
+  \item $n = p_1, \cdots p_n$. How many Abelian groups of order $n^3$?
+
+    If $n = p^3$, the possibilities are $\Z_{p^3}, \Z_{p^2} \times \Z_p, \Z_p
+    \times \Z_p \times \Z_p$. For each prime, we have $3$ possibilities.
+
+    In total, we have $3^k$ possible Abelian Groups.
+
+  \item $H \le K \trianglelefteq G$ and $K$ is cyclic. Prove that $H
+    \trianglelefteq G$.
+
+    If $K$ is cyclic, then $\lr{a}$. Since subgroups of cyclic groups are also
+    cyclic, We know that $H = \lr{a^n}$ for some $n$.
+
+    We know that $K \trianglelefteq G$, so $gag^{-1} \in K$ for all $g \in G$.
+    Now given $g \in G$, say $gag^{-1} = a^m$. Now if $h \in H$, we know that $h
+    = (a^n)^l = a^{nl}$. So $ghg^{-1} = ga^{nl}g^{-1}$. We can introduce
+    $gg^{-1}$ between every power of $a$ to get
+
+    \[
+      \underbrace{(gag^{-1}) \cdots (gag^{-1})}_{\text{$nl$ times}}
+    \]
+
+    And we know that this is equal to $a^m \cdots a^m = a^{ml} = (a^n)^{lm} \in
+    H$
+
+    So $H \trianglelefteq G$.
+
+    \begin{note}
+      If $ag, ga \in H$, a normal subgroup, it {\bf does not} mean that $ag =
+      ga$.
+    \end{note}
+
+  \item[5.] $G = \Z^{\times}_{19}$ (on some exams, this may be denoted by
+    $U(19)$), the multiplicative groups of units in $\Z_{19}$. Of course, $19$
+    is prime, so all but $0$ have multiplicative inverses. As a multiplicative
+    group, we have that $|G| = 18$.
+
+    The possible orders of subgroups is $1, 2, 9, 18$.
+
+    What are the possible orders of elements in this group, and what are their
+    orders?
+\end{enumerate}
 
 \end{document}
